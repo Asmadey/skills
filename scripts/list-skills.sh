@@ -8,7 +8,7 @@ echo "========================================================="
 echo "               Asmadey's Agent Skills Library            "
 echo "========================================================="
 
-for cat_dir in "${ROOT_DIR}/public"/*; do
+for cat_dir in "${ROOT_DIR}/skills"/*; do
   if [ -d "${cat_dir}" ]; then
     cat_name="$(basename "${cat_dir}")"
     count=$(find "${cat_dir}" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
@@ -34,6 +34,6 @@ done
 
 echo ""
 echo "========================================================="
-echo "Total public skills: $(find "${ROOT_DIR}/public" -mindepth 2 -maxdepth 2 -type d | wc -l | tr -d ' ')"
+echo "Total skills: $(find "${ROOT_DIR}/skills" -mindepth 2 -maxdepth 2 -type d | wc -l | tr -d ' ')"
 echo "Total frameworks: $(find "${ROOT_DIR}/frameworks" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l | tr -d ' ')"
 echo "========================================================="

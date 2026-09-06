@@ -15,8 +15,8 @@ for target_dir in "${TARGET_DIRS[@]}"; do
   mkdir -p "${target_dir}"
   echo "Target: ${target_dir}"
 
-  # Link all public skills
-  for skill_path in "${ROOT_DIR}/public"/*/*; do
+  # Link all skills
+  for skill_path in "${ROOT_DIR}/skills"/*/*; do
     if [ -d "${skill_path}" ]; then
       skill_name="$(basename "${skill_path}")"
       dest_link="${target_dir}/${skill_name}"
