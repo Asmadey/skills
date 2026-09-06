@@ -6,7 +6,7 @@ last_updated: 2026-09-06
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (78 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (79 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -48,6 +48,7 @@ last_updated: 2026-09-06
 | **react-native-skills** | **React Native / Expo Standards**.<br>Лучшие практики и паттерны оптимизации производительности мобильных приложений React Native/Expo | `разработка мобильных приложений, Expo, React Native` | Node/CLI | [SKILL.md](skills/dev/react-native-skills/SKILL.md) |
 | **sgr-core** | **SGR Agent Core**.<br>Фреймворк построения интеллектуальных исследовательских и reasoning-агентов | `сложная агентная логика, многоагентные системы, SGR` | Prompt | [SKILL.md](skills/dev/sgr-core/SKILL.md) |
 | **shadcn** | **shadcn/ui Manager**.<br>Официальный менеджер компонентов shadcn/ui, пресеты, формы и токены Tailwind CSS | `добавление компонентов shadcn, components.json, стилизация` | Node/CLI | [SKILL.md](skills/dev/shadcn/SKILL.md) |
+| **unlazy** | **Completion Discipline & Acceptance Gates**.<br>Устранение недоделок и лени ИИ: построение дерева задач Depth Tree, генерация acceptance gates (GATES.md) до исполнения, изоляция файлов и строгая повторная верификация доказательств | `/unlazy, $unlazy, «не останавливайся пока не готово», «tree N», «gates», защита от лени ИИ` | Node/CLI | [SKILL.md](skills/dev/unlazy/SKILL.md) |
 | **supabase** | **Supabase & Postgres Suite**.<br>Официальный пакет навыков Supabase: база данных, Auth, RLS-политики, Edge Functions, Storage, лучшие практики PostgreSQL | `Supabase, настройка RLS, оптимизация PostgreSQL, миграции, Auth` | Node/CLI | [SKILL.md](skills/dev/supabase/SKILL.md) |
 | **vercel-automation** | **Vercel Automation MCP**.<br>Управление деплоями, доменами, проектами и окружениями на Vercel через MCP | `деплой на Vercel, управление проектами, DNS-записи` | Prompt | [SKILL.md](skills/dev/vercel-automation/SKILL.md) |
 

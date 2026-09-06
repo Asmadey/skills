@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **78 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **79 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -68,6 +68,7 @@ flowchart TD
 | [**`ai-software-factory`**](frameworks/ai-software-factory/SKILL.md) | **Автономная фабрика софта («Dark Factory»)**. Полный беспилотный цикл: Issue → Mission Gate → Plan → Build → Изолированный Judge → Holdout E2E → Auto-Merge. | Python / CLI |
 | [**`code-reviewer`**](skills/dev/code-reviewer/SKILL.md) | **Total Review Engine v2.1.0**. Двухпроходный консенсусный аудит кода (Claude + OpenAI Codex CLI), фильтрация придирок (Overthinking Rejection) и Approval Gate. | Prompt / CLI |
 | [**`codex-plugin-cc`**](skills/dev/codex-plugin-cc/SKILL.md) | **OpenAI Codex CLI Suite**. Официальный пакет интеграции Codex CLI: headless-сессии исполнения, валидация git-диффов, рецепты reasoning для GPT-5.4. | Node/CLI |
+| [**`unlazy`**](skills/dev/unlazy/SKILL.md) | **Completion Discipline & Acceptance Gates**. Защита от лени и недоделок ИИ: построение дерева задач Depth Tree, генерация acceptance gates (`GATES.md`) до исполнения и повторная верификация доказательств. | Node / CLI |
 | [**`supabase`**](skills/dev/supabase/SKILL.md) | **Supabase & Postgres Suite**. Официальный агентный пакет Supabase: Database, Auth, RLS-политики, Edge Functions, Storage, SSR (Next.js/React) и оптимизация PostgreSQL. | Node/CLI |
 | [**`gnhf`**](skills/dev/gnhf/SKILL.md) | **Good Night, Have Fun Orchestrator**. Оркестратор длительных автономных ночных прогонов до достижения естественного stop condition. | Node/CLI |
 | [**`no-mistakes`**](skills/dev/no-mistakes/SKILL.md) | **Pre-Commit Quality Gate**. Локальный гейт-прокси, линтинг и валидация правок без регрессий перед коммитом. | Prompt |
