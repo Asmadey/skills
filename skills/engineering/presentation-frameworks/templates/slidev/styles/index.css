@@ -1,0 +1,43 @@
+/* Brand/Black.md Implementation */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+:root {
+  --slidev-theme-primary: #818CF8;
+  --slidev-theme-background: #0F172A;
+  --slidev-theme-foreground: #F9FAFB;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  @apply bg-main;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight;
+}
+
+p {
+  @apply text-secondary leading-relaxed mb-4;
+}
+
+/* Slidev specific layout */
+.slidev-layout {
+  @apply bg-main p-12 overflow-hidden h-full w-full;
+}
+
+/* Code block styles */
+.slidev-code {
+  @apply rounded-xl bg-[#1E293B] border border-white/10 p-4 font-mono text-sm;
+}
+
+/* Transitions */
+.v-click-hidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.v-click-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s ease-out;
+}

@@ -1,0 +1,11 @@
+{
+  "name": "asmadey-skills",
+  "plugins": [
+    {
+      "name": "asmadey-skills",
+      "version": "1.0.0",
+      "description": "Production agent skills for AI architecture, engineering, and high-agency productivity",
+      "repository": "https://github.com/Asmadey/skills"
+    }
+  ]
+}

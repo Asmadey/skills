@@ -1,0 +1,17 @@
+{
+  "name": "asmadey-skills",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Asmadey's production agent skills for engineering, AI architecture, and productivity",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Asmadey/skills"
+  },
+  "author": "Asmadey",
+  "license": "MIT",
+  "scripts": {
+    "list": "bash scripts/list-skills.sh",
+    "link": "bash scripts/link-skills.sh"
+  },
+  "packageManager": "npm@10.9.4"
+}

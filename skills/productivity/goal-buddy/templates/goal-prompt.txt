@@ -1,0 +1,2 @@
+Codex: /goal Follow docs/goals/<slug>/goal.md.
+Claude Code: /goalbuddy Follow docs/goals/<slug>/goal.md.
