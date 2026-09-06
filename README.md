@@ -1,11 +1,11 @@
 <div align="center">
 
-<img src="media/proshinsky.com.jpg" alt="Alexey Proshinsky - Agent Skills & Ecosystem" width="100%" style="max-width: 820px; border-radius: 14px; margin-bottom: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.25);" />
+<img src="media/proshinsky.com.jpg" alt="Владислав Прошинский - Agent Skills & Ecosystem" width="100%" style="max-width: 820px; border-radius: 14px; margin-bottom: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.25);" />
 
 # The Agentic OS & Skill Ecosystem
 
 **Production-grade библиотека навыков, мета-фреймворков и стандартов для автономных ИИ-агентов**<br>
-*Created & curated by [Alexey Proshinsky](https://proshinsky.com)*<br>
+*Created & curated by [Владислав Прошинский](https://proshinsky.com)*<br>
 *Совместимо с Google Antigravity, Claude Code, Cursor, OpenAI Codex, Windsurf и Cline.*
 
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Standard-3b82f6.svg)](https://agentskills.io/)
