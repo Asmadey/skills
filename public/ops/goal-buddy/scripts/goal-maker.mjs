@@ -1,0 +1,1 @@
+../internal/cli/goal-maker.mjs

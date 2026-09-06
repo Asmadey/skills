@@ -1,0 +1,8 @@
+{
+  "prompt": "Compose a dramatic movie poster scene merging input image 1 (character portrait) with input image 2 (stormy sea background). Match the color grading of image 2 to image 1, creating volumetric sea mist, rain droplets on character jacket, and dramatic rim lighting on hair. 35mm cinematic film grain, widescreen format.",
+  "negative_prompt": "sloppy cutout, harsh seams, mismatched lighting, cartoon, oversaturated, blurry.",
+  "settings": {
+    "aspect_ratio": "16:9",
+    "resolution": "2K"
+  }
+}

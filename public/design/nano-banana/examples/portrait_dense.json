@@ -1,0 +1,8 @@
+{
+  "prompt": "Authentic candid smartphone selfie of a man at a gym. Documentary realism. RAW sensor photo. Visible face pores, slightly uneven facial hair, mild sweat sheen on forehead, subtle eye bags. He is wearing a faded grey cotton t-shirt. Background is slightly out of focus gym equipment. Lighting is harsh overhead fluorescent lighting common in gyms with natural falloff. 28mm lens, f/2.2, ISO 800. Do not beautify. No skin smoothing. Preserve natural anatomy and facial asymmetry. Real human skin with natural flaws.",
+  "negative_prompt": "CGI, plastic skin, 3D render, airbrushed, filtered, beauty mode, symmetrical face, heavy makeup, high-end studio lighting, fake gloss.",
+  "settings": {
+    "aspect_ratio": "4:5",
+    "resolution": "2K"
+  }
+}

@@ -1,0 +1,24 @@
++ set -e
++++ dirname scripts/counters.sh
+++ cd scripts
+++ pwd
++ SCRIPT_DIR=/Users/asmadey/PersonalOS/skills/yandex-metrika/scripts
++ . /Users/asmadey/PersonalOS/skills/yandex-metrika/scripts/common.sh
+++ set -e
+++++ dirname scripts/counters.sh
++++ cd scripts
++++ pwd
+++ SCRIPT_DIR=/Users/asmadey/PersonalOS/skills/yandex-metrika/scripts
+++ CONFIG_FILE=/Users/asmadey/PersonalOS/skills/yandex-metrika/scripts/../config/.env
+++ CACHE_DIR=/Users/asmadey/PersonalOS/skills/yandex-metrika/scripts/../cache
+++ METRIKA_API=https://api-metrika.yandex.net
+++ METRIKA_TMPDIR=/var/folders/l1/z6_vj23x7bv7355lsczwdvhh0000gn/T/
+++ mkdir -p /var/folders/l1/z6_vj23x7bv7355lsczwdvhh0000gn/T/
++ load_config
++ '[' -f /Users/asmadey/PersonalOS/skills/yandex-metrika/scripts/../config/.env ']'
++ '[' -z '' ']'
++ echo 'Error: YANDEX_METRIKA_TOKEN not found.'
+Error: YANDEX_METRIKA_TOKEN not found.
++ echo 'Set in config/.env or environment. See config/README.md.'
+Set in config/.env or environment. See config/README.md.
++ exit 1

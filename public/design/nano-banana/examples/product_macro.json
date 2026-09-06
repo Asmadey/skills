@@ -1,0 +1,8 @@
+{
+  "prompt": "Extreme macro close-up photograph of a vintage mechanical wristwatch mechanism. Highly detailed polished gears, brass cogs, ruby jewel bearings, tiny escapement spring vibrating. Micro-scratches on metallic surface, tiny particles of watchmaker oil. 90mm macro lens, f/4.0, ISO 100, shallow depth of field with creamy optical bokeh. Directional softbox side lighting accentuating brushed steel texture.",
+  "negative_prompt": "blurry, low resolution, plastic, CGI, 3D render, cartoon, flat lighting, unrealistic reflections.",
+  "settings": {
+    "aspect_ratio": "1:1",
+    "resolution": "2K"
+  }
+}

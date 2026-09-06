@@ -1,0 +1,1 @@
+../service/scripts/inspect_text.py

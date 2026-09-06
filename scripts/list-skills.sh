@@ -8,15 +8,15 @@ echo "========================================================="
 echo "               Asmadey's Agent Skills Library            "
 echo "========================================================="
 
-for bucket in engineering productivity misc in-progress deprecated; do
-  bucket_dir="${ROOT_DIR}/skills/${bucket}"
-  if [ -d "${bucket_dir}" ]; then
-    count=$(find "${bucket_dir}" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
+for cat_dir in "${ROOT_DIR}/public"/*; do
+  if [ -d "${cat_dir}" ]; then
+    cat_name="$(basename "${cat_dir}")"
+    count=$(find "${cat_dir}" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
     echo ""
-    bucket_upper=$(echo "${bucket}" | tr '[:lower:]' '[:upper:]')
-    echo "📁 [${bucket_upper}] (${count} skills)"
+    cat_upper=$(echo "${cat_name}" | tr '[:lower:]' '[:upper:]')
+    echo "📁 [${cat_upper}] (${count} skills)"
     echo "---------------------------------------------------------"
-    for skill_dir in "${bucket_dir}"/*; do
+    for skill_dir in "${cat_dir}"/*; do
       if [ -d "${skill_dir}" ]; then
         skill_name="$(basename "${skill_dir}")"
         desc=""
@@ -34,5 +34,6 @@ done
 
 echo ""
 echo "========================================================="
-echo "Total skills available: $(find "${ROOT_DIR}/skills" -mindepth 2 -maxdepth 2 -type d | wc -l | tr -d ' ')"
+echo "Total public skills: $(find "${ROOT_DIR}/public" -mindepth 2 -maxdepth 2 -type d | wc -l | tr -d ' ')"
+echo "Total frameworks: $(find "${ROOT_DIR}/frameworks" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l | tr -d ' ')"
 echo "========================================================="

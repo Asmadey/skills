@@ -1,0 +1,1 @@
+../service/scripts/clean_image.py

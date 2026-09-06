@@ -1,0 +1,117 @@
+import Head from 'next/head';
+
+interface SEOProps {
+  title: string;
+  description: string;
+  image?: string;
+  url?: string;
+  type?: 'website' | 'article';
+  locale?: string;
+  siteName?: string;
+  // Article specific
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  section?: string;
+  tags?: string[];
+}
+
+const DEFAULT_IMAGE = '/images/og/default.jpg';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
+const DEFAULT_SITE_NAME = 'My Site';
+
+export function SEO({
+  title,
+  description,
+  image = DEFAULT_IMAGE,
+  url,
+  type = 'website',
+  locale = 'ru_RU',
+  siteName = DEFAULT_SITE_NAME,
+  publishedTime,
+  modifiedTime,
+  author,
+  section,
+  tags = [],
+}: SEOProps) {
+  // Ensure absolute URLs
+  const absoluteImage = image.startsWith('http') 
+    ? image 
+    : `${SITE_URL}${image}`;
+  
+  const absoluteUrl = url?.startsWith('http') 
+    ? url 
+    : `${SITE_URL}${url || ''}`;
+
+  return (
+    <Head>
+      {/* Basic Meta */}
+      <title>{title}</title>
+      <meta name="description" content={description} />
+
+      {/* Open Graph */}
+      <meta property="og:type" content={type} />
+      <meta property="og:site_name" content={siteName} />
+      <meta property="og:url" content={absoluteUrl} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:locale" content={locale} />
+
+      {/* OG Image */}
+      <meta property="og:image" content={absoluteImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:image:alt" content={title} />
+
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={absoluteImage} />
+
+      {/* Article specific */}
+      {type === 'article' && (
+        <>
+          {publishedTime && (
+            <meta property="article:published_time" content={publishedTime} />
+          )}
+          {modifiedTime && (
+            <meta property="article:modified_time" content={modifiedTime} />
+          )}
+          {author && <meta property="article:author" content={author} />}
+          {section && <meta property="article:section" content={section} />}
+          {tags.map((tag) => (
+            <meta key={tag} property="article:tag" content={tag} />
+          ))}
+        </>
+      )}
+
+      {/* Canonical URL */}
+      <link rel="canonical" href={absoluteUrl} />
+    </Head>
+  );
+}
+
+// Usage examples:
+// 
+// Basic page:
+// <SEO 
+//   title="О компании | My Site"
+//   description="Узнайте о нашей миссии и команде."
+//   url="/about"
+//   image="/images/og/about.jpg"
+// />
+//
+// Article:
+// <SEO
+//   title="Как использовать AI для разработки"
+//   description="Полное руководство по AI-assisted development."
+//   url="/blog/ai-development"
+//   image="/images/og/blog/ai-dev.jpg"
+//   type="article"
+//   publishedTime="2026-02-09T12:00:00+03:00"
+//   author="https://mysite.com/authors/john"
+//   section="Technology"
+//   tags={["AI", "Development", "Tutorial"]}
+// />

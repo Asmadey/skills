@@ -1,0 +1,258 @@
+import { spawn, execSync, ChildProcess } from 'child_process';
+import { existsSync, mkdirSync, readFileSync, writeFileSync, unlinkSync, readlinkSync } from 'fs';
+import { join } from 'path';
+import { homedir, platform, userInfo } from 'os';
+import type { BrwConfig } from '../shared/types.js';
+
+const PID_DIR = join(homedir(), '.config', 'brw');
+const PID_FILE = join(PID_DIR, 'proxy.pid');
+
+const CHROME_PATHS: Record<string, string[]> = {
+  darwin: [
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    '/Applications/Chromium.app/Contents/MacOS/Chromium',
+    '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+    '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
+  ],
+  linux: [
+    '/usr/bin/google-chrome',
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+    '/usr/bin/microsoft-edge',
+    '/usr/bin/brave-browser',
+  ],
+  win32: [
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+    'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe',
+  ],
+};
+
+export function detectChromePath(): string | null {
+  const paths = CHROME_PATHS[platform()] || CHROME_PATHS.linux;
+  for (const p of paths) {
+    if (existsSync(p)) return p;
+  }
+  return null;
+}
+
+export function getChromeVersion(chromePath: string): string | null {
+  try {
+    const output = execSync(`"${chromePath}" --version`, {
+      timeout: 5000,
+      encoding: 'utf-8',
+    });
+    const match = output.match(/(\d+\.\d+\.\d+\.\d+)/);
+    return match ? match[1] : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Check for a stale SingletonLock in the Chrome data directory.
+ * Chrome creates this as a symlink with target "hostname-PID".
+ * If the PID is dead, delete the stale lock. If alive, throw with PID info.
+ */
+function checkSingletonLock(chromeDataDir: string): void {
+  const lockPath = join(chromeDataDir, 'SingletonLock');
+  if (!existsSync(lockPath)) return;
+
+  try {
+    const target = readlinkSync(lockPath);
+    // Format: "hostname-PID"
+    const dashIdx = target.lastIndexOf('-');
+    if (dashIdx === -1) return;
+    const pid = parseInt(target.slice(dashIdx + 1), 10);
+    if (isNaN(pid)) return;
+
+    if (isProcessRunning(pid)) {
+      throw new Error(
+        `Chrome data directory is locked by a running process (PID ${pid}). ` +
+        `Kill it with "kill ${pid}" or use a different data dir with BRW_DATA_DIR.`
+      );
+    }
+
+    // PID is dead — stale lock, remove it
+    console.error(`[brw-proxy] Removing stale SingletonLock (dead PID ${pid})`);
+    unlinkSync(lockPath);
+  } catch (err: any) {
+    // Re-throw our own errors, ignore fs errors (e.g. not a symlink)
+    if (err.message?.includes('Chrome data directory is locked')) throw err;
+  }
+}
+
+/**
+ * Clean up an orphaned Chrome process from a previous proxy run.
+ * If our proxy PID is dead but our Chrome PID is alive, kill Chrome.
+ */
+export async function cleanupOrphanedChrome(config: BrwConfig): Promise<void> {
+  const pidData = readPidFile();
+  if (!pidData || !pidData.chromePid) return;
+
+  // If proxy is still alive, no orphan
+  if (isProcessRunning(pidData.pid)) return;
+
+  // Proxy is dead — if Chrome is still alive, kill it
+  if (isProcessRunning(pidData.chromePid)) {
+    console.error(`[brw-proxy] Killing orphaned Chrome (PID ${pidData.chromePid}) from dead proxy (PID ${pidData.pid})`);
+    try {
+      process.kill(pidData.chromePid, 'SIGTERM');
+      // Give it a moment, then force kill
+      await new Promise((r) => setTimeout(r, 1000));
+      if (isProcessRunning(pidData.chromePid)) {
+        process.kill(pidData.chromePid, 'SIGKILL');
+      }
+    } catch {
+      // ignore — process may have already exited
+    }
+  }
+
+  // Clean up stale PID file
+  removePidFile();
+}
+
+export function findDebugBrowserProcesses(): Array<{ pid: number; port: number; binary: string }> {
+  try {
+    // Scope to the current user on POSIX; win32 best-effort fallback.
+    let cmd = 'ps -eo pid,args';
+    if (platform() !== 'win32') {
+      const uid = userInfo().uid;
+      cmd = `ps -u ${uid} -o pid,args`;
+    }
+    const output = execSync(cmd, { encoding: 'utf-8', timeout: 5000 });
+    const results: Array<{ pid: number; port: number; binary: string }> = [];
+    for (const line of output.split('\n')) {
+      if (!line.includes('--remote-debugging-pipe')) continue;
+      if (line.includes('--type=')) continue; // skip child processes (renderer, gpu, utility)
+      const pidMatch = line.trim().match(/^(\d+)\s/);
+      if (!pidMatch) continue;
+      const pid = parseInt(pidMatch[1], 10);
+      if (pid === process.pid) continue;
+      const argsStart = line.trim().replace(/^\d+\s+/, '');
+      const binary = argsStart.split(/\s/)[0].split('/').pop() || 'unknown';
+      results.push({ pid, port: 0, binary });
+    }
+    return results;
+  } catch {
+    return [];
+  }
+}
+
+export async function killDebugBrowserProcesses(): Promise<{ killed: Array<{ pid: number; port: number; binary: string }>; failed: Array<{ pid: number; error: string }> }> {
+  const procs = findDebugBrowserProcesses();
+  const killed: Array<{ pid: number; port: number; binary: string }> = [];
+  const failed: Array<{ pid: number; error: string }> = [];
+
+  for (const proc of procs) {
+    try {
+      process.kill(proc.pid, 'SIGTERM');
+    } catch (err: any) {
+      if (err.code === 'ESRCH') {
+        killed.push(proc); // already dead
+      } else {
+        failed.push({ pid: proc.pid, error: err.code || err.message });
+      }
+      continue;
+    }
+
+    // Wait up to 2s for graceful exit
+    const deadline = Date.now() + 2000;
+    while (Date.now() < deadline && isProcessRunning(proc.pid)) {
+      await new Promise((r) => setTimeout(r, 100));
+    }
+
+    if (isProcessRunning(proc.pid)) {
+      try {
+        process.kill(proc.pid, 'SIGKILL');
+      } catch (err: any) {
+        if (err.code !== 'ESRCH') {
+          failed.push({ pid: proc.pid, error: err.code || err.message });
+          continue;
+        }
+      }
+    }
+    killed.push(proc);
+  }
+
+  return { killed, failed };
+}
+
+export async function launchChrome(config: BrwConfig): Promise<ChildProcess> {
+  const chromePath = config.chromePath || detectChromePath();
+  if (!chromePath) {
+    throw new Error(
+      'Chrome/Chromium not found. Set BRW_CHROME_PATH or install Chrome.'
+    );
+  }
+
+  if (!existsSync(chromePath)) {
+    throw new Error(`Chrome binary not found at: ${chromePath}`);
+  }
+
+  // Clean up orphaned Chrome from a previous proxy crash
+  await cleanupOrphanedChrome(config);
+
+  mkdirSync(config.chromeDataDir, { recursive: true });
+
+  // Check for stale SingletonLock
+  checkSingletonLock(config.chromeDataDir);
+
+  const args = [
+    '--remote-debugging-pipe',
+    `--user-data-dir=${config.chromeDataDir}`,
+    '--no-first-run',
+    '--no-default-browser-check',
+    '--disable-background-timer-throttling',
+    '--disable-backgrounding-occluded-windows',
+    '--disable-renderer-backgrounding',
+    `--window-size=${config.windowWidth},${config.windowHeight}`,
+  ];
+
+  if (config.headless) {
+    args.push('--headless=new');
+  }
+
+  // stdio[3] (Writable) carries CDP commands -> Chrome fd3,
+  // stdio[4] (Readable) carries CDP events <- Chrome fd4.
+  const child = spawn(chromePath, args, {
+    stdio: ['ignore', 'ignore', 'ignore', 'pipe', 'pipe'],
+    detached: false,
+  });
+
+  return child;
+}
+
+export function writePidFile(pid: number, socketPath: string, chromePid?: number): void {
+  mkdirSync(PID_DIR, { recursive: true });
+  writeFileSync(PID_FILE, JSON.stringify({ pid, socketPath, chromePid, startedAt: Date.now() }));
+}
+
+export function readPidFile(): { pid: number; socketPath?: string; chromePid?: number; startedAt: number } | null {
+  try {
+    if (!existsSync(PID_FILE)) return null;
+    const data = JSON.parse(readFileSync(PID_FILE, 'utf-8'));
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+export function removePidFile(): void {
+  try {
+    if (existsSync(PID_FILE)) unlinkSync(PID_FILE);
+  } catch {
+    // ignore
+  }
+}
+
+export function isProcessRunning(pid: number): boolean {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}

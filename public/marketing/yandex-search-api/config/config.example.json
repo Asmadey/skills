@@ -1,0 +1,7 @@
+{
+  "yandex_cloud_folder_id": "your_yandex_cloud_folder_id",
+  "auth": {
+    "yandex_passport_oauth_token": "your_yandex_passport_oauth_token",
+    "method": "oauth"
+  }
+}

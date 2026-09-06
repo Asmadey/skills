@@ -1,0 +1,1 @@
+../service/scripts/score_stylometry.py

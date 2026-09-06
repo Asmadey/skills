@@ -40,3 +40,8 @@ build/
 # Local agent caches
 .out-of-scope/
 .system_generated/
+**/cache/*
+!**/cache/.gitkeep
+
+# Local skill credentials
+**/yandex-search-api/config/config.json
