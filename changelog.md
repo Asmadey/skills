@@ -6,6 +6,17 @@ last_updated: 2026-09-06
 
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+## [2026-09-06] — Интеграция навыка last30days (mvanhorn/last30days-skill)
+
+### 📦 Добавленные навыки
+- **`research/last30days`** ([`skills/research/last30days/SKILL.md`](skills/research/last30days/SKILL.md)):
+  - Кросс-платформенное исследование мнений и трендов за последние 30 дней.
+  - Сбор постов, вовлеченности и реакций с Reddit, X (Twitter), YouTube, TikTok, Hacker News, Polymarket, GitHub и веб-источников.
+  - Встроенный Doctor Health Check для диагностики работоспособности и доступности внешних источников.
+  - Прошел аудит NVIDIA SkillSpector (APPROVE, 0 критических уязвимостей).
+
+---
+
 ## [2026-09-06] — Интеграция навыка unlazy (Leonxlnx/unlazy)
 
 ### 📦 Добавленные навыки

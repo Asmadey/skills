@@ -6,7 +6,7 @@ last_updated: 2026-09-06
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (79 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (80 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -168,6 +168,7 @@ last_updated: 2026-09-06
 | **HeroesGPT** | **Strategic Research Standard (v7.0)**.<br>Полный цикл стратегического исследования: JTBD, Journey Map, генерация офферов и матрица внедрения | `стратегический анализ продукта, исследование рынка v7.0` | Python | [SKILL.md](skills/research/HeroesGPT/SKILL.md) |
 | **consulting** | **Consulting Analysis Engine**.<br>Подготовка аналитических отчетов и структурированных фреймворков уровня McKinsey/BCG | `консалтинговый отчет, глубокий анализ рынка, стратегический репорт` | Prompt | [SKILL.md](skills/research/consulting/SKILL.md) |
 | **hypothesis-designer** | **Hypothesis Designer**.<br>Проектирование гипотез проблем и решений на базе данных сегментов, расчет выборки | `проектирование продуктовых гипотез, дизайн экспериментов` | Prompt | [SKILL.md](skills/research/hypothesis-designer/SKILL.md) |
+| **last30days** | **Cross-Platform Trend & Sentiment Research**.<br>Исследование свежих реакций и мнений аудитории за последние 30 дней с Reddit, X (Twitter), YouTube, TikTok, Hacker News, Polymarket, GitHub и веба | `/last30days, анализ мнений, свежие тренды за месяц, мониторинг соцсетей, sentiment analysis` | Python / CLI | [SKILL.md](skills/research/last30days/SKILL.md) |
 | **neuroarxiv** | **ArXiv Prior-Art Research**.<br>Исследование научной литературы на arXiv, поиск готовых архитектур и алгоритмов перед кодингом | `/neuroarxiv, поиск научных статей, SOTA решения, проверка новизны` | Prompt | [SKILL.md](skills/research/neuroarxiv/SKILL.md) |
 | **tavily-intelligence** | **Tavily Intelligence Suite**.<br>Глубокий исследовательский поиск, сканирование веб-страниц и извлечение фактов через API Tavily | `комплексный веб-поиск, сбор информации о технологиях/компаниях` | Python | [SKILL.md](skills/research/tavily-intelligence/SKILL.md) |
 

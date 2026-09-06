@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **79 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **80 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -165,6 +165,7 @@ flowchart TD
 | [**`neuroarxiv`**](skills/research/neuroarxiv/SKILL.md) | **ArXiv Prior-Art Research Engine**. Анализ научной литературы arXiv перед проектированием архитектур и алгоритмов. | Prompt / HTTP |
 | [**`HeroesGPT`**](skills/research/HeroesGPT/SKILL.md) | **Strategic Market Research v7.0**. Комплексное исследование рынка, сегментов ЦА, болей и формирование ценностного предложения. | Python |
 | [**`tavily-intelligence`**](skills/research/tavily-intelligence/SKILL.md) | **Tavily Intelligence Suite**. Глубокий многопоточный поиск, парсинг и сбор фактов через поисковый API Tavily. | Python |
+| [**`last30days`**](skills/research/last30days/SKILL.md) | **Cross-Platform Trend & Sentiment Research**. Исследование свежих мнений и реакций аудитории за последние 30 дней: Reddit, X (Twitter), YouTube, TikTok, Hacker News, Polymarket, GitHub и веб. | Python / CLI |
 | [**`consulting`**](skills/research/consulting/SKILL.md) | **Management Consulting Framework**. Аналитика уровня McKinsey/BCG, матрицы решений и пирамида Минто. | Prompt |
 | [**`hypothesis-designer`**](skills/research/hypothesis-designer/SKILL.md) | **Product Hypothesis Engine**. Проектирование продуктовых гипотез, расчет минимальной выборки и дизайна экспериментов. | Prompt |
 
