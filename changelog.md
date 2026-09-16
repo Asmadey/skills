@@ -1,14 +1,35 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-09-06
+last_updated: 2026-09-16
 ---
-
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-09-16] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`ai/langfuse`** ([`skills/ai/Langfuse/SKILL.md`](skills/ai/Langfuse/SKILL.md)):
+  - Interact with Langfuse and access its documentation: tracing, monitoring, creating datasets, running experiments, and evaluating AI applications.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`design/design-loop`** ([`skills/design/design-loop/SKILL.md`](skills/design/design-loop/SKILL.md)):
+  - Takes a goal and a real-world reference, extracts what actually makes the reference good, then runs builder and three fresh-context critics on every piece until all three agree ours wins.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`dev/graft`** ([`skills/dev/graft/SKILL.md`](skills/dev/graft/SKILL.md)):
+  - Локальный контекстный граф кодовой базы (Graft / NanoNets).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`research/quality-check`** ([`skills/research/quality-check/SKILL.md`](skills/research/quality-check/SKILL.md)):
+  - Structured quality review for AI-generated artifacts before they are trusted.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`skill-ops/public-skills-sync`** ([`skills/skill-ops/public-skills-sync/SKILL.md`](skills/skill-ops/public-skills-sync/SKILL.md)):
+  - Синхронизирует проверенные навыки строго из папки skills/public/ в публичный внешний репозиторий https://github.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+
+---
 ## [2026-09-06] — Интеграция навыка last30days (mvanhorn/last30days-skill)
 
 ### 📦 Добавленные навыки
+
 - **`research/last30days`** ([`skills/research/last30days/SKILL.md`](skills/research/last30days/SKILL.md)):
   - Кросс-платформенное исследование мнений и трендов за последние 30 дней.
   - Сбор постов, вовлеченности и реакций с Reddit, X (Twitter), YouTube, TikTok, Hacker News, Polymarket, GitHub и веб-источников.
@@ -20,6 +41,7 @@ last_updated: 2026-09-06
 ## [2026-09-06] — Интеграция навыка unlazy (Leonxlnx/unlazy)
 
 ### 📦 Добавленные навыки
+
 - **`dev/unlazy`** ([`skills/dev/unlazy/SKILL.md`](skills/dev/unlazy/SKILL.md)):
   - Фреймворк дисциплины исполнения и устранения лени автономных ИИ-агентов.
   - Формирование фальсифицируемых acceptance gates (`GATES.md`) до начала работы.
@@ -36,6 +58,7 @@ last_updated: 2026-09-06
 ## [2026-09-06] — Комплексный аудит, реструктуризация и мажорные обновления
 
 ### 🧹 Удалено (Removed)
+
 - **`skills NEW/skills/ai-slop-detector`**: Устаревшая текстовая памятка, дублировала функционал специализированных де-слопперов.
 - **`skills NEW/skills/writing/slop-detector`**: Короткая выжимка правил, полностью покрываемая расширенным пайплайном `slop-monster`.
 - **`skills NEW/skills/writing/Anti-AI Writing Style Skill`**: Директория с нестандартным именем, дублировала правила `humanizer-en` и `humanizer-ru`.
@@ -47,6 +70,7 @@ last_updated: 2026-09-06
 - **`onpage-seo` / `article-seo`**: Исключены устаревшие концепты классического SEO, противоречащие алгоритмам генеративной видимости в пользу атомарных пассажей и `aeo-geo-skill-ru`.
 
 ### 📁 Реорганизация и нормализация (Changed)
+
 - **Слияние и финализация структуры**: Временная директория `skills NEW/` окончательно синхронизирована и перенесена в каноническую корневую папку `skills/` (13 категорий в `skills/skills/`, 78 активных навыков).
 - **Устранение структурных нарушений и аудит**:
   - `skills/skills/business/pricing-strategy/SKILL.md`: создан мастер-манифест навыка (архетипы монетизации SaaS/B2B/B2C, сетки тарифов, Grandfathering, протоколы экспериментов).
@@ -58,6 +82,7 @@ last_updated: 2026-09-06
 - **Синхронизация документации**: Полностью переписаны и актуализированы [INDEX.md](INDEX.md), [README.md](README.md) и [changelog.md](changelog.md).
 
 ### ⚡ Добавлено (Added)
+
 - **`adhd`** ([skills/dev/adhd/SKILL.md](skills/dev/adhd/SKILL.md)): Движок параллельного дивергентного мышления для кодинг-агентов от Udit Akhouri: одновременное исследование проблемы под 5 когнитивными фреймами (Biology, Speedrunner, Regulator, 10yo, $0 budget), скоринг гипотез, отсеивание ловушек и углубление архитектурных решений. Прошел аудит SkillSpector (`APPROVE`).
 - **`agent-reach`** ([skills/marketing/agent-reach/SKILL.md](skills/marketing/agent-reach/SKILL.md)): Маршрутизатор сбора контента по 15 платформам (Twitter/X, Reddit, LinkedIn, Xiaohongshu, Bilibili, YouTube, RSS, Facebook, Instagram) с авто-роутингом бэкендов (CLI/API/Browser). Прошел аудит SkillSpector (`APPROVE`).
 - **`video-use`** ([skills/marketing/video-use/SKILL.md](skills/marketing/video-use/SKILL.md)): Интеллектуальный монтаж видео через диалоговый интерфейс от Browser-Use: распознавание слов/пауз (ASR), склейка без перекодирования (`-c copy`), Manim-анимации оверлеев, цветокоррекция и субтитры. Прошел аудит SkillSpector (`APPROVE`).
@@ -81,6 +106,7 @@ last_updated: 2026-09-06
 - **`frameworks/gsd-core`** ([frameworks/gsd-core/](frameworks/gsd-core/)): Полнофункциональный оркестратор разработки **Git. Ship. Done - Core** (ветка `next`, коммит `c95b73414`). 72 специализированных навыка, 37 автономных ролевых агентов, архитектура Spec-Driven Development (SDD) и изоляция контекста через свежие 200k контекстные окна субагентов. Прошел обязательный аудит безопасности NVIDIA SkillSpector (`APPROVE`).
 
 ### 🚀 Обновлено (Updated)
+
 - **`prd-taskmaster`** ([skills/product/prd-taskmaster/SKILL.md](skills/product/prd-taskmaster/SKILL.md)):
   - Мажорный апгрейд до **Atlas Engine v5.3.0**.
   - Установлен полный бэкенд-пакет `prd_taskmaster/` (33 модуля Python).
@@ -101,6 +127,7 @@ last_updated: 2026-09-06
   - Полное сжатие текстов навыков и замена `testing-anti-patterns.md` на `writing-good-tests.md` с дисциплиной фальсифицируемости.
 
 ### 🏛 Конституция проекта (AGENTS.md)
+
 - **Очистка и оптимизация**: Файл [AGENTS.md](AGENTS.md) сокращен со 118 до 44 строк.
 - **Удаление оверхеда**: Исключен 62-строчный специализированный блок n8n (делегирован в `skills/skills/automation/n8n-*`).
 - **Low-Token Mode**: Интегрирован стандарт высокой плотности информации на базе `low-toten` (Zero Fluff, прямой запуск инструментов, формат передачи фактов).
@@ -111,6 +138,7 @@ last_updated: 2026-09-06
 ## [2026-09-05] — Системы контроля качества контента и автономных целей
 
 ### ⚡ Добавлено (Added)
+
 - **`goal-buddy`** ([skills/ops/goal-buddy/SKILL.md](skills/ops/goal-buddy/SKILL.md)): Автономный движок управления долгосрочными целями (Goal Oracle, локальная канбан-доска `.goalbuddy-board/`, роли Scout/Judge/Worker, квитанции о выполнении).
 - **`watermarks-remover`** ([skills/ai/watermarks-remover/SKILL.md](skills/ai/watermarks-remover/SKILL.md)): 3-уровневая очистка: невидимый Unicode (Layer A), стилометрия ИИ (Layer B) и метаданные контейнеров C2PA/EXIF/XMP.
 - **`slop-monster`** ([skills/writing/slop-monster/SKILL.md](skills/writing/slop-monster/SKILL.md)): 4-шаговый пайплайн де-слопинга текстов (Lint через `deslop.py` $\rightarrow$ Rewrite $\rightarrow$ Cleanse с альтернативной LLM $\rightarrow$ Re-Lint).
@@ -120,6 +148,7 @@ last_updated: 2026-09-06
 ## [2026-08-30] — Интеграция дизайн-систем, анимаций и MCP-коннекторов
 
 ### ⚡ Добавлено (Added)
+
 - **`hallmark`**: Anti-AI-Slop дизайн-движок для создания характерного авторского интерфейса.
 - **`awesome-design-skills`**: Каталог 67 дизайн-систем и трендов (Bento, Brutalism, Glassmorphism и др.).
 - **`shadcn`**: Официальный менеджер компонентов `shadcn/ui` и Tailwind CSS.
@@ -134,5 +163,6 @@ last_updated: 2026-09-06
 ## [2026-08-29] — Первичная структуризация библиотеки навыков
 
 ### ⚡ Добавлено (Added)
+
 - Интеграция базовых навыков: `simple-english`, `git-worktree`, `low-toten`, `consulting`.
 - Создан первичный реестр и трехуровневая модель контекста (L1: AGENTS.md $\rightarrow$ L2: SKILL.md $\rightarrow$ L3: код/скрипты).\n

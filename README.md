@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **80 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **85 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -64,6 +64,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`graft`**](skills/dev/graft/SKILL.md) | **Graft**. Локальный контекстный граф кодовой базы (Graft / NanoNets). | Prompt |
 | [**`adhd`**](skills/dev/adhd/SKILL.md) | **Parallel Divergent Ideation**. Исследование решений под 5 когнитивными фреймами (Biology, Speedrunner, Regulator, 10yo, $0 budget), отсеивание ловушек и углубление гипотез. | Node/CLI |
 | [**`ai-software-factory`**](frameworks/ai-software-factory/SKILL.md) | **Автономная фабрика софта («Dark Factory»)**. Полный беспилотный цикл: Issue → Mission Gate → Plan → Build → Изолированный Judge → Holdout E2E → Auto-Merge. | Python / CLI |
 | [**`code-reviewer`**](skills/dev/code-reviewer/SKILL.md) | **Total Review Engine v2.1.0**. Двухпроходный консенсусный аудит кода (Claude + OpenAI Codex CLI), фильтрация придирок (Overthinking Rejection) и Approval Gate. | Prompt / CLI |
@@ -129,6 +130,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`design-loop`**](skills/design/design-loop/SKILL.md) | **Design-loop**. Takes a goal and a real-world reference, extracts what actually makes the reference good, then runs builder and three fresh-con.... | Prompt |
 | [**`awesome-design-skills`**](skills/design/awesome-design-skills/SKILL.md) | **Каталог 67 Дизайн-систем**. Готовые пресеты стилей: Bento, Glassmorphism, Brutalism, Futuristic, Retro и др. | Node/CLI |
 | [**`better-interface`**](skills/design/better-interface/SKILL.md) | **Interface Inspector & Reviewer**. Комплексный аудит верстки, доступности (WCAG), типографики, палитр и стресс-тест состояний (`break`). | Prompt |
 | [**`design-audit`**](skills/design/design-audit/SKILL.md) | **AXD & Design Audit Suite**. 42 академических навыка Agentic Experience Design (эвристики Нильсена, генеративный UI, калибровка тональности). | Prompt |
@@ -162,6 +164,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`quality-check`**](skills/research/quality-check/SKILL.md) | **Quality-check**. Structured quality review for AI-generated artifacts before they are trusted. | Prompt |
 | [**`neuroarxiv`**](skills/research/neuroarxiv/SKILL.md) | **ArXiv Prior-Art Research Engine**. Анализ научной литературы arXiv перед проектированием архитектур и алгоритмов. | Prompt / HTTP |
 | [**`HeroesGPT`**](skills/research/HeroesGPT/SKILL.md) | **Strategic Market Research v7.0**. Комплексное исследование рынка, сегментов ЦА, болей и формирование ценностного предложения. | Python |
 | [**`tavily-intelligence`**](skills/research/tavily-intelligence/SKILL.md) | **Tavily Intelligence Suite**. Глубокий многопоточный поиск, парсинг и сбор фактов через поисковый API Tavily. | Python |
@@ -222,6 +225,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`langfuse`**](skills/ai/Langfuse/SKILL.md) | **Langfuse**. Interact with Langfuse and access its documentation: tracing, monitoring, creating datasets, running experiments, and evaluatin.... | Prompt |
 | [**`low-toten`**](skills/ai/low-toten/SKILL.md) | **Token Efficiency & Context Compression**. Очистка нарративного мусора, сжатие контекста на 35% без потери точности. | Python / Node |
 | [**`watermarks-remover`**](skills/ai/watermarks-remover/SKILL.md) | **AI Watermark Stripper**. Удаление скрытых Unicode-маркеров, метаданных C2PA/EXIF и стилометрических паттернов ИИ. | Python / Node |
 
@@ -232,6 +236,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`public-skills-sync`**](skills/skill-ops/public-skills-sync/SKILL.md) | **Public-skills-sync**. Синхронизирует проверенные навыки строго из папки skills/public/ в публичный внешний репозиторий https://github. | Python / CLI |
 | [**`skill-creator`**](skills/skill-ops/skill-creator/SKILL.md) | **Skill Engineering Engine**. Создание навыков с нуля, адаптация git-репозиториев, валидация L1-L3 и упаковка навыков The Agentic OS. | Python / CLI |
 | [**`skillspector`**](skills/skill-ops/skillspector/SKILL.md) | **NVIDIA SkillSpector Gate**. Официальный шлюз безопасности: статический YARA/AST скан и семантический аудит внешних навыков. | Python / Bash |
 

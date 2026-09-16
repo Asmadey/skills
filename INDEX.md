@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-09-06
+last_updated: 2026-09-16
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (80 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (85 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -34,6 +34,7 @@ last_updated: 2026-09-06
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **graft** | **Graft**.<br>Локальный контекстный граф кодовой базы (Graft / NanoNets) | `"graft", "context graph", "blast radius", "граф вызовов", "graft ask", "graft callers", "graft map", "graft skeleton", "граф зависимостей кодовой базы", "архитектурный граф"` | Prompt | [SKILL.md](skills/dev/graft/SKILL.md) |
 | **adhd** | **Parallel Divergent Ideation**.<br>Параллельное исследование инженерных решений под 5 когнитивными фреймами (Biology, Speedrunner, Regulator, 10yo, $0 budget), отсеивание ловушек и углубление архитектурных гипотез | `/adhd, «ADHD mode», дивергентное мышление, брейншторм архитектуры, поиск неочевидных решений` | Node/CLI | [SKILL.md](skills/dev/adhd/SKILL.md) |
 | **ai-software-factory** | **Autonomous Dark Factory**.<br>Беспилотный конвейер разработки: Issue → Mission → Plan → Build → Judge → Holdout E2E → Auto-Merge | `«software factory», «dark factory», автоматический конвейер разработки` | Python / CLI | [SKILL.md](frameworks/ai-software-factory/SKILL.md) |
 | **code-reviewer** | **Total Review Engine**.<br>Двухпроходный аудит кода (Архитектура/Логика + Безопасность/NFR) с фильтрацией оверсинкинга и консенсусом | `/total-review, ревью кода, проверка PR, code review` | Prompt | [SKILL.md](skills/dev/code-reviewer/SKILL.md) |
@@ -105,6 +106,7 @@ last_updated: 2026-09-06
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **design-loop** | **Design-loop**.<br>Takes a goal and a real-world reference, extracts what actually makes the reference good, then runs builder and three... | `design-loop` | Prompt | [SKILL.md](skills/design/design-loop/SKILL.md) |
 | **GSAP** | **Motion & Animation Suite**.<br>Профессиональная библиотека анимаций: ScrollTrigger, Flip, MorphSVG, 60fps оптимизация | `сложные анимации, скролл-эффекты, интерактивный фронтенд` | Node/CLI | [SKILL.md](skills/design/GSAP/SKILL.md) |
 | **awesome-design-skills** | **Каталог 67 Дизайн-систем**.<br>Готовые токены, палитры и стили (Bento, Brutalism, Glassmorphism, Retro, Futuristic и др.) | `выбор визуального стиля фронтенда, стилизация под конкретный тренд` | Node/CLI | [SKILL.md](skills/design/awesome-design-skills/SKILL.md) |
 | **better-interface** | **Interface Inspector & Reviewer**.<br>Комплексный аудит и исправление дефектов UI от Jakub Krehel: доступность, верстка, типографика, цвета, стресс-тест состояний (`break`), генерация вариантов (`variant`) | `проверка интерфейса, ревью UI, аудит типографики и цветов, better-interface` | Prompt | [SKILL.md](skills/design/better-interface/SKILL.md) |
@@ -165,6 +167,7 @@ last_updated: 2026-09-06
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **quality-check** | **Quality-check**.<br>Structured quality review for AI-generated artifacts before they are trusted | `quality-check` | Prompt | [SKILL.md](skills/research/quality-check/SKILL.md) |
 | **HeroesGPT** | **Strategic Research Standard (v7.0)**.<br>Полный цикл стратегического исследования: JTBD, Journey Map, генерация офферов и матрица внедрения | `стратегический анализ продукта, исследование рынка v7.0` | Python | [SKILL.md](skills/research/HeroesGPT/SKILL.md) |
 | **consulting** | **Consulting Analysis Engine**.<br>Подготовка аналитических отчетов и структурированных фреймворков уровня McKinsey/BCG | `консалтинговый отчет, глубокий анализ рынка, стратегический репорт` | Prompt | [SKILL.md](skills/research/consulting/SKILL.md) |
 | **hypothesis-designer** | **Hypothesis Designer**.<br>Проектирование гипотез проблем и решений на базе данных сегментов, расчет выборки | `проектирование продуктовых гипотез, дизайн экспериментов` | Prompt | [SKILL.md](skills/research/hypothesis-designer/SKILL.md) |
@@ -188,6 +191,7 @@ last_updated: 2026-09-06
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **langfuse** | **Langfuse**.<br>Interact with Langfuse and access its documentation: tracing, monitoring, creating datasets, running experiments, and... | `langfuse` | Prompt | [SKILL.md](skills/ai/Langfuse/SKILL.md) |
 | **low-toten** | **Token Efficiency & Context Optimization**.<br>Протокол экономии токенов, сжатие промптов и высокоплотная передача данных | `оптимизация контекста, протокол Low-Token, чистка оверхеда` | Python / Node/CLI | [SKILL.md](skills/ai/low-toten/SKILL.md) |
 | **watermarks-remover** | **AI Watermark & Metadata Stripper**.<br>3-уровневая очистка: невидимый Unicode, стилометрия ИИ и метаданные C2PA/EXIF/XMP | `/remove-ai-marks, удаление водяных знаков ИИ, очистка C2PA` | Python / Node/CLI | [SKILL.md](skills/ai/watermarks-remover/SKILL.md) |
 
@@ -197,6 +201,7 @@ last_updated: 2026-09-06
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **public-skills-sync** | **Public-skills-sync**.<br>Синхронизирует проверенные навыки строго из папки skills/public/ в публичный внешний репозиторий https://github | `"синхронизируй скилы", "обнови репозиторий skills", "обнови Asmadey/skills", "запушь навыки в паблик", "sync skills", "sync public skills", /sync-skills` | Python / CLI | [SKILL.md](skills/skill-ops/public-skills-sync/SKILL.md) |
 | **skill-creator** | **Skill Engineering Engine**.<br>Создание навыков с нуля, адаптация git-репозиториев, валидация L1-L3 и упаковка навыков PersonalOS | `«создай навык», «новый скилл», «git clone», /skill-creator` | Python / CLI | [SKILL.md](skills/skill-ops/skill-creator/SKILL.md) |
 | **skillspector** | **NVIDIA SkillSpector Gate**.<br>Шлюз безопасности: статический и семантический аудит навыков перед установкой (YARA, AST, Prompt Injection, Data Exfiltration) | `аудит навыка, проверка безопасности, skillspector, skill-inspector, verify skill` | Python / CLI | [SKILL.md](skills/skill-ops/skillspector/SKILL.md) |
 
