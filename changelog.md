@@ -1,10 +1,36 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-09-16
+last_updated: 2026-10-06
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-10-06] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`design/design-taste-frontend`** ([`skills/design/taste-skill/SKILL.md`](skills/design/taste-skill/SKILL.md)):
+  - Anti-slop frontend skill for landing pages, portfolios, and redesigns.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/google-maps-scraper`** ([`skills/marketing/google-maps-scraper-kit/SKILL.md`](skills/marketing/google-maps-scraper-kit/SKILL.md)):
+  - Scrape Google Maps business listings (name, address, phone, website, rating, reviews, lat/lng, emails) via local REST API.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`skill-ops/authoring-skills`** ([`skills/skill-ops/anthropic/SKILL.md`](skills/skill-ops/anthropic/SKILL.md)):
+  - Creates new Agent Skills and audits existing ones against Anthropic best practices (ToC in long files, degrees of freedom, one-level references, checklists, feedback loops, dependencies, model testing).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`skill-ops/bain-skill-refactor`** ([`skills/skill-ops/bain-skill-refactor/SKILL.md`](skills/skill-ops/bain-skill-refactor/SKILL.md)):
+  - Рефакторинг и актуализация навыков, системных промптов и инструкций по методологии Wulfie Bain (каркас Background / Behaviour / Output, MECE, устранение prompt debt).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`skill-ops/optimize`** ([`skills/skill-ops/optimize/SKILL.md`](skills/skill-ops/optimize/SKILL.md)):
+  - Модуль возможностей ИИ-агента.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`skill-ops/rtk-cli-optimize`** ([`skills/skill-ops/rtk-CLI-optimize/SKILL.md`](skills/skill-ops/rtk-CLI-optimize/SKILL.md)):
+  - Оптимизация и сжатие консольного вывода CLI (bash output) до 90% для AI-агентов через утилиту RTK (Rust Token Killer).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+### 🔄 Обновленные навыки
+- **`skill-ops/public-skills-sync`** ([`skills/skill-ops/public-skills-sync/SKILL.md`](skills/skill-ops/public-skills-sync/SKILL.md)): синхронизированы обновления и ресурсы.
+
+---
 
 ## [2026-09-16] — Синхронизация навыков из PersonalOS (public)
 

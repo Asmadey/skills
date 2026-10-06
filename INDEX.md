@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-09-16
+last_updated: 2026-10-06
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (85 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (91 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -106,6 +106,7 @@ last_updated: 2026-09-16
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **design-taste-frontend** | **Design-taste-frontend**.<br>Anti-slop frontend skill for landing pages, portfolios, and redesigns | `design-taste-frontend` | Prompt | [SKILL.md](skills/design/taste-skill/SKILL.md) |
 | **design-loop** | **Design-loop**.<br>Takes a goal and a real-world reference, extracts what actually makes the reference good, then runs builder and three... | `design-loop` | Prompt | [SKILL.md](skills/design/design-loop/SKILL.md) |
 | **GSAP** | **Motion & Animation Suite**.<br>Профессиональная библиотека анимаций: ScrollTrigger, Flip, MorphSVG, 60fps оптимизация | `сложные анимации, скролл-эффекты, интерактивный фронтенд` | Node/CLI | [SKILL.md](skills/design/GSAP/SKILL.md) |
 | **awesome-design-skills** | **Каталог 67 Дизайн-систем**.<br>Готовые токены, палитры и стили (Bento, Brutalism, Glassmorphism, Retro, Futuristic и др.) | `выбор визуального стиля фронтенда, стилизация под конкретный тренд` | Node/CLI | [SKILL.md](skills/design/awesome-design-skills/SKILL.md) |
@@ -149,6 +150,7 @@ last_updated: 2026-09-16
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **google-maps-scraper** | **Google-maps-scraper**.<br>Scrape Google Maps business listings (name, address, phone, website, rating, reviews, lat/lng, emails) via local REST... | `google-maps-scraper` | Python / CLI | [SKILL.md](skills/marketing/google-maps-scraper-kit/SKILL.md) |
 | **aeo-geo-skill-ru** | **Answer & Generative Engine Optimization (AEO/GEO)**.<br>Полный плейбук AEO/GEO на русском: 4 канала выдачи, 289-значные H1 под labrador, обход кэша OpenAI, 117-словные пассажи, защита от Ghost Citations, Python stdlib CLI | `AEO, GEO, оптимизация под нейросети, ChatGPT labrador, Perplexity, цитируемость, llms.txt, Ghost Citations` | Python / CLI | [SKILL.md](skills/marketing/aeo-geo-skill-ru/SKILL.md) |
 | **agent-reach** | **Multi-Platform Intelligence & Retrieval Router**.<br>Маршрутизатор сбора контента по 15 платформам (Twitter/X, Reddit, LinkedIn, Xiaohongshu, Bilibili, YouTube, RSS, Facebook, Instagram) с авто-роутингом бэкендов | `сбор постов, анализ трендов соцсетей, поиск в Twitter/Reddit/XHS, agent-reach` | Python / CLI | [SKILL.md](skills/marketing/agent-reach/SKILL.md) |
 | **seo-audit** | **Comprehensive SEO Audit**.<br>Технический и контентный аудит веб-сайтов, анализ индексации, Core Web Vitals | `SEO аудит, проверка ошибок индексации, аудит сайта` | Node/CLI | [SKILL.md](skills/marketing/seo-audit/SKILL.md) |
@@ -201,6 +203,10 @@ last_updated: 2026-09-16
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **rtk-cli-optimize** | **Rtk-cli-optimize**.<br>Оптимизация и сжатие консольного вывода CLI (bash output) до 90% для AI-агентов через утилиту RTK (Rust Token Killer) | `rtk, rtk recall, сжатие вывода, оптимизация cli, rtk-cli-optimize` | Prompt | [SKILL.md](skills/skill-ops/rtk-CLI-optimize/SKILL.md) |
+| **optimize** | **Optimize**.<br>Модуль возможностей ИИ-агента | `optimize` | Node/CLI | [SKILL.md](skills/skill-ops/optimize/SKILL.md) |
+| **bain-skill-refactor** | **Bain-skill-refactor**.<br>Рефакторинг и актуализация навыков, системных промптов и инструкций по методологии Wulfie Bain (каркас Background / B... | `bain-skill-refactor` | Prompt | [SKILL.md](skills/skill-ops/bain-skill-refactor/SKILL.md) |
+| **authoring-skills** | **Authoring-skills**.<br>Creates new Agent Skills and audits existing ones against Anthropic best practices (ToC in long files, degrees of fre... | `authoring-skills` | Prompt | [SKILL.md](skills/skill-ops/anthropic/SKILL.md) |
 | **public-skills-sync** | **Public-skills-sync**.<br>Синхронизирует проверенные навыки строго из папки skills/public/ в публичный внешний репозиторий https://github | `"синхронизируй скилы", "обнови репозиторий skills", "обнови Asmadey/skills", "запушь навыки в паблик", "sync skills", "sync public skills", /sync-skills` | Python / CLI | [SKILL.md](skills/skill-ops/public-skills-sync/SKILL.md) |
 | **skill-creator** | **Skill Engineering Engine**.<br>Создание навыков с нуля, адаптация git-репозиториев, валидация L1-L3 и упаковка навыков PersonalOS | `«создай навык», «новый скилл», «git clone», /skill-creator` | Python / CLI | [SKILL.md](skills/skill-ops/skill-creator/SKILL.md) |
 | **skillspector** | **NVIDIA SkillSpector Gate**.<br>Шлюз безопасности: статический и семантический аудит навыков перед установкой (YARA, AST, Prompt Injection, Data Exfiltration) | `аудит навыка, проверка безопасности, skillspector, skill-inspector, verify skill` | Python / CLI | [SKILL.md](skills/skill-ops/skillspector/SKILL.md) |

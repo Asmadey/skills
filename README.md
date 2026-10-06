@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **85 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **91 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -130,6 +130,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`design-taste-frontend`**](skills/design/taste-skill/SKILL.md) | **Design-taste-frontend**. Anti-slop frontend skill for landing pages, portfolios, and redesigns. | Prompt |
 | [**`design-loop`**](skills/design/design-loop/SKILL.md) | **Design-loop**. Takes a goal and a real-world reference, extracts what actually makes the reference good, then runs builder and three fresh-con.... | Prompt |
 | [**`awesome-design-skills`**](skills/design/awesome-design-skills/SKILL.md) | **Каталог 67 Дизайн-систем**. Готовые пресеты стилей: Bento, Glassmorphism, Brutalism, Futuristic, Retro и др. | Node/CLI |
 | [**`better-interface`**](skills/design/better-interface/SKILL.md) | **Interface Inspector & Reviewer**. Комплексный аудит верстки, доступности (WCAG), типографики, палитр и стресс-тест состояний (`break`). | Prompt |
@@ -194,6 +195,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`google-maps-scraper`**](skills/marketing/google-maps-scraper-kit/SKILL.md) | **Google-maps-scraper**. Scrape Google Maps business listings (name, address, phone, website, rating, reviews, lat/lng, emails) via local REST API. | Python / CLI |
 | [**`aeo-geo-skill-ru`**](skills/marketing/aeo-geo-skill-ru/SKILL.md) | **Answer & Generative Engine Optimization (AEO/GEO)**. Полный плейбук AEO/GEO на русском: 4 канала выдачи, 289-значные H1 под labrador, обход кэша OpenAI, 117-словные пассажи, защита от Ghost Citations, Python stdlib CLI. | Python / CLI |
 | [**`agent-reach`**](skills/marketing/agent-reach/SKILL.md) | **Multi-Platform Intelligence & Retrieval Router**. Маршрутизатор сбора контента по 15 платформам (Twitter/X, Reddit, LinkedIn, Xiaohongshu, Bilibili, YouTube, RSS) с авто-роутингом бэкендов. | Python / CLI |
 | [**`seo-audit`**](skills/marketing/seo-audit/SKILL.md) | **Technical SEO Audit**. Комплексный аудит индексации, структуры заголовков, Core Web Vitals, robots.txt и sitemap. | Node/CLI |
@@ -236,6 +238,10 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`rtk-cli-optimize`**](skills/skill-ops/rtk-CLI-optimize/SKILL.md) | **Rtk-cli-optimize**. Оптимизация и сжатие консольного вывода CLI (bash output) до 90% для AI-агентов через утилиту RTK (Rust Token Killer). | Prompt |
+| [**`optimize`**](skills/skill-ops/optimize/SKILL.md) | **Optimize**. Модуль возможностей ИИ-агента. | Node/CLI |
+| [**`bain-skill-refactor`**](skills/skill-ops/bain-skill-refactor/SKILL.md) | **Bain-skill-refactor**. Рефакторинг и актуализация навыков, системных промптов и инструкций по методологии Wulfie Bain (каркас Background / Behaviour /.... | Prompt |
+| [**`authoring-skills`**](skills/skill-ops/anthropic/SKILL.md) | **Authoring-skills**. Creates new Agent Skills and audits existing ones against Anthropic best practices (ToC in long files, degrees of freedom, one-.... | Prompt |
 | [**`public-skills-sync`**](skills/skill-ops/public-skills-sync/SKILL.md) | **Public-skills-sync**. Синхронизирует проверенные навыки строго из папки skills/public/ в публичный внешний репозиторий https://github. | Python / CLI |
 | [**`skill-creator`**](skills/skill-ops/skill-creator/SKILL.md) | **Skill Engineering Engine**. Создание навыков с нуля, адаптация git-репозиториев, валидация L1-L3 и упаковка навыков The Agentic OS. | Python / CLI |
 | [**`skillspector`**](skills/skill-ops/skillspector/SKILL.md) | **NVIDIA SkillSpector Gate**. Официальный шлюз безопасности: статический YARA/AST скан и семантический аудит внешних навыков. | Python / Bash |
