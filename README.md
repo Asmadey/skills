@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **91 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **111 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -64,6 +64,13 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`technical-writer`**](skills/dev/technical-writer/SKILL.md) | **Technical-writer**. Комплексный инженерный комплекс технического писательства (Technical Writing Suite by riekelt). | Prompt |
+| [**`tdd`**](skills/dev/tdd/SKILL.md) | **Tdd**. Разработка через тестирование (Test-Driven Development) по циклу Red-Green-Refactor. | Prompt |
+| [**`scroll-craft`**](skills/dev/scroll-craft/SKILL.md) | **Scroll-craft**. Build premium scroll-driven landing pages for service, product, food, and. | Bash / CLI |
+| [**`improve-codebase-architecture`**](skills/dev/improve-codebase-architecture/SKILL.md) | **Improve-codebase-architecture**. Аудит архитектуры кодовой базы и поиск возможностей углубления модулей (Deep Modules по Джону Оустерхауту). | Prompt |
+| [**`handoff`**](skills/dev/handoff/SKILL.md) | **Handoff**. Фиксация и передача контекста текущей сессии (Session Handoff) в компактный чекпоинт-документ (HANDOFF. | Prompt |
+| [**`expo`**](skills/dev/expo/SKILL.md) | **Expo**. Официальный инженерный комплекс навыков Expo и React Native для агентов (Expo Skills Suite). | Prompt |
+| [**`cinematic-landing`**](skills/dev/cinematic-landing/SKILL.md) | **Cinematic-landing**. Эталонный архитектурный шаблон иммерсивных лендингов PersonalOS (Cinematic Component Architecture — чемпион Arena Duel 2 a008). | Prompt |
 | [**`graft`**](skills/dev/graft/SKILL.md) | **Graft**. Локальный контекстный граф кодовой базы (Graft / NanoNets). | Prompt |
 | [**`adhd`**](skills/dev/adhd/SKILL.md) | **Parallel Divergent Ideation**. Исследование решений под 5 когнитивными фреймами (Biology, Speedrunner, Regulator, 10yo, $0 budget), отсеивание ловушек и углубление гипотез. | Node/CLI |
 | [**`ai-software-factory`**](frameworks/ai-software-factory/SKILL.md) | **Автономная фабрика софта («Dark Factory»)**. Полный беспилотный цикл: Issue → Mission Gate → Plan → Build → Изолированный Judge → Holdout E2E → Auto-Merge. | Python / CLI |
@@ -119,6 +126,9 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`pm-skills`**](skills/product/pm-skills/SKILL.md) | **Pm-skills**. Комплексная библиотека из 68 модульных навыков продуктового менеджмента (Product on Purpose) по фазам Triple Diamond, Lean Star.... | Node/CLI |
+| [**`pm-claude-code-setup`**](skills/product/pm-claude-code-setup/SKILL.md) | **Pm-claude-code-setup**. Система гибкого продуктового менеджмента (Lean PM System) по методологии Аакаша Гупты (Aakash Gupta). | Prompt |
+| [**`next-move-theory`**](skills/product/next-move-theory/SKILL.md) | **Next-move-theory**. Канон и навыки методологии Next Move Theory и Advanced JTBD (Иван Замесин). | Prompt |
 | [**`prd-taskmaster`**](skills/product/prd-taskmaster/SKILL.md) | **Atlas Engine v5.3.0**. Комплексная декомпозиция PRD: 33 модуля Python, фазы Discover → Generate → Handoff, CLI `taskmaster`. | Python / CLI |
 | [**`advise-project-approach`**](skills/product/advise-project-approach/SKILL.md) | **Tech Stack & Architecture Advisor**. Выбор оптимального стека и архитектуры на основе анализа аналогов (comparables). | Python |
 | [**`AJTBD`**](skills/product/AJTBD/SKILL.md) | **Applied JTBD Framework**. Детальный анализ Jobs-To-Be-Done: микро-шаги, барьеры, job stories и эмоциональные триггеры. | Prompt |
@@ -130,6 +140,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`cinematic-landing`**](skills/design/cinematic-landing/SKILL.md) | **Cinematic-landing**. Эталонный архитектурный шаблон иммерсивных лендингов PersonalOS (Cinematic Component Architecture — чемпион Arena Duel 2 a008). | Prompt |
 | [**`design-taste-frontend`**](skills/design/taste-skill/SKILL.md) | **Design-taste-frontend**. Anti-slop frontend skill for landing pages, portfolios, and redesigns. | Prompt |
 | [**`design-loop`**](skills/design/design-loop/SKILL.md) | **Design-loop**. Takes a goal and a real-world reference, extracts what actually makes the reference good, then runs builder and three fresh-con.... | Prompt |
 | [**`awesome-design-skills`**](skills/design/awesome-design-skills/SKILL.md) | **Каталог 67 Дизайн-систем**. Готовые пресеты стилей: Bento, Glassmorphism, Brutalism, Futuristic, Retro и др. | Node/CLI |
@@ -195,6 +206,11 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`video`**](skills/marketing/video/SKILL.md) | **Video**. Пайплайн создания и генерации видеоконтента с помощью AI-моделей (Sora, Kling, Runway, Veo, Hailuo, Pika) и кодовых фреймворков.... | Prompt |
+| [**`ppt-master`**](skills/marketing/ppt-master/SKILL.md) | **Ppt-master**. AI-driven presentation workflow for generating editable PPTX decks and slides,. | Python / CLI |
+| [**`offers`**](skills/marketing/offers/SKILL.md) | **Offers**. Проектирование и упаковка высококонверсионных офферов (Grand Slam Offers): Value Equation, стэкинг бонусов, устранение риска (г.... | Prompt |
+| [**`ai-seo`**](skills/marketing/ai-seo/SKILL.md) | **Ai-seo**. Оптимизация контента под поисковые ИИ-системы и ассистенты (AEO, GEO, LLMO, Google AI Overviews, Perplexity, ChatGPT, Claude, G.... | Prompt |
+| [**`ad-creative`**](skills/marketing/ad-creative/SKILL.md) | **Ad-creative**. Генерация, масштабирование и A/B тестирование рекламных креативов и текстов для платного трафика (Meta, Google RSA, TikTok, Lin.... | Prompt |
 | [**`google-maps-scraper`**](skills/marketing/google-maps-scraper-kit/SKILL.md) | **Google-maps-scraper**. Scrape Google Maps business listings (name, address, phone, website, rating, reviews, lat/lng, emails) via local REST API. | Python / CLI |
 | [**`aeo-geo-skill-ru`**](skills/marketing/aeo-geo-skill-ru/SKILL.md) | **Answer & Generative Engine Optimization (AEO/GEO)**. Полный плейбук AEO/GEO на русском: 4 канала выдачи, 289-значные H1 под labrador, обход кэша OpenAI, 117-словные пассажи, защита от Ghost Citations, Python stdlib CLI. | Python / CLI |
 | [**`agent-reach`**](skills/marketing/agent-reach/SKILL.md) | **Multi-Platform Intelligence & Retrieval Router**. Маршрутизатор сбора контента по 15 платформам (Twitter/X, Reddit, LinkedIn, Xiaohongshu, Bilibili, YouTube, RSS) с авто-роутингом бэкендов. | Python / CLI |
@@ -238,6 +254,8 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`arena`**](skills/skill-ops/arena/SKILL.md) | **Arena**. Make 100 versions of Claude fight to the death over one task. | Prompt |
+| [**`ablate-ai-layer`**](skills/skill-ops/ablate-ai-layer/SKILL.md) | **Ablate-ai-layer**. Эмпирическое тестирование и сокращение инструкций ИИ (CLAUDE. | Python / CLI |
 | [**`rtk-cli-optimize`**](skills/skill-ops/rtk-CLI-optimize/SKILL.md) | **Rtk-cli-optimize**. Оптимизация и сжатие консольного вывода CLI (bash output) до 90% для AI-агентов через утилиту RTK (Rust Token Killer). | Prompt |
 | [**`optimize`**](skills/skill-ops/optimize/SKILL.md) | **Optimize**. Модуль возможностей ИИ-агента. | Node/CLI |
 | [**`bain-skill-refactor`**](skills/skill-ops/bain-skill-refactor/SKILL.md) | **Bain-skill-refactor**. Рефакторинг и актуализация навыков, системных промптов и инструкций по методологии Wulfie Bain (каркас Background / Behaviour /.... | Prompt |
@@ -245,6 +263,14 @@ flowchart TD
 | [**`public-skills-sync`**](skills/skill-ops/public-skills-sync/SKILL.md) | **Public-skills-sync**. Синхронизирует проверенные навыки строго из папки skills/public/ в публичный внешний репозиторий https://github. | Python / CLI |
 | [**`skill-creator`**](skills/skill-ops/skill-creator/SKILL.md) | **Skill Engineering Engine**. Создание навыков с нуля, адаптация git-репозиториев, валидация L1-L3 и упаковка навыков The Agentic OS. | Python / CLI |
 | [**`skillspector`**](skills/skill-ops/skillspector/SKILL.md) | **NVIDIA SkillSpector Gate**. Официальный шлюз безопасности: статический YARA/AST скан и семантический аудит внешних навыков. | Python / Bash |
+
+---
+
+### 13. 🛡 Безопасность и Аудит (Security & Auditing)
+*Директория:* [`skills/security/`](skills/security/)
+
+| Навык | Назначение и возможности | Стек / Формат |
+| :--- | :--- | :--- |
 
 ---
 

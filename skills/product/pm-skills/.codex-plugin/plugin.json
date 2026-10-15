@@ -1,0 +1,48 @@
+{
+  "name": "pm-skills",
+  "version": "2.33.0",
+  "description": "Product management skills for AI agents across discovery, definition, delivery, measurement, iteration, foundation artifacts, and workshop tools.",
+  "author": {
+    "name": "product-on-purpose",
+    "url": "https://github.com/product-on-purpose"
+  },
+  "homepage": "https://github.com/product-on-purpose/pm-skills",
+  "repository": "https://github.com/product-on-purpose/pm-skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "product-management",
+    "pm",
+    "prd",
+    "user-stories",
+    "acceptance-criteria",
+    "okrs",
+    "triple-diamond",
+    "lean-startup",
+    "design-thinking",
+    "agent-skills",
+    "agentskills-io"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "PM Skills",
+    "shortDescription": "Product management skills for AI agents",
+    "longDescription": "68 product management skills across the full product lifecycle, including PRDs, user stories, acceptance criteria, OKRs, lean canvas, personas, meeting artifacts, discovery synthesis, measurement planning, release notes, workshop tools, workflow authoring and ad-hoc chaining, and pm-skills lifecycle utilities. v2.33.0 fixes the three defects users actually reported: the persona example now matches the template it ships with, prioritization works for lists shorter than ten and for research thinner than a formal survey, and four skills no longer dead-end by pointing at a sibling skill you have not installed. It also opens the AI-product family, adding sections for specifying model-backed features to deliver-prd, measure-instrumentation-spec and develop-adr. No new skills; catalog stays 68 skills / 6 sub-agents. Full release history: https://github.com/product-on-purpose/pm-skills/blob/main/CHANGELOG.md",
+    "developerName": "Product on Purpose",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/product-on-purpose/pm-skills",
+    "privacyPolicyURL": "https://github.com/product-on-purpose/pm-skills/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/product-on-purpose/pm-skills/blob/main/LICENSE",
+    "defaultPrompt": [
+      "Create a PRD for this feature",
+      "Turn this into user stories",
+      "Build a lean canvas for this idea"
+    ],
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}

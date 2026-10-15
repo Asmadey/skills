@@ -1,0 +1,115 @@
+# User
+.memsearch/
+SESSION-LOG/
+.understand-anything
+
+
+# Astro Starlight site (project lives in site/). Source under site/ is tracked;
+# build output, caches, deps, and generated content are ignored. The depth-agnostic
+# dist/ .astro/ node_modules/ rules below also match these; explicit entries make intent clear.
+site/dist/
+site/.astro/
+site/node_modules/
+# Generated site content: rebuilt every build by scripts/gen-site.mjs, never committed
+# (gitignored-and-rebuilt model). The hand-authored overviews skills/index.md and
+# samples/index.md sit at the root of their dirs and stay tracked (the */ globs below
+# match only the generated SUBdirectories).
+site/src/content/docs/skills/*/
+site/src/content/docs/workflows/
+site/src/content/docs/showcase/
+site/src/content/docs/samples/*/
+site/src/content/docs/reference/commands.md
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Python bytecode cache (build-skill-catalog.py and other scripts)
+__pycache__/
+*.py[cod]
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Personal notes
+_NOTES/
+
+# Skill builder staging area
+_staging/
+
+# v2.14 Astro Starlight compatibility spike workspace
+_spike/
+.obsidian
+.claude/*
+.claude/settings.local.json
+.claude/skills/
+.claude/commands/
+dist/
+.astro/
+node_modules/
+*/_archived/*
+_LOCAL/
+# Session logs and machine-local working notes (consolidated home as of 2026-08-18;
+# _LOCAL/ above only covers this on case-insensitive filesystems, so both are listed).
+_local/
+docs/internal/milestones/**/_archived/
+
+# Agent coordination context - fully local as of v2.30.0 (M-35, WS-T12; audit D-3
+# option B). The entire _agent-context/ tree (CONTEXT.md, DECISIONS.md, session
+# logs, worktree primers) is maintainer-facing working context, not part of the
+# public plugin surface, so it is untracked. Files stay on disk locally; they are
+# just no longer committed. See docs/internal/planning-persistence-policy.md.
+_agent-context/
+
+# Internal strategy/backlog/planning tiers - local as of v2.30.0 (M-35, WS-T12;
+# audit D-3 option B). These maintainer working docs are untracked while runbooks,
+# skill-versioning.md, and release-plans/ stay tracked. Files stay on disk locally.
+docs/internal/backlog.md
+docs/internal/backlog-canonical.md
+docs/internal/next.md
+.github/scripts/node_modules/
+
+# Local state (update reports, backups)
+_pm-skills/
+
+# Issue-drafting automation state (WS-T11, v2.30.0, M-35): local idempotency
+# tracking for .github/issues-drafts/, not repo history. See
+# .github/issues-drafts/WORKFLOW-GUIDE.md.
+.github/.created-issues.json
+
+# Local convenience
+.favorites.json
+.cache/
+
+# Session artifacts (Playwright MCP outputs; ad-hoc screenshots taken during W11/W13 visual smoke + V1 dark mode audit)
+.playwright-mcp/
+w11-home-*.png
+dark-mode-*.png

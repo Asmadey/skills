@@ -1,0 +1,38 @@
+# Line-ending normalization (v2.19.0, FU-7).
+#
+# core.autocrlf=true was mutating .sh line endings on Windows worktrees,
+# producing local Bash false-reds (CRLF in the shebang / heredocs) that did
+# not reproduce on Ubuntu CI. These rules make line endings deterministic
+# regardless of a contributor's autocrlf setting.
+
+# Shell scripts: always LF. They run under bash on Ubuntu CI and locally via
+# Git Bash; a CRLF here breaks the shebang and `set -e` heredocs.
+*.sh    text eol=lf
+
+# Git hooks (WS-T11, v2.30.0): extensionless POSIX shell scripts invoked
+# directly by git via `core.hooksPath`. Same CRLF-breaks-the-shebang hazard
+# as *.sh, but the extension glob above cannot match them.
+.githooks/*  text eol=lf
+
+# PowerShell scripts: CRLF (Windows-native).
+*.ps1   text eol=crlf
+
+# Node tooling + JSON: LF.
+*.mjs   text eol=lf
+*.js    text eol=lf
+*.json  text eol=lf
+
+# Markdown: normalized to LF in the repository; checked out per-platform.
+*.md    text
+
+# Release-archive hygiene (v2.30.0, WS-T2 packaging integrity).
+#
+# Maintainer-only trees are tracked in the repo but must never ship in a
+# consumer artifact. export-ignore drops them from `git archive` (the
+# GitHub auto-generated source tarballs/zips). The curated build-release
+# script excludes docs/internal separately; these rules cover the archive
+# path GitHub generates on its own.
+docs/internal/          export-ignore
+_agent-context/         export-ignore
+.github/issues-drafts/  export-ignore
+.github/issues-archive/ export-ignore

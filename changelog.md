@@ -1,10 +1,72 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-10-06
+last_updated: 2026-10-15
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-10-15] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`design/cinematic-landing`** ([`skills/design/cinematic-landing/SKILL.md`](skills/design/cinematic-landing/SKILL.md)):
+  - Эталонный архитектурный шаблон иммерсивных лендингов PersonalOS (Cinematic Component Architecture — чемпион Arena Duel 2 a008).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`dev/cinematic-landing`** ([`skills/dev/cinematic-landing/SKILL.md`](skills/dev/cinematic-landing/SKILL.md)):
+  - Эталонный архитектурный шаблон иммерсивных лендингов PersonalOS (Cinematic Component Architecture — чемпион Arena Duel 2 a008).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`dev/expo`** ([`skills/dev/expo/SKILL.md`](skills/dev/expo/SKILL.md)):
+  - Официальный инженерный комплекс навыков Expo и React Native для агентов (Expo Skills Suite).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`dev/handoff`** ([`skills/dev/handoff/SKILL.md`](skills/dev/handoff/SKILL.md)):
+  - Фиксация и передача контекста текущей сессии (Session Handoff) в компактный чекпоинт-документ (HANDOFF.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`dev/improve-codebase-architecture`** ([`skills/dev/improve-codebase-architecture/SKILL.md`](skills/dev/improve-codebase-architecture/SKILL.md)):
+  - Аудит архитектуры кодовой базы и поиск возможностей углубления модулей (Deep Modules по Джону Оустерхауту).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`dev/scroll-craft`** ([`skills/dev/scroll-craft/SKILL.md`](skills/dev/scroll-craft/SKILL.md)):
+  - Build premium scroll-driven landing pages for service, product, food, and.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`dev/tdd`** ([`skills/dev/tdd/SKILL.md`](skills/dev/tdd/SKILL.md)):
+  - Разработка через тестирование (Test-Driven Development) по циклу Red-Green-Refactor.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`dev/technical-writer`** ([`skills/dev/technical-writer/SKILL.md`](skills/dev/technical-writer/SKILL.md)):
+  - Комплексный инженерный комплекс технического писательства (Technical Writing Suite by riekelt).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/ad-creative`** ([`skills/marketing/ad-creative/SKILL.md`](skills/marketing/ad-creative/SKILL.md)):
+  - Генерация, масштабирование и A/B тестирование рекламных креативов и текстов для платного трафика (Meta, Google RSA, TikTok, LinkedIn).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/ai-seo`** ([`skills/marketing/ai-seo/SKILL.md`](skills/marketing/ai-seo/SKILL.md)):
+  - Оптимизация контента под поисковые ИИ-системы и ассистенты (AEO, GEO, LLMO, Google AI Overviews, Perplexity, ChatGPT, Claude, Gemini).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/offers`** ([`skills/marketing/offers/SKILL.md`](skills/marketing/offers/SKILL.md)):
+  - Проектирование и упаковка высококонверсионных офферов (Grand Slam Offers): Value Equation, стэкинг бонусов, устранение риска (гарантии), дефицит и срочность, ценовая архитектура и форматирование.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/ppt-master`** ([`skills/marketing/ppt-master/SKILL.md`](skills/marketing/ppt-master/SKILL.md)):
+  - AI-driven presentation workflow for generating editable PPTX decks and slides,.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/video`** ([`skills/marketing/video/SKILL.md`](skills/marketing/video/SKILL.md)):
+  - Пайплайн создания и генерации видеоконтента с помощью AI-моделей (Sora, Kling, Runway, Veo, Hailuo, Pika) и кодовых фреймворков (Remotion, Hyperframes).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`product/next-move-theory`** ([`skills/product/next-move-theory/SKILL.md`](skills/product/next-move-theory/SKILL.md)):
+  - Канон и навыки методологии Next Move Theory и Advanced JTBD (Иван Замесин).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`product/pm-claude-code-setup`** ([`skills/product/pm-claude-code-setup/SKILL.md`](skills/product/pm-claude-code-setup/SKILL.md)):
+  - Система гибкого продуктового менеджмента (Lean PM System) по методологии Аакаша Гупты (Aakash Gupta).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`product/pm-skills`** ([`skills/product/pm-skills/SKILL.md`](skills/product/pm-skills/SKILL.md)):
+  - Комплексная библиотека из 68 модульных навыков продуктового менеджмента (Product on Purpose) по фазам Triple Diamond, Lean Startup и Design Thinking.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`skill-ops/ablate-ai-layer`** ([`skills/skill-ops/ablate-ai-layer/SKILL.md`](skills/skill-ops/ablate-ai-layer/SKILL.md)):
+  - Эмпирическое тестирование и сокращение инструкций ИИ (CLAUDE.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`skill-ops/arena`** ([`skills/skill-ops/arena/SKILL.md`](skills/skill-ops/arena/SKILL.md)):
+  - Make 100 versions of Claude fight to the death over one task.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+### 🔄 Обновленные навыки
+- **`dev/shadcn`** ([`skills/dev/shadcn/SKILL.md`](skills/dev/shadcn/SKILL.md)): синхронизированы обновления и ресурсы.
+
+---
 
 ## [2026-10-06] — Синхронизация навыков из PersonalOS (public)
 

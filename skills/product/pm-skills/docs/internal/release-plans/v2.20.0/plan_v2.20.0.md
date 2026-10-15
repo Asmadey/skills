@@ -1,0 +1,87 @@
+# v2.20.0 Release Plan (stub)
+
+**Status:** **SHIPPED 2026-05-25** (annotated tag `v2.20.0` -> commit `e1db5ec`; GitHub Release published as Latest; tag CI green). **Item 1 (workflow-command coverage) + validator hardening (1c) EXECUTED on main 2026-05-24** (pre-tag, untagged): created 3 sprint `/workflow-` commands (foundation-sprint, design-sprint, foundation-to-design); confirmed triple-diamond + lean-startup are intentionally reference-only; hardened `check-agents-md-command-sync` to require a command file per `/workflow-` row; command count 70 -> 73. **All backlog/residual items below RESOLVED 2026-05-24:** added number-after count-coverage to `check-count-consistency` (.sh + .ps1), which caught and fixed further stale counts in `ecosystem.md` (Skills 40, Commands 62) and `runtime-components.md` (Skills 59, Commands 66); removed the vestigial `check-stale-bundle-refs` validator; accepted the count-consistency subset-exclusion as correct-by-design; and reframed the MCP item as an intentional documented freeze (not a drift). v2.20.0 SHIPPED 2026-05-25 via the 6-gate release runbook (G0-G4); Codex G1 review HELD on a P0 (stale ecosystem.md counts) then cleared after the fix. (Stub created 2026-05-23 during v2.19.0 G4; backlog corrected + detailed 2026-05-24; shipped 2026-05-25.)
+**Type:** TBD
+**Predecessor:** v2.19.0 SHIPPED 2026-05-23 (tag `a18e4d5`; pre-promotion hardening; catalog 63; pre-tag bundle now 18 enforcing validators).
+
+## Purpose
+
+Placeholder for the next release cycle. v2.19.0 was the pre-promotion hardening pass (validator blind spots closed, CI/script hygiene, public-surface polish). v2.20.0 scope is not yet locked. The two lead candidate items below were re-derived from the current tree on 2026-05-24 (the earlier stub inherited stale counts from the v2.19.0 G0 auditor).
+
+---
+
+## Item 1: Workflow `/workflow-` command coverage
+
+**Ground truth (verified against the tree 2026-05-24):** 12 workflow files in `_workflows/` (excluding README); only **7** have a working `commands/workflow-*.md` file. The gap breaks into three groups:
+
+| Workflow (`_workflows/<stem>.md`) | `commands/workflow-<stem>.md`? | AGENTS.md row? | State |
+|---|---|---|---|
+| customer-discovery, feature-kickoff, post-launch-learning, product-strategy, sprint-planning, stakeholder-alignment, technical-discovery | yes (7) | yes | OK - functional slash commands |
+| foundation-sprint, design-sprint, foundation-to-design | **no** | yes (AGENTS.md lines ~477-479) | **Advertised but non-functional** - `/workflow-design-sprint` will not resolve in Claude Code because no command file exists |
+| triple-diamond, lean-startup | no | no | Reference-only (README "12 Workflows" + the workflow table list them, but they are not slash commands) |
+
+**Why CI did not catch the 3 advertised-but-broken commands:** `check-agents-md-command-sync` validates `/workflow-*` AGENTS rows against the `_workflows/` directory, not against `commands/` (see `scripts/check-agents-md-command-sync.md` line 12: "Workflow-prefixed slash commands are recognized as aliases into `_workflows/` and validated against that directory"). So a row whose `_workflows/<stem>.md` exists passes even with no command file. The slash command still will not work, because Claude Code resolves slash commands from `commands/*.md`.
+
+**Decisions to make (per group):**
+
+- **(1a) foundation-sprint / design-sprint / foundation-to-design** - either:
+  - **Create** the 3 command files (slash commands 70 -> 73), making the AGENTS.md advertisement real; OR
+  - **Remove** the 3 AGENTS.md rows and document these as reference workflows invoked via the per-day `tool-foundation-sprint-*` / `tool-design-sprint-*` commands (AGENTS.md then has 7 `/workflow-` rows matching the 7 command files).
+  - Recommendation: decide based on whether a single chained command per sprint adds value over the existing per-day `tool-*` commands. If not, remove the rows (cheaper, removes the broken advertisement).
+- **(1b) triple-diamond / lean-startup** - either:
+  - **Create** the 2 command files (they are linear skill-chains like the working 7; slash commands +2); OR
+  - **Keep** them reference-only and annotate the README so "12 Workflows" does not imply 12 slash commands.
+- **(1c) Validator hardening (v2.19.0-style "defect becomes a validator")** - extend `check-agents-md-command-sync` (or add a sibling check) so a `/workflow-*` AGENTS row that advertises a slash command also requires a `commands/workflow-<stem>.md` file, closing the "advertised but non-functional" gap that let 1a through.
+  - **CI impact:** confirmed-uncovered gap. Neither `check-workflow-coverage` (checks each `_workflows/` file has a docs page + AGENTS row + nav entry) nor `check-workflow-generator-coverage` (checks `_workflows/` -> generated pages) nor `check-agents-md-command-sync` (validates `/workflow-*` rows against `_workflows/`, NOT `commands/`) verifies a command file exists. **Extending** the already-wired `check-agents-md-command-sync` needs NO new CI wiring and leaves the bundle at 18 validators. **Adding a brand-new validator** instead means the full new-validator process (`.sh`+`.ps1`+`.md` triplet, wire into `validation.yml` both-OS matrix entries, add to both `pre-tag-validate.{sh,ps1}` arrays + the `.md`, cascade bundle count 18 -> 19) - the same process v2.19.0 used for `validate-version-consistency`.
+
+**How to complete (if creating any `/workflow-` command):** author `commands/workflow-<name>.md` modeled on `commands/workflow-feature-kickoff.md` (YAML frontmatter with a single `description:` line, then `## Workflow Steps` referencing each `skills/<skill>/SKILL.md` in sequence, ending with `Context from user: $ARGUMENTS`), then run the **Documentation checklist** below. The `_workflows/<stem>.md` source files already exist for all 5, so the "12 Workflows" count does not change - only the slash-command count does.
+
+---
+
+## Item 2: pm-skills-mcp posture - NOT a this-repo drift (re-assessed 2026-05-24)
+
+**This is not a drift to fix.** This repo documents `pm-skills-mcp` accurately: a maintenance-mode badge + a "MCP Server: Maintenance Mode (effective 2026-05-04)" section in the README, and `docs/changelog.md` records the MCP catalog as **intentionally frozen at the v2.9.2 build** (40-skill era; total tools 59 = 40 skill + 11 workflow + 8 utility) per the M-22 freeze. This repo nowhere claims the MCP tracks the live 63-skill catalog, so there is no stale over-claim here to correct.
+
+The earlier "24-vs-63 drift" framing in this stub was wrong: the "24 skills" figure appears only in the MCP repo's own internal planning drafts and is not this repo's concern, and the `validate-mcp-sync` *validator* was already removed from this repo in v2.19.0.
+
+**The genuine open item is strategic, not a fix:** whether to keep the MCP frozen (the current, documented state), unfreeze and re-sync to 63, or retire it. That call is a v3.0.0 / promotion-prep decision tracked under `docs/internal/release-plans/v3.0.0/`; it does not belong to v2.20.0 and requires no change in this repo. **No action for v2.20.0.**
+
+---
+
+## Other carried-forward residuals (non-blocking)
+
+- **validate-mcp-sync sample row - RESOLVED (no further action).** Per decision (memory 5561, 2026-05-23): "preserve historical audit samples, clean only the forward-looking template." `3c68f82` cleaned `references/TEMPLATE.md`; `references/EXAMPLE.md` (and the page generated from it) intentionally KEEP the `validate-mcp-sync` row as a point-in-time v2.16-era audit snapshot. Do not scrub it - a worked example is dated evidence, not a current claim.
+- **CONTEXT.md stale command count - FIXED 2026-05-24.** `_agent-context/claude/CONTEXT.md` line ~85 (the repo-structure tree comment) now reads "(73 total, including 10 workflow commands)"; it previously carried the v2.14-era "(47 total: 40 skill + 7 workflow)".
+- **`check-stale-bundle-refs` - REMOVED 2026-05-24.** It was a v2.9.0 terminology guard (the bundles -> workflows rename) made permanently unenforceable by the "validator bundle" collision (497 false matches per memory 5378). Deleted the `.sh`/`.ps1`/`.md` triplet, the 2 advisory CI steps in `validation.yml`, and all live doc references (ci-overview advisory node + table, README_SCRIPTS ToC/section/lists). Historical mentions in CHANGELOG, release notes, and internal docs are left as frozen records.
+- **`check-count-consistency` subset-exclusion - ACCEPTED as-is (2026-05-24).** Investigated: the subset-descriptor exemption (script lines ~154-161) only skips subset phrases like "8 foundation skills" / "10 workflow commands"; the AGGREGATE total ("63 skills", "73 commands") is still validated independently via the non-subset branch, so a stale aggregate is NOT masked. No real masking case has surfaced and the script comment documents the rationale. Keeping as-is.
+
+---
+
+## Documentation checklist: adding a `/workflow-` command
+
+Run this every time a new `/workflow-<name>` command is added (each new command raises the slash-command count by 1). Counts below assume the current baseline of **70**.
+
+- [ ] **Command file:** create `commands/workflow-<name>.md` (model on `commands/workflow-feature-kickoff.md`).
+- [ ] **AGENTS.md table:** add a `| `/workflow-<name>` | <one-line description> |` row to the command summary table (the lower table near line ~442). Keep the description in sync with the command file's frontmatter `description:`.
+- [ ] **Bump the slash-command count on every surface that states it:**
+  - [ ] `README.md` ~line 115 ("70 slash commands available")
+  - [ ] `README.md` ~line 301 ("70 Slash Commands")
+  - [ ] `README.md` ~line 377 (platform table, "70 slash commands")
+  - [ ] `README.md` ~line 991 (At-a-Glance, "Slash commands | 70")
+  - [ ] `_agent-context/claude/CONTEXT.md` (and fix the stale line ~85 "47 total" while here)
+  - [ ] `.claude-plugin/plugin.json` + `.claude-plugin/marketplace.json` descriptions IF they cite a command count (grep to confirm; v2.19.0 they did not)
+- [ ] **Edit the generator FIRST, then regenerate:** `generate-skill-pages.py` does NOT auto-discover `/workflow-` rows - it counts them by glob (so the header count updates) but renders the table rows from a HARDCODED block (around the "Add workflow commands" comment, ~line 644). Add a `lines.append("| `/workflow-<name>` | [Display](../workflows/<stem>.md) | Workflow | <desc> |")` entry there, THEN run `python scripts/generate-skill-pages.py` so `docs/reference/commands.md` table matches its header count (keeps `check-generated-content-untouched` green and avoids a header-vs-rows mismatch).
+- [ ] **Validators:** run `validate-commands` (command resolves + skill paths valid), `check-agents-md-command-sync` (AGENTS table covers `commands/`), `check-count-consistency` + `check-landing-page-counts --strict` (count claims), then the full bundle `ALLOW_BASH3=1 bash scripts/pre-tag-validate.sh` and `pwsh scripts/pre-tag-validate.ps1`.
+- [ ] **Docs site:** `npm run build` (Astro) to confirm the site builds with the new command and counts.
+- [ ] **If the workflow itself is NEW** (not the case for the 5 existing `_workflows/` files): also add `_workflows/<name>.md`, add the entry to the `workflow_info` dict in `scripts/generate-workflow-pages.py`, regenerate `docs/workflows/`, and bump the "12 Workflows" count on README ~line 300 + the At-a-Glance "Workflows" row.
+
+---
+
+## Out of scope (tracked elsewhere)
+
+- **pm-skills-mcp posture** - see Item 2; v3 / promotion-prep decision.
+- **Marketplace switchover + install-path migration** - the v3.0.0 breaking rename to `product-on-purpose`, tracked under `docs/internal/release-plans/v3.0.0/`.
+
+## Candidate scope (not committed)
+
+- New content skills under consideration: develop-pre-mortem, develop-product-vision (roadmap candidates).
