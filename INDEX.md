@@ -6,7 +6,7 @@ last_updated: 2026-10-15
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (111 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (112 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -115,6 +115,7 @@ last_updated: 2026-10-15
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **impeccable** | **Impeccable**.<br>Система профессионального дизайн-руководства, анти-шаблонного аудита и полировки интерфейсов от Пола Бакауса (Paul Ba... | `'impeccable', '/impeccable', 'дизайн аудит', 'улучши дизайн', 'убери ai slop', 'дизайн системы', 'polish ui', 'critique ui', 'bolder design', 'сделай красивый дизайн'` | Node/CLI | [SKILL.md](skills/design/impeccable/SKILL.md) |
 | **cinematic-landing** | **Cinematic-landing**.<br>Эталонный архитектурный шаблон иммерсивных лендингов PersonalOS (Cinematic Component Architecture — чемпион Arena Due... | `cinematic-landing` | Prompt | [SKILL.md](skills/design/cinematic-landing/SKILL.md) |
 | **design-taste-frontend** | **Design-taste-frontend**.<br>Anti-slop frontend skill for landing pages, portfolios, and redesigns | `design-taste-frontend` | Prompt | [SKILL.md](skills/design/taste-skill/SKILL.md) |
 | **design-loop** | **Design-loop**.<br>Takes a goal and a real-world reference, extracts what actually makes the reference good, then runs builder and three... | `design-loop` | Prompt | [SKILL.md](skills/design/design-loop/SKILL.md) |
