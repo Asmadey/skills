@@ -6,7 +6,7 @@ last_updated: 2026-10-15
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (112 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (113 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -65,6 +65,7 @@ last_updated: 2026-10-15
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **meeting-transcriber** | **Meeting-transcriber**.<br>Transcribe meeting audio recordings using Groq Whisper API (whisper-large-v3 with automatic fallback to whisper-large... | `meeting-transcriber` | Python / CLI | [SKILL.md](skills/automation/meeting-transcriber/SKILL.md) |
 | **Browser-automation** | **Headless Browser CLI & Proxy**.<br>Высокоскоростное управление браузером по CDP (скриншоты, клики, доступность, парсинг) | `автоматизация браузера, тестирование, скрейпинг страниц` | Node/CLI | [SKILL.md](skills/automation/Browser-automation/SKILL.md) |
 | **googlesheets-automation** | **Google Sheets Manager**.<br>Чтение, запись, форматирование и фильтрация таблиц Google Sheets через API | `автоматизация Google Таблиц, выгрузка отчетов, синхронизация данных` | Prompt | [SKILL.md](skills/automation/googlesheets-automation/SKILL.md) |
 | **linear-automation** | **Linear Automation MCP**.<br>Управление задачами, проектами, спринтами и циклами Linear через MCP | `создание задач в Linear, трекинг тикетов, управление бэклогом` | Prompt | [SKILL.md](skills/automation/linear-automation/SKILL.md) |

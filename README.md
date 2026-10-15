@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **112 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **113 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -97,6 +97,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`meeting-transcriber`**](skills/automation/meeting-transcriber/SKILL.md) | **Meeting-transcriber**. Transcribe meeting audio recordings using Groq Whisper API (whisper-large-v3 with automatic fallback to whisper-large-v3-turbo .... | Python / CLI |
 | [**`Browser-automation`**](skills/automation/Browser-automation/SKILL.md) | **Headless Browser CDP Engine**. Высокоскоростное управление браузером (скриншоты, клики, навигация, парсинг данных). | Node/CLI |
 | [**`n8n-architect`**](skills/automation/n8n-architect/SKILL.md) | **n8n Workflow Architect**. Проектирование, дебаг, валидация и оптимизация сценариев автоматизации n8n. | Prompt |
 | [**`n8n-as-code`**](skills/automation/n8n-as-code/SKILL.md) | **n8n-as-Code Engine**. Синхронизация, импорт/экспорт и версионирование сценариев в JSON-формате прямо из git. | Node/CLI |
