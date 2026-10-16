@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **113 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **118 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -141,6 +141,9 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`sketch-design`**](skills/design/sketch-design/SKILL.md) | **Sketch-design**. Создание рисованных интерактивных презентаций и архитектурных схем в духе доски Excalidraw (черный контур от руки, пастельные з.... | Python / CLI |
+| [**`diagram-design`**](skills/design/diagram-design/SKILL.md) | **Diagram-design**. Create branded architecture, architecture delta, IT current-state, flowchart, sequence, state machine, ER/data model, timeline,.... | Python / CLI |
+| [**`deck-craft`**](skills/design/deck-craft/SKILL.md) | **Deck-craft**. Система создания автономных интерактивных веб-презентаций и слайд-деков в стиле Varick Agents (Single-File Zero-Dependency HTML5). | Python / Node/CLI |
 | [**`impeccable`**](skills/design/impeccable/SKILL.md) | **Impeccable**. Система профессионального дизайн-руководства, анти-шаблонного аудита и полировки интерфейсов от Пола Бакауса (Paul Bakaus). | Node/CLI |
 | [**`cinematic-landing`**](skills/design/cinematic-landing/SKILL.md) | **Cinematic-landing**. Эталонный архитектурный шаблон иммерсивных лендингов PersonalOS (Cinematic Component Architecture — чемпион Arena Duel 2 a008). | Prompt |
 | [**`design-taste-frontend`**](skills/design/taste-skill/SKILL.md) | **Design-taste-frontend**. Anti-slop frontend skill for landing pages, portfolios, and redesigns. | Prompt |
@@ -193,6 +196,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`ai-business-evaluator`**](skills/business/ai-business-evaluator/SKILL.md) | **Ai-business-evaluator**. Экспертный аудит применимости ИИ в бизнесе, декомпозиция бизнес-процессов по методологии Varick Agents, Michael Hammer и Yakov .... | Python / CLI |
 | [**`biznes-plan-architect`**](skills/business/biznes-plan-architect/SKILL.md) | **Business Plan Architect**. Разработка финмоделей, расчет юнит-экономики (LTV, CAC, Payback) и инвестиционных меморандумов. | Python |
 | [**`growth-expert`**](skills/business/growth-expert/SKILL.md) | **Growth Marketing Engine**. Проектирование виральных петель, воронок привлечения и стратегий удержания (Retention). | Python |
 | [**`pricing-strategy`**](skills/business/pricing-strategy/SKILL.md) | **SaaS Pricing Architect**. Построение тарифных сеток, ценовая эластичность, freemium и usage-based модели. | Prompt |
@@ -234,6 +238,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`evals-from-sessions`**](skills/ops/evals-from-sessions/SKILL.md) | **Evals-from-sessions**. Turn your own coding-agent sessions (Claude Code, Codex, Pi, Gemini CLI, or other JSONL session exports) into verified Harbor e.... | Prompt |
 | [**`goal-buddy`**](skills/ops/goal-buddy/SKILL.md) | **Autonomous Goal Engine**. Компилятор намерений, Goal Oracle, роли Scout/Judge/Worker, управление автономными целями. | Node/CLI |
 | [**`todoist-automation`**](skills/ops/todoist-automation/SKILL.md) | **Todoist MCP Manager**. Создание задач, приоритеты, дедлайны и синхронизация проектов Todoist. | Prompt |
 | [**`whatsup`**](skills/ops/whatsup/SKILL.md) | **WhatsApp Bridge MCP**. Двунаправленный мост (протокол Baileys) для отправки и чтения сообщений. | Node/CLI |

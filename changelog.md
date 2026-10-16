@@ -1,10 +1,31 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-10-15
+last_updated: 2026-10-16
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-10-16] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`business/ai-business-evaluator`** ([`skills/business/ai-business-evaluator/SKILL.md`](skills/business/ai-business-evaluator/SKILL.md)):
+  - Экспертный аудит применимости ИИ в бизнесе, декомпозиция бизнес-процессов по методологии Varick Agents, Michael Hammer и Yakov & Partners (4 корзины: Eliminate, Deterministic, Agentic, HITL), выявление разрыва Touch Time vs.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`design/deck-craft`** ([`skills/design/deck-craft/SKILL.md`](skills/design/deck-craft/SKILL.md)):
+  - Система создания автономных интерактивных веб-презентаций и слайд-деков в стиле Varick Agents (Single-File Zero-Dependency HTML5).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`design/diagram-design`** ([`skills/design/diagram-design/SKILL.md`](skills/design/diagram-design/SKILL.md)):
+  - Create branded architecture, architecture delta, IT current-state, flowchart, sequence, state machine, ER/data model, timeline, swimlane, quadrant, radar/spider, polar chart (polar/radial lollipop), loop/flywheel, nested, tree, org chart, layer stack, exploded axonometric, axonometric plan, Venn, pyramid/funnel, treemap and marimekko, heatmap, bar and dumbbell, waterfall, line (slopegraph, ridgeline, streamgraph, bump), Gantt and scatter charts (bubble, beeswarm), high-level, process, medallion, data flow, DP integration, DP security matrix, Sankey, fishbone, Wardley map, kanban, user journey, service blueprint, deployment, dependency graph, UML class, story map, or database schema diagrams as HTML/SVG/PNG, with.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`design/sketch-design`** ([`skills/design/sketch-design/SKILL.md`](skills/design/sketch-design/SKILL.md)):
+  - Создание рисованных интерактивных презентаций и архитектурных схем в духе доски Excalidraw (черный контур от руки, пастельные заливки, акцентный тон, пошаговая сборка, Pangolin + JetBrains Mono, Zero-Dependency HTML5 Custom Elements).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`ops/evals-from-sessions`** ([`skills/ops/evals-from-sessions/SKILL.md`](skills/ops/evals-from-sessions/SKILL.md)):
+  - Turn your own coding-agent sessions (Claude Code, Codex, Pi, Gemini CLI, or other JSONL session exports) into verified Harbor eval tasks.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+
+---
 
 ## [2026-10-15] — Синхронизация навыков из PersonalOS (public)
 

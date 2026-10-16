@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-10-15
+last_updated: 2026-10-16
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (113 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (118 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -116,6 +116,9 @@ last_updated: 2026-10-15
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **sketch-design** | **Sketch-design**.<br>Создание рисованных интерактивных презентаций и архитектурных схем в духе доски Excalidraw (черный контур от руки, па... | `sketch-design` | Python / CLI | [SKILL.md](skills/design/sketch-design/SKILL.md) |
+| **diagram-design** | **Diagram-design**.<br>Create branded architecture, architecture delta, IT current-state, flowchart, sequence, state machine, ER/data model,... | `diagram-design` | Python / CLI | [SKILL.md](skills/design/diagram-design/SKILL.md) |
+| **deck-craft** | **Deck-craft**.<br>Система создания автономных интерактивных веб-презентаций и слайд-деков в стиле Varick Agents (Single-File Zero-Depen... | `deck-craft` | Python / Node/CLI | [SKILL.md](skills/design/deck-craft/SKILL.md) |
 | **impeccable** | **Impeccable**.<br>Система профессионального дизайн-руководства, анти-шаблонного аудита и полировки интерфейсов от Пола Бакауса (Paul Ba... | `'impeccable', '/impeccable', 'дизайн аудит', 'улучши дизайн', 'убери ai slop', 'дизайн системы', 'polish ui', 'critique ui', 'bolder design', 'сделай красивый дизайн'` | Node/CLI | [SKILL.md](skills/design/impeccable/SKILL.md) |
 | **cinematic-landing** | **Cinematic-landing**.<br>Эталонный архитектурный шаблон иммерсивных лендингов PersonalOS (Cinematic Component Architecture — чемпион Arena Due... | `cinematic-landing` | Prompt | [SKILL.md](skills/design/cinematic-landing/SKILL.md) |
 | **design-taste-frontend** | **Design-taste-frontend**.<br>Anti-slop frontend skill for landing pages, portfolios, and redesigns | `design-taste-frontend` | Prompt | [SKILL.md](skills/design/taste-skill/SKILL.md) |
@@ -138,6 +141,7 @@ last_updated: 2026-10-15
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **evals-from-sessions** | **Evals-from-sessions**.<br>Turn your own coding-agent sessions (Claude Code, Codex, Pi, Gemini CLI, or other JSONL session exports) into verifie... | `evals-from-sessions` | Prompt | [SKILL.md](skills/ops/evals-from-sessions/SKILL.md) |
 | **goal-buddy** | **Autonomous Goal Engine**.<br>Автономное управление целями: компилятор намерений, Goal Oracle, канбан-доска, роли Scout/Judge/Worker | `/goalbuddy, /goal-prep, запуск долгосрочных автономных задач` | Node/CLI | [SKILL.md](skills/ops/goal-buddy/SKILL.md) |
 | **todoist-automation** | **Todoist Automation MCP**.<br>Управление проектами, задачами, дедлайнами и фильтрами Todoist через MCP | `создание задач Todoist, синхронизация списков дел` | Prompt | [SKILL.md](skills/ops/todoist-automation/SKILL.md) |
 | **whatsup** | **WhatsApp MCP Server**.<br>Двунаправленный WhatsApp-мост (протокол Baileys, linked-device) для чтения и отправки сообщений | `отправка/чтение сообщений WhatsApp, сопряжение через QR` | Node/CLI | [SKILL.md](skills/ops/whatsup/SKILL.md) |
@@ -148,6 +152,7 @@ last_updated: 2026-10-15
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **ai-business-evaluator** | **Ai-business-evaluator**.<br>Экспертный аудит применимости ИИ в бизнесе, декомпозиция бизнес-процессов по методологии Varick Agents, Michael Hamme... | `использовать при вопросах клиентов и партнеров о применимости ИИ ("может ли ИИ помочь с X", "как внедрить ИИ в бизнес", "с чего начать внедрение ИИ", "где применить нейросети в компании", "оценка применимости ИИ", /ai-eval, /ai-advisor, "applied ai")` | Python / CLI | [SKILL.md](skills/business/ai-business-evaluator/SKILL.md) |
 | **biznes-plan-architect** | **Business Plan Architect**.<br>Разработка инвестиционных и операционных бизнес-планов, юнит-экономика и финмодели | `составление бизнес-плана, расчет финмодели, питч-дек` | Python | [SKILL.md](skills/business/biznes-plan-architect/SKILL.md) |
 | **growth-expert** | **Growth Marketing Framework**.<br>Стратегии масштабирования, воронки привлечения, виральные петли и когортный анализ | `стратегия роста, масштабирование продукта, CAC/LTV оптимизация` | Python | [SKILL.md](skills/business/growth-expert/SKILL.md) |
 | **pptx-generator** | **PPTX Deck Generator**.<br>Генерация профессиональных презентаций PowerPoint из markdown и структурированных данных | `создать презентацию, сделать слайды, PPTX отчет` | Python / Node/CLI | [SKILL.md](skills/business/pptx-generator/SKILL.md) |

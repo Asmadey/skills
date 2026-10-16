@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Рисованная презентация · Sketch Design</title>
+  <link rel="stylesheet" href="bundle.css">
+</head>
+<body>
+
+  <sk-deck>
+
+    <!-- Слайд 1: Обложка -->
+    <sk-slide tone="orange" number="1">
+      <sk-title number="1">Начни с чистого листа</sk-title>
+
+      <!-- Предметы на сцене (координаты 1600x900) -->
+      <sk-doc x="240" y="320" w="220" h="300" label="Промпт v1" rot="-2"></sk-doc>
+
+      <sk-arrow x1="500" y1="460" x2="680" y2="460" tone="orange" label="генерация"></sk-arrow>
+
+      <sk-box x="720" y="280" w="640" h="360" label="Рабочий процесс" tone="orange" line="orange" rot="1">
+        <p class="sk-heading" style="margin-bottom: 20px;">Одна мысль &mdash; один слайд</p>
+        <p class="sk-body" style="color: var(--sk-muted);">
+          Схема, а не текст. Мысль показывается предметами: документы, стрелки, проверки.
+        </p>
+        <div style="margin-top: 24px; display: flex; gap: 16px; align-items: center;">
+          <sk-chip>prompt.md</sk-chip>
+          <sk-mark kind="check"></sk-mark>
+          <sk-note>проверено на практике</sk-note>
+        </div>
+      </sk-box>
+
+      <sk-caption>Каждый слайд раскрывается по шагам при нажатии клавиши &rarr; или пробела.</sk-caption>
+    </sk-slide>
+
+    <!-- Слайд 2: Пример с пошаговой сборкой (step=1, step=2) -->
+    <sk-slide tone="green" number="2">
+      <sk-title number="2">Схема побеждает абзацы</sk-title>
+
+      <!-- Шаг 0: Проблема слева -->
+      <sk-box x="160" y="260" w="460" h="440" label="Сырой текст" tone="red" rot="-1">
+        <p class="sk-heading" style="color: #b42318; margin-bottom: 16px;">Слишком много слов</p>
+        <p class="sk-body" style="font-size: 28px; line-height: 1.4; color: var(--sk-muted);">
+          Длинный неструктурированный текст утомляет аудиторию и скрывает ключевые смыслы за словесными конструкциями.
+        </p>
+        <div style="margin-top: 30px; display: flex; align-items: center; gap: 12px;">
+          <sk-mark kind="cross"></sk-mark>
+          <sk-note>перегруз внимания</sk-note>
+        </div>
+      </sk-box>
+
+      <!-- Шаг 1: Стрелка перехода -->
+      <sk-arrow x1="660" y1="480" x2="880" y2="480" tone="green" label="декомпозиция" step="1"></sk-arrow>
+
+      <!-- Шаг 2: Решение справа -->
+      <sk-box x="940" y="260" w="500" h="440" label="Предметы и связи" tone="green" line="green" rot="1" step="2">
+        <p class="sk-heading" style="color: #2b7a4b; margin-bottom: 16px;">3&ndash;5 предметов</p>
+        <div style="display: flex; flex-direction: column; gap: 18px; margin-top: 20px;">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <sk-chip>Входной сигнал</sk-chip>
+            <span style="font-size: 28px;">&rarr;</span>
+            <sk-chip>Агент</sk-chip>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <sk-spark label="Claude"></sk-spark>
+            <sk-mark kind="check"></sk-mark>
+          </div>
+        </div>
+        <sk-note style="margin-top: 36px; display: block;">понятно с одного взгляда</sk-note>
+      </sk-box>
+
+      <sk-caption>Если на слайде больше 12 слов подряд &mdash; разбей на предметы или шаги.</sk-caption>
+    </sk-slide>
+
+  </sk-deck>
+
+  <script src="bundle.js"></script>
+</body>
+</html>
