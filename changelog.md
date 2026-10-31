@@ -1,10 +1,50 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-10-16
+last_updated: 2026-10-31
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-10-31] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`UX/dembrandt`** ([`skills/UX/dembrandt/SKILL.md`](skills/UX/dembrandt/SKILL.md)):
+  - Комплексный инженерный комплекс UX-аудита, реверс-инжиниринга дизайн-систем и экстракции токенов (Dembrandt Suite by VictorGjn).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`ai/evals-from-sessions`** ([`skills/ai/evals-from-sessions/SKILL.md`](skills/ai/evals-from-sessions/SKILL.md)):
+  - Turn your own coding-agent sessions (Claude Code, Codex, Pi, Gemini CLI, or other JSONL session exports) into verified Harbor eval tasks.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`design/design-to-motion`** ([`skills/design/design-to-motion/SKILL.md`](skills/design/design-to-motion/SKILL.md)):
+  - Turns a static design (a Figma frame, dashboard, card set, app screen, or a UI on a photo background) into a pixel exact HTML replica that loads in from an empty state, then has every visual act out what it does (a chart being read, a list receiving items, a prompt being typed) in a seamless loop, and exports an MP4 for X, a website GIF, and an 800×500 GIF.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`design/ux-designer`** ([`skills/design/ux-designer/SKILL.md`](skills/design/ux-designer/SKILL.md)):
+  - UX principles for planning or auditing an interface: accessibility (WCAG, EAA), information architecture, microcopy, i18n/RTL, and AI or voice UX.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`dev/reverse-engineer-anything`** ([`skills/dev/reverse-engineer-anything/SKILL.md`](skills/dev/reverse-engineer-anything/SKILL.md)):
+  - Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/app-store-screenshots`** ([`skills/marketing/app-store-screenshots/SKILL.md`](skills/marketing/app-store-screenshots/SKILL.md)):
+  - Use when building App Store or Google Play screenshot pages, generating exportable marketing screenshots for iOS, macOS, and/or Android apps, or scaffolding a screenshot editor with Next.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/claude-seo`** ([`skills/marketing/claude-seo/SKILL.md`](skills/marketing/claude-seo/SKILL.md)):
+  - Комплексный инженерный комплекс SEO-навыков, технического аудита и GEO/AEO-оптимизации (Claude SEO Suite by AgriciDaniel).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/clone-website`** ([`skills/marketing/clone-website/SKILL.md`](skills/marketing/clone-website/SKILL.md)):
+  - Реконструкция существующих веб-страниц в рабочий локальный код с реальным контентом, ассетами, адаптивной версткой и интеракциями.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/landing-page-design`** ([`skills/marketing/landing-page-design/SKILL.md`](skills/marketing/landing-page-design/SKILL.md)):
+  - Complete system for building high converting landing pages: intake questions, page structure, layout selection, conversion copywriting, SEO, plus strict visual rules for typography, spacing, corner radius, backgrounds, hero layout, icons, and motion.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`video/brag`** ([`skills/video/brag/SKILL.md`](skills/video/brag/SKILL.md)):
+  - Генерация динамичных промо- и лаунч-видеороликов (Launch Videos) для проектов, продуктов и сайтов.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+### 🔄 Обновленные навыки
+- **`UX/hallmark`** ([`skills/UX/hallmark/SKILL.md`](skills/UX/hallmark/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`design/impeccable`** ([`skills/design/impeccable/SKILL.md`](skills/design/impeccable/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`design/design-taste-frontend`** ([`skills/design/taste-skill/SKILL.md`](skills/design/taste-skill/SKILL.md)): синхронизированы обновления и ресурсы.
+
+---
 
 ## [2026-10-16] — Синхронизация навыков из PersonalOS (public)
 

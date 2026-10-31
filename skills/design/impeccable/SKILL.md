@@ -3,7 +3,7 @@ name: impeccable
 description: "Система профессионального дизайн-руководства, анти-шаблонного аудита и полировки интерфейсов от Пола Бакауса (Paul Bakaus). 24 команды дизайн-инженерии: UX/UI аудит (/critique, /audit), устранение AI-slop паттернов (запрет дефолтного Inter, фиолетовых градиентов, бессмысленных вложенных карточек), калибровка характера интерфейса (/bolder, /quieter, /distill, /delight, /overdrive), предрелизный лоск (/polish, /harden), генерация стандартов PRODUCT.md и DESIGN.md (OKLCH токены). Синергия со scroll-craft, magicui, shadcn и cinematic-landing. Триггеры: 'impeccable', '/impeccable', 'дизайн аудит', 'улучши дизайн', 'убери ai slop', 'дизайн системы', 'polish ui', 'critique ui', 'bolder design', 'сделай красивый дизайн'."
 category: design
 author: Paul Bakaus (адаптировано для PersonalOS)
-version: 4.5.2
+version: 4.8.0
 ---
 
 # 🎨 Impeccable: Design Engineering & Anti-Slop System

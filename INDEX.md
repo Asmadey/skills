@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-10-16
+last_updated: 2026-10-31
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (118 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (128 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -35,6 +35,7 @@ last_updated: 2026-10-16
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **reverse-engineer-anything** | **Reverse-engineer-anything**.<br>Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA | `reverse-engineer-anything` | Prompt | [SKILL.md](skills/dev/reverse-engineer-anything/SKILL.md) |
 | **technical-writer** | **Technical-writer**.<br>Комплексный инженерный комплекс технического писательства (Technical Writing Suite by riekelt) | `'technical-writer', 'technical writing', 'rfc', 'design doc', 'adr', 'architecture decision', 'runbook', 'postmortem', 'api docs', 'документация архитектуры', 'напиши adr', 'составь rfc'` | Prompt | [SKILL.md](skills/dev/technical-writer/SKILL.md) |
 | **tdd** | **Tdd**.<br>Разработка через тестирование (Test-Driven Development) по циклу Red-Green-Refactor | `'tdd', 'red-green-refactor', 'напиши тесты сначала', 'test-first', 'тест-драйвен'` | Prompt | [SKILL.md](skills/dev/tdd/SKILL.md) |
 | **improve-codebase-architecture** | **Improve-codebase-architecture**.<br>Аудит архитектуры кодовой базы и поиск возможностей углубления модулей (Deep Modules по Джону Оустерхауту) | `'improve-codebase-architecture', 'архитектурный аудит', 'улучшить архитектуру', 'deep modules', 'глубокие модули', 'рефакторинг архитектуры'` | Prompt | [SKILL.md](skills/dev/improve-codebase-architecture/SKILL.md) |
@@ -107,6 +108,7 @@ last_updated: 2026-10-16
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **dembrandt** | **Dembrandt**.<br>Комплексный инженерный комплекс UX-аудита, реверс-инжиниринга дизайн-систем и экстракции токенов (Dembrandt Suite by ... | `'dembrandt', 'extract design', 'clone website', 'ux audit', 'design review', 'design tokens', 'nielsen heuristics', 'wcag accessibility', 'color palette', 'type scale'` | Prompt | [SKILL.md](skills/UX/dembrandt/SKILL.md) |
 | **hallmark** | **Anti-AI-Slop Design Engine**.<br>Генерация нетривиальных UI/лендингов, аудит визуального стиля, устранение шаблонного ИИ-дизайна | `создание новых UI, редизайн, аудит интерфейса на AI-slop` | Node/CLI | [SKILL.md](skills/UX/hallmark/SKILL.md) |
 | **ui-ux-pro-max** | **UI/UX Design Master Suite**.<br>Комплексное проектирование дизайн-систем, баннеров, слайдов и UI-компонентов | `дизайн сайтов, дизайн-системы, баннеры, презентации` | Python / Node/CLI | [SKILL.md](skills/UX/ui-ux-pro-max/SKILL.md) |
 
@@ -116,6 +118,8 @@ last_updated: 2026-10-16
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **ux-designer** | **Ux-designer**.<br>UX principles for planning or auditing an interface: accessibility (WCAG, EAA), information architecture, microcopy, ... | `ux-designer` | Prompt | [SKILL.md](skills/design/ux-designer/SKILL.md) |
+| **design-to-motion** | **Design-to-motion**.<br>Turns a static design (a Figma frame, dashboard, card set, app screen, or a UI on a photo background) into a pixel ex... | `design-to-motion` | Prompt | [SKILL.md](skills/design/design-to-motion/SKILL.md) |
 | **sketch-design** | **Sketch-design**.<br>Создание рисованных интерактивных презентаций и архитектурных схем в духе доски Excalidraw (черный контур от руки, па... | `sketch-design` | Python / CLI | [SKILL.md](skills/design/sketch-design/SKILL.md) |
 | **diagram-design** | **Diagram-design**.<br>Create branded architecture, architecture delta, IT current-state, flowchart, sequence, state machine, ER/data model,... | `diagram-design` | Python / CLI | [SKILL.md](skills/design/diagram-design/SKILL.md) |
 | **deck-craft** | **Deck-craft**.<br>Система создания автономных интерактивных веб-презентаций и слайд-деков в стиле Varick Agents (Single-File Zero-Depen... | `deck-craft` | Python / Node/CLI | [SKILL.md](skills/design/deck-craft/SKILL.md) |
@@ -167,6 +171,9 @@ last_updated: 2026-10-16
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **clone-website** | **Clone-website**.<br>Реконструкция существующих веб-страниц в рабочий локальный код с реальным контентом, ассетами, адаптивной версткой и ... | `'склонируй сайт', 'повтори сайт', 'clone website', 'website cloning', 'скопируй лендинг', 'воспроизведи страницу', включая Framer-сайты и анимированные страницы` | Prompt | [SKILL.md](skills/marketing/clone-website/SKILL.md) |
+| **claude-seo** | **Claude-seo**.<br>Комплексный инженерный комплекс SEO-навыков, технического аудита и GEO/AEO-оптимизации (Claude SEO Suite by AgriciDan... | `'claude-seo', 'seo audit', 'technical seo', 'core web vitals', 'schema markup', 'eeat', 'geo', 'ai search optimization', 'sitemap audit', 'hreflang', 'keyword cluster', 'backlink analysis'` | Python / CLI | [SKILL.md](skills/marketing/claude-seo/SKILL.md) |
+| **app-store-screenshots** | **App-store-screenshots**.<br>Use when building App Store or Google Play screenshot pages, generating exportable marketing screenshots for iOS, mac... | `app-store-screenshots` | Bash / CLI | [SKILL.md](skills/marketing/app-store-screenshots/SKILL.md) |
 | **video** | **Video**.<br>Пайплайн создания и генерации видеоконтента с помощью AI-моделей (Sora, Kling, Runway, Veo, Hailuo, Pika) и кодовых ф... | `'video', 'видео генерация', 'создай видео', 'AI video', 'Remotion', 'HeyGen', 'демо продукта'` | Prompt | [SKILL.md](skills/marketing/video/SKILL.md) |
 | **ppt-master** | **Ppt-master**.<br>AI-driven presentation workflow for generating editable PPTX decks and slides, | `ppt-master` | Python / CLI | [SKILL.md](skills/marketing/ppt-master/SKILL.md) |
 | **offers** | **Offers**.<br>Проектирование и упаковка высококонверсионных офферов (Grand Slam Offers): Value Equation, стэкинг бонусов, устранени... | `'offers', 'оффер', 'создай оффер', 'упаковка предложения', 'value stack', 'bonus stack', 'гарантия возврата', 'grand slam offer'` | Prompt | [SKILL.md](skills/marketing/offers/SKILL.md) |
@@ -244,3 +251,11 @@ last_updated: 2026-10-16
 
 ---
 
+
+---
+
+## <a id="video"></a>🎥 Видеопроизводство и Лаунч-ролики (Video Production)
+
+| Навык | Назначение | Триггеры вызова | Стек | Документация |
+| :--- | :--- | :--- | :--- | :--- |
+| **brag** | **Brag**.<br>Генерация динамичных промо- и лаунч-видеороликов (Launch Videos) для проектов, продуктов и сайтов | `'/brag', '/brag-slim', 'launch video', 'сделай промо видео', 'сделай лаунч видео', 'создай видео о проекте', 'brag about this'` | Prompt | [SKILL.md](skills/video/brag/SKILL.md) |

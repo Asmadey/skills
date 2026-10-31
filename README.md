@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **118 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **128 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -64,6 +64,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`reverse-engineer-anything`**](skills/dev/reverse-engineer-anything/SKILL.md) | **Reverse-engineer-anything**. Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA. | Prompt |
 | [**`technical-writer`**](skills/dev/technical-writer/SKILL.md) | **Technical-writer**. Комплексный инженерный комплекс технического писательства (Technical Writing Suite by riekelt). | Prompt |
 | [**`tdd`**](skills/dev/tdd/SKILL.md) | **Tdd**. Разработка через тестирование (Test-Driven Development) по циклу Red-Green-Refactor. | Prompt |
 | [**`scroll-craft`**](skills/dev/scroll-craft/SKILL.md) | **Scroll-craft**. Build premium scroll-driven landing pages for service, product, food, and. | Bash / CLI |
@@ -141,6 +142,9 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`ux-designer`**](skills/design/ux-designer/SKILL.md) | **Ux-designer**. UX principles for planning or auditing an interface: accessibility (WCAG, EAA), information architecture, microcopy, i18n/RTL, .... | Prompt |
+| [**`design-to-motion`**](skills/design/design-to-motion/SKILL.md) | **Design-to-motion**. Turns a static design (a Figma frame, dashboard, card set, app screen, or a UI on a photo background) into a pixel exact HTML r.... | Prompt |
+| [**`dembrandt`**](skills/UX/dembrandt/SKILL.md) | **Dembrandt**. Комплексный инженерный комплекс UX-аудита, реверс-инжиниринга дизайн-систем и экстракции токенов (Dembrandt Suite by VictorGjn). | Prompt |
 | [**`sketch-design`**](skills/design/sketch-design/SKILL.md) | **Sketch-design**. Создание рисованных интерактивных презентаций и архитектурных схем в духе доски Excalidraw (черный контур от руки, пастельные з.... | Python / CLI |
 | [**`diagram-design`**](skills/design/diagram-design/SKILL.md) | **Diagram-design**. Create branded architecture, architecture delta, IT current-state, flowchart, sequence, state machine, ER/data model, timeline,.... | Python / CLI |
 | [**`deck-craft`**](skills/design/deck-craft/SKILL.md) | **Deck-craft**. Система создания автономных интерактивных веб-презентаций и слайд-деков в стиле Varick Agents (Single-File Zero-Dependency HTML5). | Python / Node/CLI |
@@ -212,6 +216,10 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`landing-page-design`**](skills/marketing/landing-page-design/SKILL.md) | **Landing-page-design**. Complete system for building high converting landing pages: intake questions, page structure, layout selection, conversion copy.... | Prompt |
+| [**`clone-website`**](skills/marketing/clone-website/SKILL.md) | **Clone-website**. Реконструкция существующих веб-страниц в рабочий локальный код с реальным контентом, ассетами, адаптивной версткой и интеракциями. | Prompt |
+| [**`claude-seo`**](skills/marketing/claude-seo/SKILL.md) | **Claude-seo**. Комплексный инженерный комплекс SEO-навыков, технического аудита и GEO/AEO-оптимизации (Claude SEO Suite by AgriciDaniel). | Python / CLI |
+| [**`app-store-screenshots`**](skills/marketing/app-store-screenshots/SKILL.md) | **App-store-screenshots**. Use when building App Store or Google Play screenshot pages, generating exportable marketing screenshots for iOS, macOS, and/or.... | Bash / CLI |
 | [**`video`**](skills/marketing/video/SKILL.md) | **Video**. Пайплайн создания и генерации видеоконтента с помощью AI-моделей (Sora, Kling, Runway, Veo, Hailuo, Pika) и кодовых фреймворков.... | Prompt |
 | [**`ppt-master`**](skills/marketing/ppt-master/SKILL.md) | **Ppt-master**. AI-driven presentation workflow for generating editable PPTX decks and slides,. | Python / CLI |
 | [**`offers`**](skills/marketing/offers/SKILL.md) | **Offers**. Проектирование и упаковка высококонверсионных офферов (Grand Slam Offers): Value Equation, стэкинг бонусов, устранение риска (г.... | Prompt |
@@ -250,6 +258,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`evals-from-sessions`**](skills/ai/evals-from-sessions/SKILL.md) | **Evals-from-sessions**. Turn your own coding-agent sessions (Claude Code, Codex, Pi, Gemini CLI, or other JSONL session exports) into verified Harbor e.... | Prompt |
 | [**`langfuse`**](skills/ai/Langfuse/SKILL.md) | **Langfuse**. Interact with Langfuse and access its documentation: tracing, monitoring, creating datasets, running experiments, and evaluatin.... | Prompt |
 | [**`low-toten`**](skills/ai/low-toten/SKILL.md) | **Token Efficiency & Context Compression**. Очистка нарративного мусора, сжатие контекста на 35% без потери точности. | Python / Node |
 | [**`watermarks-remover`**](skills/ai/watermarks-remover/SKILL.md) | **AI Watermark Stripper**. Удаление скрытых Unicode-маркеров, метаданных C2PA/EXIF и стилометрических паттернов ИИ. | Python / Node |
