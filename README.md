@@ -289,6 +289,17 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`claude-security`**](skills/security/claude-security/SKILL.md) | **Enterprise Security Audit Standard**. Комплексная оценка безопасности, моделирование угроз и adversarial-тестирование. | Python / Prompt |
+| [**`security-audit`**](skills/security/security-audit/SKILL.md) | **Deterministic Security Audit**. Детерминированный аудит кодовых баз, API, демонов и библиотек с нулевым уровнем false positives. | Prompt / CLI |
+
+---
+
+### 14. 🎥 Видеопроизводство и Лаунч-ролики (Video Production)
+*Директория:* [`skills/video/`](skills/video/)
+
+| Навык | Назначение и возможности | Стек / Формат |
+| :--- | :--- | :--- |
+| [**`brag`**](skills/video/brag/SKILL.md) | **Launch Video Generation Engine (v0.5.0)**. Создание динамичных лаунч-роликов по кодовой базе и сайтам: синхронизация по битам, раскадровка, SFX и промо-тексты. | Python / Node / CLI |
 
 ---
 
