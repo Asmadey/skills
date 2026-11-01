@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **128 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **130 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -98,6 +98,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`b24phpsdk-maintainer`**](skills/automation/b24phpsdk-maintainer/SKILL.md) | **B24phpsdk-maintainer**. Maintainer tools and workflows for bitrix24/b24phpsdk (OpenAPI schema refresh, code generators, issue lifecycle, TDD implementa.... | Prompt |
 | [**`meeting-transcriber`**](skills/automation/meeting-transcriber/SKILL.md) | **Meeting-transcriber**. Transcribe meeting audio recordings using Groq Whisper API (whisper-large-v3 with automatic fallback to whisper-large-v3-turbo .... | Python / CLI |
 | [**`Browser-automation`**](skills/automation/Browser-automation/SKILL.md) | **Headless Browser CDP Engine**. Высокоскоростное управление браузером (скриншоты, клики, навигация, парсинг данных). | Node/CLI |
 | [**`n8n-architect`**](skills/automation/n8n-architect/SKILL.md) | **n8n Workflow Architect**. Проектирование, дебаг, валидация и оптимизация сценариев автоматизации n8n. | Prompt |
@@ -216,6 +217,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`reverse-engineer-marketing`**](skills/marketing/reverse-engineer-marketing/SKILL.md) | **Reverse-engineer-marketing**. When the user wants to reverse engineer how another company grew and copy what worked. | Prompt |
 | [**`landing-page-design`**](skills/marketing/landing-page-design/SKILL.md) | **Landing-page-design**. Complete system for building high converting landing pages: intake questions, page structure, layout selection, conversion copy.... | Prompt |
 | [**`clone-website`**](skills/marketing/clone-website/SKILL.md) | **Clone-website**. Реконструкция существующих веб-страниц в рабочий локальный код с реальным контентом, ассетами, адаптивной версткой и интеракциями. | Prompt |
 | [**`claude-seo`**](skills/marketing/claude-seo/SKILL.md) | **Claude-seo**. Комплексный инженерный комплекс SEO-навыков, технического аудита и GEO/AEO-оптимизации (Claude SEO Suite by AgriciDaniel). | Python / CLI |

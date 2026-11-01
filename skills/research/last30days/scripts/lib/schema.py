@@ -39,7 +39,7 @@ class ProviderRuntime:
     reasoning_provider: Literal["gemini", "openai", "xai", "local"]
     planner_model: str
     rerank_model: str
-    x_search_backend: Literal["xai", "grok", "bird", "xurl", "xquik"] | None = None
+    x_search_backend: Literal["xai", "grok", "bird", "xurl", "xquik", "xapi"] | None = None
 
 
 @dataclass(frozen=True)
@@ -70,6 +70,7 @@ class QueryPlan:
     subqueries: list[SubQuery]
     source_weights: dict[str, float]
     notes: list[str] = field(default_factory=list)
+    person_identity_anchors: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -149,6 +150,7 @@ RunOutcomeState = Literal[
     "partial",
     "rate-limited",
     "auth-failed",
+    "payment-required",
     "unreachable",
     "timeout",
     "schema-drift",
@@ -167,6 +169,7 @@ NO_RESULTS = health.NO_RESULTS
 PARTIAL = health.PARTIAL
 RATE_LIMITED = health.RATE_LIMITED
 AUTH_FAILED = health.AUTH_FAILED
+PAYMENT_REQUIRED = health.PAYMENT_REQUIRED
 UNREACHABLE = health.UNREACHABLE
 SCHEMA_DRIFT = health.SCHEMA_DRIFT
 SKIPPED_UNCONFIGURED = health.SKIPPED_UNCONFIGURED
@@ -207,6 +210,7 @@ class SourceOutcome:
             PARTIAL,
             RATE_LIMITED,
             AUTH_FAILED,
+            PAYMENT_REQUIRED,
             UNREACHABLE,
             SCHEMA_DRIFT,
             SKIPPED_UNCONFIGURED,
@@ -489,6 +493,7 @@ def query_plan_from_dict(payload: dict[str, Any]) -> QueryPlan:
         subqueries=[subquery_from_dict(item) for item in payload.get("subqueries") or []],
         source_weights=dict(payload.get("source_weights") or {}),
         notes=list(payload.get("notes") or []),
+        person_identity_anchors=list(payload.get("person_identity_anchors") or []),
     )
 
 
@@ -689,7 +694,7 @@ def candidate_primary_item(candidate: Candidate) -> SourceItem | None:
     return candidate.source_items[0]
 
 
-AGENT_EXPORT_SCHEMA_VERSION = "1.2"
+AGENT_EXPORT_SCHEMA_VERSION = "1.4"
 
 
 def without_sources(report: Report, excluded_sources: set[str]) -> Report:
@@ -939,6 +944,7 @@ def to_agent_export(
         ],
         "clusters": exported_clusters,
         "results": results,
+        "usage": report.artifacts.get("usage"),
     }
 
 

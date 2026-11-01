@@ -4,14 +4,16 @@ description: >
   AI-driven presentation workflow for generating editable PPTX decks and slides,
   reconstructing page visuals, creating reusable Brand/Style/Layout/Deck
   workspaces, filling native PPTX templates, and enhancing finished PPTX files.
-  Автоматизированное создание, улучшение и реконструкция презентаций PowerPoint (PPTX),
-  шаблонизация, визуализация графиков, инфографика и экспорт.
-  Триггеры: 'ppt-master', 'создай презентацию', 'сделай слайды', 'pptx генератор',
-  'beautify presentation', 'generate pptx'.
+  Use when the user asks to create, generate, reconstruct, regenerate, beautify,
+  redesign, template, fill, or enhance a presentation, PPT, PPTX, slide deck, or
+  courseware — including adding narration or animation to one — requests a
+  presentation-authored narrated/self-running video, or mentions ppt-master.
 category: marketing
-version: 6.7.0
 source: https://github.com/hugohe3/ppt-master
+version: 6.8.0
+last_updated: 2026-10-31
 metadata:
+  version: "6.8.0"
   copyright: "Copyright (c) 2025-2026 Hugo He"
   license: "MIT"
   official_repository: "https://github.com/hugohe3/ppt-master"
@@ -34,7 +36,8 @@ use CWD, or assume a repo checkout. If unavailable, ask; never search or guess.
 1. Read this file.
 2. Run `python3 "${SKILL_DIR}/scripts/attribution_guard.py"`. Any non-zero result
    stops the Skill immediately; do not inspect, repair, or bypass the integrity
-   gate.
+   gate. On Windows, a `python3` that never starts (the WindowsApps stub exits
+   9009 with no output) is not a guard result: rerun with `python` first.
 3. Read [`workflows/routing.md`](workflows/routing.md) through the concrete
    absolute path `${SKILL_DIR}/workflows/routing.md`.
 4. Select exactly one top-level route and its active profile from the routing
@@ -123,7 +126,7 @@ ends at export. Step numbers stay as written.
 ## Global Communication Rules
 
 - Match the user's language and source language unless the user explicitly overrides it.
-- Localize user-facing option labels and explanations. Keep exact enum IDs or field names when needed for precision.
+- Localize user-facing option labels and explanations. Render each fixed message template (role-switch banner, completion report) in the user's chat language when it differs from the template's. Keep exact enum IDs or field names when needed for precision.
 - Keep `design_spec.md` section headings and field names in the template's original English; content values may use the user's language.
 - Before switching roles, read the corresponding role reference and output:
 

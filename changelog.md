@@ -1,10 +1,35 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-10-31
+last_updated: 2026-11-01
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-11-01] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`automation/b24phpsdk-maintainer`** ([`skills/automation/b24phpsdk-maintainer/SKILL.md`](skills/automation/b24phpsdk-maintainer/SKILL.md)):
+  - Maintainer tools and workflows for bitrix24/b24phpsdk (OpenAPI schema refresh, code generators, issue lifecycle, TDD implementation, quality gates, and release PRs).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+- **`marketing/reverse-engineer-marketing`** ([`skills/marketing/reverse-engineer-marketing/SKILL.md`](skills/marketing/reverse-engineer-marketing/SKILL.md)):
+  - When the user wants to reverse engineer how another company grew and copy what worked.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+### 🔄 Обновленные навыки
+- **`UX/ui-ux-pro-max`** ([`skills/UX/ui-ux-pro-max/SKILL.md`](skills/UX/ui-ux-pro-max/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`dev/improve-codebase-architecture`** ([`skills/dev/improve-codebase-architecture/SKILL.md`](skills/dev/improve-codebase-architecture/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`dev/no-mistakes`** ([`skills/dev/no-mistakes/SKILL.md`](skills/dev/no-mistakes/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`dev/reverse-engineer-anything`** ([`skills/dev/reverse-engineer-anything/SKILL.md`](skills/dev/reverse-engineer-anything/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`marketing/ad-creative`** ([`skills/marketing/ad-creative/SKILL.md`](skills/marketing/ad-creative/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`marketing/ai-seo`** ([`skills/marketing/ai-seo/SKILL.md`](skills/marketing/ai-seo/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`marketing/offers`** ([`skills/marketing/offers/SKILL.md`](skills/marketing/offers/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`marketing/ppt-master`** ([`skills/marketing/ppt-master/SKILL.md`](skills/marketing/ppt-master/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`research/last30days`** ([`skills/research/last30days/SKILL.md`](skills/research/last30days/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`video/brag`** ([`skills/video/brag/SKILL.md`](skills/video/brag/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`writing/humanizer`** ([`skills/writing/humanizer-en/SKILL.md`](skills/writing/humanizer-en/SKILL.md)): синхронизированы обновления и ресурсы.
+- **`writing/humanizer-ru`** ([`skills/writing/humanizer-ru/SKILL.md`](skills/writing/humanizer-ru/SKILL.md)): синхронизированы обновления и ресурсы.
+
+---
 
 ## [2026-10-31] — Синхронизация навыков из PersonalOS (public)
 

@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-10-31
+last_updated: 2026-11-01
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (128 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (130 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -66,6 +66,7 @@ last_updated: 2026-10-31
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **b24phpsdk-maintainer** | **B24phpsdk-maintainer**.<br>Maintainer tools and workflows for bitrix24/b24phpsdk (OpenAPI schema refresh, code generators, issue lifecycle, TDD ... | `b24phpsdk-maintainer` | Prompt | [SKILL.md](skills/automation/b24phpsdk-maintainer/SKILL.md) |
 | **meeting-transcriber** | **Meeting-transcriber**.<br>Transcribe meeting audio recordings using Groq Whisper API (whisper-large-v3 with automatic fallback to whisper-large... | `meeting-transcriber` | Python / CLI | [SKILL.md](skills/automation/meeting-transcriber/SKILL.md) |
 | **Browser-automation** | **Headless Browser CLI & Proxy**.<br>Высокоскоростное управление браузером по CDP (скриншоты, клики, доступность, парсинг) | `автоматизация браузера, тестирование, скрейпинг страниц` | Node/CLI | [SKILL.md](skills/automation/Browser-automation/SKILL.md) |
 | **googlesheets-automation** | **Google Sheets Manager**.<br>Чтение, запись, форматирование и фильтрация таблиц Google Sheets через API | `автоматизация Google Таблиц, выгрузка отчетов, синхронизация данных` | Prompt | [SKILL.md](skills/automation/googlesheets-automation/SKILL.md) |
@@ -171,6 +172,7 @@ last_updated: 2026-10-31
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **reverse-engineer-marketing** | **Reverse-engineer-marketing**.<br>When the user wants to reverse engineer how another company grew and copy what worked | `reverse-engineer-marketing` | Prompt | [SKILL.md](skills/marketing/reverse-engineer-marketing/SKILL.md) |
 | **clone-website** | **Clone-website**.<br>Реконструкция существующих веб-страниц в рабочий локальный код с реальным контентом, ассетами, адаптивной версткой и ... | `'склонируй сайт', 'повтори сайт', 'clone website', 'website cloning', 'скопируй лендинг', 'воспроизведи страницу', включая Framer-сайты и анимированные страницы` | Prompt | [SKILL.md](skills/marketing/clone-website/SKILL.md) |
 | **claude-seo** | **Claude-seo**.<br>Комплексный инженерный комплекс SEO-навыков, технического аудита и GEO/AEO-оптимизации (Claude SEO Suite by AgriciDan... | `'claude-seo', 'seo audit', 'technical seo', 'core web vitals', 'schema markup', 'eeat', 'geo', 'ai search optimization', 'sitemap audit', 'hreflang', 'keyword cluster', 'backlink analysis'` | Python / CLI | [SKILL.md](skills/marketing/claude-seo/SKILL.md) |
 | **app-store-screenshots** | **App-store-screenshots**.<br>Use when building App Store or Google Play screenshot pages, generating exportable marketing screenshots for iOS, mac... | `app-store-screenshots` | Bash / CLI | [SKILL.md](skills/marketing/app-store-screenshots/SKILL.md) |

@@ -2,8 +2,9 @@
 name: brag
 description: "Генерация динамичных промо- и лаунч-видеороликов (Launch Videos) для проектов, продуктов и сайтов. Автоматически изучает кодовую базу или URL сайта, формирует концепт, раскадровку, сценарий, подбирает музыку и звуковые эффекты (SFX), генерирует анимации и готовый MP4-видеоролик вместе с продающим промо-текстом для соцсетей (X/Twitter, LinkedIn, Telegram). Поддерживает два режима: полный /brag (на базе Hyperframes и аудио-пресетов) и автономный /brag-slim (сборка видео нативным браузером и локальными инструментами). Триггеры: '/brag', '/brag-slim', 'launch video', 'сделай промо видео', 'сделай лаунч видео', 'создай видео о проекте', 'brag about this'."
 category: video
-version: 0.4.0
+version: 0.5.0
 source: https://github.com/latent-spaces/brag
+last_updated: 2026-10-31
 license: MIT
 metadata:
   author: latent-spaces

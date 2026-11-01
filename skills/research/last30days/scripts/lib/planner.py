@@ -7,7 +7,7 @@ import re
 import unicodedata
 from collections import Counter
 
-from . import categories, competitors, entity_extract, http, providers, query, relevance, schema
+from . import categories, competitors, entity_extract, http, log, providers, query, relevance, schema
 
 # Hebrew Unicode block: U+0590–U+05FF
 _HEBREW_RE = re.compile(r'[\u0590-\u05FF]')
@@ -141,6 +141,7 @@ SOURCE_CAPABILITIES = {
     "tiktok": {"video", "video_shortform", "social"},
     "instagram": {"video", "video_shortform", "social"},
     "hackernews": {"discussion", "link"},
+    "devto": {"discussion", "link", "reference"},
     "bluesky": {"discussion", "social"},
     "truthsocial": {"discussion", "social"},
     "polymarket": {"market"},
@@ -151,6 +152,7 @@ SOURCE_CAPABILITIES = {
     "techmeme": {"discussion", "link", "reference"},
     "trustpilot": {"reference", "company_signal", "social"},
     "amazon": {"reference", "company_signal", "product_signal"},
+    "meta_ads": {"reference", "company_signal", "product_signal"},
     "xiaohongshu": {"video", "video_shortform", "social"},
     "telegram": {"discussion", "social"},
     "github": {"discussion", "link"},
@@ -159,6 +161,10 @@ SOURCE_CAPABILITIES = {
     "jobs": {"jobs", "company_signal", "link"},
     "corpus": {"reference", "analysis"},
 }
+
+
+def _is_identity_anchor(anchor: object) -> bool:
+    return isinstance(anchor, str) and re.search(r"\w", anchor) is not None
 
 
 def validate_external_plan(raw: dict) -> None:
@@ -175,6 +181,10 @@ def validate_external_plan(raw: dict) -> None:
     for field in ("intent", "freshness_mode", "cluster_mode"):
         if not isinstance(raw[field], str) or not raw[field].strip():
             raise ValueError(f"field '{field}' must be a non-empty string")
+
+    anchors = raw.get("person_identity_anchors", [])
+    if not isinstance(anchors, list) or not all(_is_identity_anchor(a) for a in anchors):
+        raise ValueError("person_identity_anchors must be an array of non-empty strings")
 
     source_weights = raw.get("source_weights")
     if source_weights is not None and not isinstance(source_weights, dict):
@@ -330,6 +340,7 @@ def build_drill_plan(
         freshness_mode=report.query_plan.freshness_mode,
         cluster_mode=report.query_plan.cluster_mode,
         raw_topic=report.topic,
+        person_identity_anchors=list(report.query_plan.person_identity_anchors),
         subqueries=subqueries,
         source_weights={
             source: report.query_plan.source_weights.get(source, 1.0)
@@ -358,7 +369,11 @@ def plan_query(
     internal_subrun: when True, suppress the LAW 7 "No --plan passed" stderr
     warning. LAW 7 targets the hosting-reasoning-model path; competitor
     fan-out sub-runs are engine-internal and the warning is a false positive
-    there. Default False preserves the warning on every user-facing invocation.
+    there. Default False preserves the warning on every user-facing invocation
+    that ends on the deterministic fallback, including a failed internal
+    planner. On a detected agent host the CLI stops a plan-less research run
+    before this is reached, apart from its documented exemptions and the
+    ``LAST30DAYS_ALLOW_ENGINE_PLAN`` override (``last30days._law7_host_plan_gate``).
     """
     if _should_force_deterministic_plan(topic):
         return _fallback_plan(
@@ -374,12 +389,19 @@ def plan_query(
     if provider and model:
         try:
             raw = provider.generate_json(model, prompt)
-            plan = _sanitize_plan(raw, topic, available_sources, requested_sources, depth)
+            plan = _sanitize_plan(
+                raw, topic, available_sources, requested_sources, depth,
+            )
             if plan.subqueries:
                 return plan
         except (ValueError, KeyError, json.JSONDecodeError, OSError, http.HTTPError) as exc:
             import sys
             print(f"[Planner] LLM planning failed, using deterministic fallback: {type(exc).__name__}: {exc}", file=sys.stderr)
+            # A failed internal planner (e.g. HTTP 402, no credits) degrades
+            # the run exactly like having none, and the host may not be
+            # detectable, so the LAW 7 reminder applies here too.
+            if not internal_subrun:
+                _print_law7_reminder()
             return _fallback_plan(
                 topic, available_sources, requested_sources, depth,
                 note=f"fallback-plan (LLM error: {type(exc).__name__})",
@@ -394,17 +416,22 @@ def plan_query(
     # the hosting reasoning model, YOU are the provider. LAW 7 / 2026-04-19
     # Hermes Agent Use Cases failure mode.
     if not internal_subrun:
-        import sys
-        print(
-            "[Planner] No --plan passed. If you are the reasoning model hosting "
-            "this skill (Claude Code, Codex, Hermes, Gemini, or any agent runtime), "
-            "YOU ARE the planner: generate a JSON query plan yourself and pass it "
-            "via --plan. You do not need an API key or credentials; you ARE the "
-            "LLM. The deterministic fallback below is the headless/cron path only. "
-            "See LAW 7 in SKILL.md and Step 0.75 for the plan schema.",
-            file=sys.stderr,
-        )
+        _print_law7_reminder()
     return _fallback_plan(topic, available_sources, requested_sources, depth)
+
+
+def _print_law7_reminder() -> None:
+    import sys
+    print(
+        "[Planner] No --plan passed. If you are the reasoning model hosting "
+        "this skill (Claude Code, Codex, Hermes, Gemini, or any agent runtime), "
+        "YOU ARE the planner: generate a JSON query plan yourself and pass it "
+        "via --plan. You do not need an API key or credentials; you ARE the "
+        "LLM. The deterministic fallback below is the headless/cron path only. "
+        "See LAW 7 in SKILL.md and Step 0.75 in references/research-runbook.md "
+        "for the plan schema.",
+        file=sys.stderr,
+    )
 
 
 def _build_prompt(
@@ -438,10 +465,12 @@ Return JSON only with this shape:
       "weight": 1.0
     }}
   ],
+  "person_identity_anchors": [],
   "notes": ["optional short notes"]
 }}
 
 Rules:
+- for a collision-prone person, preserve specific company/organization identity anchors explicitly supplied in the topic in person_identity_anchors; for an organization whose first word also names other people or things, use its full name (["Pace Capital"]), never a topic plus a search descriptor ("Stripe payments"); otherwise use []; never invent affiliations or use the shared name/generic role as an anchor
 - emit 1 to 5 subqueries (how_to/opinion/product/breaking_news intents benefit from 4-5; factual/concept from 2)
 - every subquery must include both search_query and ranking_query
 - sources must be drawn from Available sources only
@@ -466,6 +495,8 @@ def _sanitize_plan(
     available_sources: list[str],
     requested_sources: list[str] | None,
     depth: str,
+    *,
+    honor_plan_sources: bool = False,
 ) -> schema.QueryPlan:
     intent_hint = str(raw.get("intent") or _infer_intent(topic)).strip()
     if intent_hint not in ALLOWED_INTENTS:
@@ -504,6 +535,15 @@ def _sanitize_plan(
         if requested:
             sources = [source for source in sources if source in requested]
         if not sources:
+            if honor_plan_sources:
+                label = str(subquery.get("label") or f"q{index}")
+                log.source_log(
+                    "Planner",
+                    f"Skipping external-plan subquery {label}: none of its planned "
+                    "sources are available under the current source configuration.",
+                    tty_only=False,
+                )
+                continue
             sources = list(source_weights)
         search_query = str(subquery.get("search_query") or "").strip()
         ranking_query = str(subquery.get("ranking_query") or "").strip()
@@ -521,6 +561,11 @@ def _sanitize_plan(
     if depth == "quick" and subqueries:
         subqueries = subqueries[:1]
     if not subqueries:
+        if honor_plan_sources:
+            raise ValueError(
+                "No available planned sources remain. Enable a source named in "
+                "--plan or revise the plan/source configuration; no retrieval was started."
+            )
         return _fallback_plan(topic, available_sources, requested_sources, depth)
 
     intent = intent_hint
@@ -531,6 +576,11 @@ def _sanitize_plan(
     if cluster_mode not in ALLOWED_CLUSTER_MODES:
         cluster_mode = _default_cluster_mode(intent)
 
+    # --plan input was already validated strictly; a malformed field from the
+    # internal LLM planner degrades to unscoped instead of discarding its plan.
+    anchors = raw.get("person_identity_anchors")
+    if not isinstance(anchors, list):
+        anchors = []
     return schema.QueryPlan(
         intent=intent,
         freshness_mode=freshness_mode,
@@ -543,10 +593,12 @@ def _sanitize_plan(
                 depth,
                 eligible_sources,
                 requested_sources=requested_sources,
+                honor_plan_sources=honor_plan_sources,
             )
         ),
         source_weights=source_weights,
         notes=[str(note).strip() for note in raw.get("notes") or [] if str(note).strip()],
+        person_identity_anchors=[a.strip() for a in anchors if _is_identity_anchor(a)],
     )
 
 
@@ -578,12 +630,19 @@ def _trim_subqueries_for_depth(
     depth: str,
     available_sources: list[str],
     requested_sources: list[str] | None = None,
+    honor_plan_sources: bool = False,
 ) -> list[schema.SubQuery]:
     # At non-quick depth, expand sources: use capability routing for intents
     # that define it, or all available sources otherwise. The LLM planner may
     # assign narrow source lists; we override to let fusion decide quality.
-    if depth != "quick":
+    # Operator-supplied --plan is a contract: keep per-subquery sources.
+    if depth != "quick" and not honor_plan_sources:
         expanded_sources = _default_sources_for_intent(intent, available_sources)
+        # Explicit --search sources are a user override: intent routing must not drop them.
+        expanded_sources += [
+            source for source in available_sources
+            if source in (requested_sources or []) and source not in expanded_sources
+        ]
         return [
             schema.SubQuery(
                 label=subquery.label,
@@ -737,12 +796,15 @@ def _fallback_plan(
     )
 
 
+_SLASH_COMPARISON = re.compile(r"\b[A-Z][a-z]{2,}(?:/[A-Z][a-z]{2,})+\b")
+
+
 def _infer_intent(topic: str) -> str:
     text = topic.lower().strip()
     if re.search(r"\b(vs|versus|compare|compared to|difference between)\b", text):
         return "comparison"
     # Slash-separated proper nouns: "React/Vue/Svelte" (not URLs, not acronyms like CI/CD or I/O)
-    if not re.search(r"https?://", topic) and re.search(r"\b[A-Z][a-z]{2,}(?:/[A-Z][a-z]{2,})+\b", topic):
+    if not re.search(r"https?://", topic) and _SLASH_COMPARISON.search(topic):
         return "comparison"
     if re.search(r"\b(odds|predict|prediction|forecast|chance|probability|will .* win)\b", text):
         return "prediction"
@@ -879,7 +941,13 @@ def _comparison_entities(topic: str, *, uncapped: bool = False) -> list[str]:
 
     Caps at ``competitors.COMPARISON_ENTITY_MAX`` unless ``uncapped`` (caller
     truncates and may warn about dropped entities).
+
+    Standalone comparator tokens are syntax, including repeated tokens.
+    Compact ``vs.`` separates entities only after a nonempty left entity.
     """
+    if _infer_intent(topic) != "comparison":
+        return []
+
     # "difference between X and Y" -> "X vs Y" (replace "and" only in this context)
     normalized = re.sub(
         r"\bdifference between\s+(.+?)\s+and\s+",
@@ -888,11 +956,25 @@ def _comparison_entities(topic: str, *, uncapped: bool = False) -> list[str]:
         flags=re.I,
     )
     normalized = re.sub(r"\b(compared to)\b", " vs ", normalized, flags=re.I)
-    parts = [
-        part.strip(" \t\r\n?.,:;!()[]{}\"'")
-        for part in re.split(r"\bvs\.?\b|\bversus\b|/", normalized, flags=re.I)
-        if part.strip(" \t\r\n?.,:;!()[]{}\"'")
-    ]
+    separator = r"(?<!\S)(?:(?P<standalone>vs\.?|versus)(?!\S)|vs\.(?=\S))"
+    if not re.search(separator, normalized, flags=re.I):
+        if re.search(r"https?://", normalized):
+            return []
+        normalized = _SLASH_COMPARISON.sub(
+            lambda match: match.group(0).replace("/", " vs "), normalized,
+        )
+    trim = " \t\r\n?.,:;!()[]{}\"'"
+    parts = []
+    part_start = 0
+    for match in re.finditer(separator, normalized, flags=re.I):
+        part = normalized[part_start:match.start()].strip(trim)
+        if part:
+            parts.append(part)
+        if part or match.group("standalone") is not None:
+            part_start = match.end()
+    last_part = normalized[part_start:].strip(trim)
+    if last_part:
+        parts.append(last_part)
     # Strip trailing context from parts ("Svelte for frontend in 2026" -> "Svelte")
     if len(parts) < 2:
         return []

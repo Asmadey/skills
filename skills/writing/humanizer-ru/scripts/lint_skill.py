@@ -2,14 +2,15 @@
 """Self-test скилла: тестирует SKILL.md против собственных правил.
 
 Ловит ровно те классы регрессий, которые иначе ловятся только глазами:
-  1. Пропавший/задвоенный паттерн (нумерация 1..52 без дыр).
+  1. Пропавший/задвоенный паттерн (нумерация 1..54 без дыр).
   2. Число HARD BANS и категорий сканера разошлось с markers.py.
   3. Длинное тире «—» в СОБСТВЕННЫХ одобренных примерах скилла (После:/Стало:/
      блок «## Примеры»). Скилл велит ноль тире — он не имеет права показывать
      тире в «хорошем» выводе.
   4. Каждый одобренный пример скилла («Стало:»/«После:») сам проходит сканер:
      ноль HARD BANS. Скилл, нарушающий свои баны в примерах, не пройдёт CI.
-  5. Корневой SKILL.md идентичен skills/humanizer-ru/SKILL.md.
+  5. Скилл проходит статические сканеры установки (Hermes skills-guard):
+     ни echo | python, ни невидимых символов литералом, ни голого pip install.
 
 Запуск:  python scripts/lint_skill.py
 Exit code 1 при любой ошибке — гейт для CI/pre-commit.
@@ -28,11 +29,15 @@ sys.path.insert(0, str(ROOT / "skills" / "humanizer-ru" / "scripts"))
 from humanizer_metrics.markers import HARD_BANS, SCANNER, scan_hard_bans
 
 CANON = ROOT / "skills" / "humanizer-ru" / "SKILL.md"
-MIRROR = ROOT / "SKILL.md"
+# Каталог 54 паттернов и списки маркеров вынесены из SKILL.md в отдельный
+# reference-файл (тонкий промпт не тащит весь каталог в контекст). Паттерны,
+# категории сканера и одобренные примеры «до/после» живут теперь здесь.
+CATALOG = ROOT / "skills" / "humanizer-ru" / "references" / "catalog.md"
+SKILL_DIR = ROOT / "skills" / "humanizer-ru"
 
-EXPECTED_PATTERNS = 52
-EXPECTED_HARD_BANS = 20
-EXPECTED_SCANNER_CATS = 20
+EXPECTED_PATTERNS = 67
+EXPECTED_HARD_BANS = 21
+EXPECTED_SCANNER_CATS = 29
 
 errors: list[str] = []
 notes: list[str] = []
@@ -84,7 +89,10 @@ def _approved_examples(text: str) -> list[tuple[int, str]]:
     label: str | None = None
     for i, line in enumerate(text.splitlines(), 1):
         s = line.strip()
-        m = re.match(r"^(Было|Стало|До|После):\s*(.*)$", s)
+        # «Стало (факты автора):» — метка гейта check_examples.py: пример
+        # намеренно показывает правку с конкретикой от автора. Для проверок
+        # тире и HARD BANS такой пример остаётся обычным одобренным примером.
+        m = re.match(r"^(Было|Стало|До|После)(?:\s*\([^)]*\))?:\s*(.*)$", s)
         if m:
             label = m.group(1)
             if m.group(2) and label in ("Стало", "После"):
@@ -97,6 +105,52 @@ def _approved_examples(text: str) -> list[tuple[int, str]]:
         if s:  # любая прозовая строка сбрасывает метку
             label = None
     return out
+
+
+# Файлы, где «—» запрещено и в собственной прозе: скилл сам себе пример.
+EM_DASH_PROSE_FILES = (
+    CANON,
+    CATALOG,
+    ROOT / "commands" / "humanize.md",
+    ROOT / "commands" / "audit.md",
+    ROOT / "README.md",
+    ROOT / "README.en.md",
+)
+
+
+def _strip_quoted(line: str) -> str:
+    """Убирает `код` и «цитаты»: там тире легально (цитируем плохие примеры
+    и сам символ)."""
+    line = re.sub(r"`[^`]*`", "", line)
+    return re.sub(r"«[^«»]*»", "", line)
+
+
+def check_em_dash_in_prose() -> None:
+    """«—» запрещено в собственной прозе скилла, команд и README, не только в
+    одобренных примерах. Пропускаем blockquote-содержимое примеров (Было:/До:
+    намеренно плохие; Стало:/После: проверяет check_em_dash_in_examples)."""
+    bad: list[str] = []
+    for path in EM_DASH_PROSE_FILES:
+        if not path.exists():
+            errors.append(f"нет файла для проверки тире: {path}")
+            continue
+        label: str | None = None
+        for i, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            s = raw.strip()
+            if re.match(r"^(Было|Стало|До|После)(?:\s*\([^)]*\))?:", s):
+                label = s.split(":", 1)[0]
+            elif s.startswith(">"):
+                if label:
+                    continue
+            elif s:
+                label = None
+            if "—" in _strip_quoted(raw):
+                bad.append(f"{path.relative_to(ROOT)}:{i}")
+    if bad:
+        for loc in bad:
+            errors.append(f"Длинное тире в собственной прозе: {loc}")
+    else:
+        notes.append("✓ ноль длинных тире в прозе SKILL.md, команд и README")
 
 
 def check_em_dash_in_examples(text: str) -> None:
@@ -151,28 +205,81 @@ def check_scanner_ships_with_skill() -> None:
     notes.append("✓ сканер внутри скилла и подключён в режим «Аудит»")
 
 
-def check_sync() -> None:
-    if not CANON.exists():
-        errors.append(f"нет канонического файла {CANON}")
-        return
-    if not MIRROR.exists():
-        errors.append(f"нет зеркала {MIRROR}")
-        return
-    if CANON.read_text(encoding="utf-8") != MIRROR.read_text(encoding="utf-8"):
-        errors.append("SKILL.md в корне и в skills/humanizer-ru/ разошлись (нужен sync)")
+def check_ascii_filenames() -> None:
+    """Имена файлов внутри скилла — только ASCII.
+
+    Загрузчик скиллов в Claude.ai отклоняет ZIP с не-ASCII путями внутри
+    («Zip file contains path with invalid characters»), поэтому кириллица в
+    ИМЕНИ файла делает скилл неустанавливаемым через веб. Issue #45.
+    """
+    bad = [
+        str(p.relative_to(ROOT))
+        for p in sorted(SKILL_DIR.rglob("*"))
+        if not p.name.isascii()
+    ]
+    if bad:
+        for loc in bad:
+            errors.append(f"не-ASCII в имени файла (ZIP не установится в Claude.ai): {loc}")
     else:
-        notes.append("✓ корневой SKILL.md синхронизирован со skills/")
+        notes.append("✓ все имена файлов внутри скилла ASCII")
+
+
+# Правила статических сканеров скиллов, на которых установка блокируется.
+# Взяты из Hermes Agent skills-guard (tools/skills_guard.py, v10): у community-
+# скилла DANGEROUS не снимается даже --force, а любое срабатывание требует --force.
+# Issue #160. Паттерны поведенческие: скилл безопасен, но текст выглядит как атака.
+_GUARD_PATTERNS = [
+    (re.compile(r"echo\s+[^\n]*\|\s*(?:ba|z|da|k)?sh\b|echo\s+[^\n]*\|\s*(?:python|perl|ruby|node)"),
+     "echo | интерпретатор (echo_pipe_exec, CRITICAL)"),
+    (re.compile(r"!`[^`\s][^`\n]*`"), "«!`…`» (inline_shell_exec, HIGH)"),
+    (re.compile(r"pip\s+install\s+(?!-r\s)(?!.*==)"), "pip install без версии (unpinned_pip_install)"),
+    (re.compile(r"\\u[0-9a-fA-F]{4}.*\\u[0-9a-fA-F]{4}.*\\u[0-9a-fA-F]{4}"),
+     "три \\uXXXX в строке (unicode_escape_chain), пишите \\N{NAME}"),
+]
+_GUARD_INVISIBLE = re.compile("[\u200b-\u200d\u2060\u2062-\u2064\ufeff\u202a-\u202e\u2066-\u2069]")
+_GUARD_MAX_FILES = 50
+
+
+def check_install_scanners() -> None:
+    """Скилл проходит сканеры установки без единого срабатывания (issue #160)."""
+    files = [p for p in sorted(SKILL_DIR.rglob("*"))
+             if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"]
+    if len(files) > _GUARD_MAX_FILES:
+        errors.append(f"в скилле {len(files)} файлов > {_GUARD_MAX_FILES}: сканер установки ругается")
+    hits = 0
+    for p in files:
+        loc = p.relative_to(SKILL_DIR)
+        for i, line in enumerate(p.read_text(encoding="utf-8").split("\n"), start=1):
+            if _GUARD_INVISIBLE.search(line):
+                errors.append(f"невидимый символ литералом, пишите \\N{{NAME}}: {loc}:{i}")
+                hits += 1
+            for rx, why in _GUARD_PATTERNS:
+                if rx.search(line):
+                    errors.append(f"сканер установки заблокирует: {why}: {loc}:{i}")
+                    hits += 1
+    if not hits:
+        notes.append(f"✓ сканеры установки: 0 срабатываний в {len(files)} файлах")
 
 
 def main() -> int:
-    text = CANON.read_text(encoding="utf-8") if CANON.exists() else MIRROR.read_text(encoding="utf-8")
-    check_patterns(text)
-    check_counts(text)
-    check_frontmatter(text)
+    for f in (CANON, CATALOG):
+        if not f.exists():
+            print(f"нет файла {f}", file=sys.stderr)
+            return 1
+    skill_text = CANON.read_text(encoding="utf-8")
+    catalog_text = CATALOG.read_text(encoding="utf-8")
+    # Паттерны и категории сканера живут в каталоге; frontmatter и провод
+    # сканера — в SKILL.md; одобренные примеры «до/после» есть в обоих файлах.
+    both = skill_text + "\n" + catalog_text
+    check_patterns(catalog_text)
+    check_counts(catalog_text)
+    check_frontmatter(skill_text)
     check_scanner_ships_with_skill()
-    check_em_dash_in_examples(text)
-    check_examples_pass_scanner(text)
-    check_sync()
+    check_ascii_filenames()
+    check_install_scanners()
+    check_em_dash_in_examples(both)
+    check_em_dash_in_prose()
+    check_examples_pass_scanner(both)
 
     print("=== lint_skill ===")
     for n in notes:

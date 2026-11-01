@@ -2,8 +2,9 @@
 name: improve-codebase-architecture
 description: "Аудит архитектуры кодовой базы и поиск возможностей углубления модулей (Deep Modules по Джону Оустерхауту). Находит 'мелкие модули' и архитектурное трение, генерирует интерактивный визуальный HTML-отчет с диаграммами 'До/После' и проводит интервью по рефакторингу. Триггеры: 'improve-codebase-architecture', 'архитектурный аудит', 'улучшить архитектуру', 'deep modules', 'глубокие модули', 'рефакторинг архитектуры'."
 category: dev
-version: 1.0.0
+version: 1.3.2
 source: https://github.com/mattpocock/skills
+last_updated: 2026-10-31
 metadata:
   author: Matt Pocock
   framework: John Ousterhout Deep Modules Architecture

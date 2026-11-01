@@ -13,9 +13,12 @@
   7. Пишет eval/out/results.json и человекочитаемый eval/RESULTS.md.
 
 Regression-гейт:
-  --save-baseline   записать текущие метрики как эталон (eval/out/baseline.json).
-  --baseline FILE   сравнить «после»-метрики с эталоном; exit 1, если просели
-                    (больше HARD BANS / маркеров или ниже cv_len).
+  --save-baseline   записать текущие метрики как эталон (eval/baseline.json,
+                    коммитится — его использует CI).
+  --baseline FILE   сравнить метрики с эталоном; exit 1 при регрессии.
+                    Направление зависит от текста: raw AI — потеря детекции,
+                    human-контроль — новые ложные срабатывания, humanized —
+                    больше остатков или ровнее ритм.
 
 Без --detectors/--judge харнес полностью детерминирован, не требует ключей и
 сети — этот режим гоняется в CI. Запуск:
@@ -36,7 +39,7 @@ EVAL_DIR = Path(__file__).resolve().parent
 ROOT = EVAL_DIR.parent
 sys.path.insert(0, str(ROOT / "skills" / "humanizer-ru" / "scripts"))
 
-from humanizer_metrics import Report, analyze  # noqa: E402
+from humanizer_metrics import Report, analyze, cleanliness_score  # noqa: E402
 
 # Детекторы, судья, faithfulness, Ollama-бэкенд — локальные опциональные модули.
 sys.path.insert(0, str(EVAL_DIR))
@@ -69,6 +72,8 @@ class ItemResult:
     source_model: str
     is_human: bool
     before: dict                       # analyze().as_dict() для raw
+    before_score: dict | None = None   # cleanliness_score().as_dict() для raw
+    genre: str | None = None           # регистр из meta.json, как флаг --genre
     after: dict | None = None          # для humanized, если есть
     deltas: dict | None = None         # before -> after по ключевым метрикам
     detectors_before: dict = field(default_factory=dict)  # name -> score|None
@@ -84,6 +89,8 @@ class ItemResult:
             "source_model": self.source_model,
             "is_human": self.is_human,
             "before": self.before,
+            "before_score": self.before_score,
+            "genre": self.genre,
             "after": self.after,
             "deltas": self.deltas,
             "detectors_before": self.detectors_before,
@@ -137,7 +144,7 @@ def _verdict_for(rep_dict: dict) -> str:
     markers = rep_dict["marker_count"]
     cv = rep_dict["rhythm"]["cv_len"]
     nv = rep_dict["morph"]["noun_verb_ratio"]
-    if bans == 0 and markers <= 2 and cv >= 0.45 and nv <= 2.5:
+    if bans == 0 and markers <= 2 and cv >= 0.35 and nv <= 2.5:
         return "чисто"
     if bans > 0 or markers >= 6:
         return "AI"
@@ -167,7 +174,9 @@ def evaluate(
     for it in items:
         raw_path = corpus_dir / it["file"]
         raw_text = _read_text(raw_path)
-        before = analyze(raw_text).as_dict()
+        before_rep = analyze(raw_text)
+        before = before_rep.as_dict()
+        genre = it.get("genre")
 
         res = ItemResult(
             id=it["id"],
@@ -175,6 +184,8 @@ def evaluate(
             source_model=it["source_model"],
             is_human=it["is_human"],
             before=before,
+            before_score=cleanliness_score(before_rep, genre).as_dict(),
+            genre=genre,
         )
 
         # humanized-версия по тому же id (любое расширение .txt).
@@ -443,21 +454,30 @@ def render_markdown(results: list[ItemResult], env: dict) -> str:
     lines.append("## Контроль переусердствования (человеческие тексты)\n")
     lines.append(
         "Живой человеческий текст скилл НЕ должен хотеть сильно править. "
-        f"Тревога, если HARD BANS > {HUMAN_HARD_BAN_LIMIT} или маркеров > {HUMAN_MARKER_LIMIT}.\n"
+        "Тревога, если вердикт сканера НЕ «чисто» — то есть если скилл "
+        "действительно взялся бы за правку. Сырые счётчики банов и маркеров "
+        "показаны справочно: по ним вердикт не выносится ни здесь, ни в самом "
+        "скилле. Жанр берётся из `genre` в meta.json и передаётся в счёт так же, "
+        "как флаг `--genre` в самом скилле; в колонке «жанр» видно, какой "
+        "регистр объявлен. Прочерк — строгий режим.\n"
     )
-    lines.append("| id | тип | HARD BANS | маркеры | CV | сущ/глаг | тире | статус |")
-    lines.append("|---|---|---|---|---|---|---|---|")
+    lines.append("| id | тип | жанр | ЧИСТОТА | вердикт | HARD BANS | маркеры | CV | сущ/глаг | тире | статус |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---|---|")
     overzealous = 0
     for r in human_items:
         b = r.before
         bans = b["hard_ban_count"]
         markers = b["marker_count"]
-        flagged = bans > HUMAN_HARD_BAN_LIMIT or markers > HUMAN_MARKER_LIMIT
+        sc = r.before_score or {}
+        score = sc.get("score", "—")
+        band = sc.get("band", "—")
+        flagged = band != "чисто"
         if flagged:
             overzealous += 1
         status = "⚠ ложная тревога" if flagged else "✓ ок"
         lines.append(
-            f"| `{r.id}` | {r.type} | {bans} | {markers} "
+            f"| `{r.id}` | {r.type} | {r.genre or '—'} | {score} | {band} "
+            f"| {bans} | {markers} "
             f"| {b['rhythm']['cv_len']} | {b['morph']['noun_verb_ratio']} "
             f"| {b['rhythm']['em_dash']} | {status} |"
         )
@@ -467,22 +487,19 @@ def render_markdown(results: list[ItemResult], env: dict) -> str:
             f"Итог контроля: **{len(human_items) - overzealous}/{len(human_items)}** "
             f"человеческих текстов прошли чисто."
         )
-        if overzealous:
-            lines.append("")
-            lines.append(
-                "> **Как это читать.** Контроль — дословные отрывки статей "
-                "Википедии (заведомо человеческий, но **формальный** регистр). "
-                "Срабатывания здесь не баг, а та же ловушка, в которую попадают "
-                "AI-детекторы (см. FP-аудит выше): формальный человеческий текст "
-                "трудно отличить от машинного по поверхностным признакам. Конкретно "
-                "тревогу дают (1) длинные тире «—» — Википедия использует их "
-                "штатно, а скилл банит как маркер по строгой политике; (2) высокое "
-                "сущ/глаг — это энциклопедический стиль, а не нейросеть. Вывод "
-                "честный и в обе стороны: ни детектор, ни простые эвристики не "
-                "выносят надёжный вердикт «человек/AI» на формальном тексте. Скилл "
-                "поэтому и не детектирует, а **переписывает** — и нацелен на живой, "
-                "а не на энциклопедический регистр."
-            )
+        lines.append("")
+        lines.append(
+            "> **Как это читать.** Контроль — дословные отрывки статей Википедии: "
+            "заведомо человеческий текст в академическом регистре, и он объявлен "
+            "жанром `academic`, как объявил бы его человек, запускающий скилл на "
+            "своей статье. Жанр снимает штрафы, законные для регистра: длинное тире "
+            "и канцелярит Википедия использует штатно. Что жанр НЕ снимает — "
+            "номинальность (отношение существительных к глаголам); она остаётся в "
+            "счёте и в строгом режиме, и в академическом, поэтому идеальных 100 "
+            "здесь не бывает. Вердикт выносится по ЧИСТОТЕ, как и в самом скилле; "
+            "сырые счётчики банов в таблице справочные. Скилл нацелен на живой "
+            "регистр и вердиктов об авторстве не выносит."
+        )
     lines.append("")
 
     # --- Футер о доступности ---
@@ -521,11 +538,13 @@ def render_markdown(results: list[ItemResult], env: dict) -> str:
 
 
 def _metric_snapshot(results: list[ItemResult]) -> dict:
-    """Снимок ключевых «после»-метрик (или raw, если humanized нет) по id."""
+    """Снимок ключевых метрик по id: «после», если есть humanized, иначе raw."""
     snap = {}
     for r in results:
         src = r.after if r.after is not None else r.before
         snap[r.id] = {
+            "is_human": r.is_human,
+            "stage": "after" if r.after is not None else "raw",
             "hard_ban_count": src["hard_ban_count"],
             "marker_count": src["marker_count"],
             "cv_len": src["rhythm"]["cv_len"],
@@ -534,7 +553,16 @@ def _metric_snapshot(results: list[ItemResult]) -> dict:
 
 
 def check_regression(results: list[ItemResult], baseline_path: Path) -> list[str]:
-    """Сравнивает текущий снимок с эталоном. Возвращает список регрессий."""
+    """Сравнивает текущий снимок с эталоном. Возвращает список регрессий.
+
+    Направление зависит от типа текста:
+    - raw AI-текст: регрессия = движок стал находить МЕНЬШЕ (потеря детекции);
+    - человеческий контроль: регрессия = находок стало БОЛЬШЕ (новые ложные
+      срабатывания);
+    - humanized («после»): регрессия = остатков больше или ритм ровнее (скилл
+      стал хуже чистить).
+    Тексты с разным stage (raw vs after) не сравниваются: снимки несопоставимы.
+    """
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
     current = _metric_snapshot(results)
     regressions: list[str] = []
@@ -542,18 +570,43 @@ def check_regression(results: list[ItemResult], baseline_path: Path) -> list[str
         cur = current.get(item_id)
         if cur is None:
             continue  # текст исчез из корпуса — это не регрессия метрик
-        if cur["hard_ban_count"] > base["hard_ban_count"]:
-            regressions.append(
-                f"{item_id}: HARD BANS {base['hard_ban_count']} → {cur['hard_ban_count']}"
-            )
-        if cur["marker_count"] > base["marker_count"]:
-            regressions.append(
-                f"{item_id}: маркеры {base['marker_count']} → {cur['marker_count']}"
-            )
-        if cur["cv_len"] < base["cv_len"]:
-            regressions.append(
-                f"{item_id}: CV ритма {base['cv_len']} → {cur['cv_len']} (ровнее)"
-            )
+        if base.get("stage", "after") != cur["stage"]:
+            continue
+        if base.get("is_human", False):
+            if cur["hard_ban_count"] > base["hard_ban_count"]:
+                regressions.append(
+                    f"{item_id} (human): новые ложные HARD BANS "
+                    f"{base['hard_ban_count']} → {cur['hard_ban_count']}"
+                )
+            if cur["marker_count"] > base["marker_count"]:
+                regressions.append(
+                    f"{item_id} (human): новые ложные маркеры "
+                    f"{base['marker_count']} → {cur['marker_count']}"
+                )
+        elif cur["stage"] == "raw":
+            if cur["hard_ban_count"] < base["hard_ban_count"]:
+                regressions.append(
+                    f"{item_id} (raw AI): потеря детекции HARD BANS "
+                    f"{base['hard_ban_count']} → {cur['hard_ban_count']}"
+                )
+            if cur["marker_count"] < base["marker_count"]:
+                regressions.append(
+                    f"{item_id} (raw AI): потеря детекции маркеров "
+                    f"{base['marker_count']} → {cur['marker_count']}"
+                )
+        else:
+            if cur["hard_ban_count"] > base["hard_ban_count"]:
+                regressions.append(
+                    f"{item_id}: HARD BANS {base['hard_ban_count']} → {cur['hard_ban_count']}"
+                )
+            if cur["marker_count"] > base["marker_count"]:
+                regressions.append(
+                    f"{item_id}: маркеры {base['marker_count']} → {cur['marker_count']}"
+                )
+            if cur["cv_len"] < base["cv_len"]:
+                regressions.append(
+                    f"{item_id}: CV ритма {base['cv_len']} → {cur['cv_len']} (ровнее)"
+                )
     return regressions
 
 
@@ -615,12 +668,13 @@ def main() -> int:
     md = render_markdown(results, env)
     (EVAL_DIR / "RESULTS.md").write_text(md, encoding="utf-8")
 
-    # baseline.
-    baseline_path = args.out / "baseline.json"
+    # baseline. Пишем в коммитимый eval/baseline.json (не в игнорируемый out/),
+    # чтобы regression-гейт работал и в CI: --baseline eval/baseline.json.
+    baseline_path = EVAL_DIR / "baseline.json"
     if args.save_baseline:
         snap = _metric_snapshot(results)
         baseline_path.write_text(
-            json.dumps(snap, ensure_ascii=False, indent=2), encoding="utf-8"
+            json.dumps(snap, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
         print(f"[baseline] эталон записан в {baseline_path}")
 

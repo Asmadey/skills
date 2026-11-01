@@ -18,6 +18,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "skills" / "huma
 
 from humanizer_metrics import analyze, cleanliness_score
 
+# Консоль Windows (cp1252, cp1251) не печатает кириллицу и ✓: тест пишет UTF-8.
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+
 passed = 0
 
 
@@ -66,6 +71,218 @@ for text in (ai, human, enc):
 for text in (ai, human, enc, "", "одно слово"):
     s = score(text)
     check(0 <= s <= 100, f"score вне диапазона: {s}")
+
+
+# --- document-level метрики (S1 листикл, S5 ровные абзацы) ----------------
+def penalty_reasons(text: str) -> str:
+    return " | ".join(r for r, _ in cleanliness_score(analyze(text)).penalties)
+
+# Листикл: 8 однотипных пунктов должны дать штраф «листикл».
+listicle = "Преимущества\n\n" + "\n".join(f"- Пункт номер {i} про качество" for i in range(1, 9)) + "\n"
+check("листикл" in penalty_reasons(listicle), "листикл из 8 пунктов должен штрафоваться")
+
+# Ровные абзацы: 6 одинаковых по длине абзацев дают штраф «ровные абзацы».
+para = "Это первое предложение абзаца. Это второе предложение абзаца."
+uniform = "\n\n".join([para] * 6)
+check("ровные абзацы" in penalty_reasons(uniform), "6 ровных абзацев должны штрафоваться (S5)")
+
+# Инертность к короткой прозе: ни листикла, ни ровных абзацев на 1-2 абзацах без списков.
+short_prose = "Я попробовал три раза. Не вышло. Потом понял: забыл про кэш."
+check("листикл" not in penalty_reasons(short_prose), "короткая проза без списков не листикл")
+check("ровные абзацы" not in penalty_reasons(short_prose), "по короткой прозе абзацы не судим")
+
+# Меньше порога пунктов списка (3) — не листикл.
+small_list = "Список\n\n- раз\n- два\n- три\n"
+check("листикл" not in penalty_reasons(small_list), "3 пункта не дотягивают до порога листикла")
+
+# Одиночное «является» — мягкий маркер, не хард-бан (порог >1/500 слов из SKILL.md).
+single_yavl = ("Байкал является глубочайшим озером планеты. Вода прозрачная, "
+               "видно на сорок метров. Зимой лёд звенит под ногами.")
+check("хард-баны" not in penalty_reasons(single_yavl),
+      "одиночное «является» не должно штрафоваться как хард-бан")
+
+
+# --- фикстура: художественная проза не должна ложно штрафоваться -----------
+# roshchin_pastiche.txt — стилизация под Толстого (провенанс неизвестен, см.
+# eval/corpus/ATTRIBUTION.md). Стресс-кейс ложных срабатываний строкового
+# детектора: омоним «таким образом, что» (образ действия, НЕ вводный вывод) и
+# литературное тире. Умные метрики (рваный ритм, разные по длине абзацы) обязаны
+# читать текст как человеческий. Был 82 [правка] из-за ложного бана на омониме,
+# стал 94 [чисто] после сужения бана.
+from humanizer_metrics.markers import scan_hard_bans  # noqa: E402
+
+_FIXTURE = (Path(__file__).resolve().parent.parent
+            / "eval" / "corpus" / "literary" / "roshchin_pastiche.txt")
+lit = _FIXTURE.read_text(encoding="utf-8")
+lit_bans = {h.marker for h in scan_hard_bans(lit)}
+check("Подводя итог / Таким образом" not in lit_bans,
+      "омоним «таким образом, что» в прозе не должен идти под HARD BAN")
+check(band(lit) == "чисто",
+      f"художественная проза должна быть «чисто», получено {score(lit)} [{band(lit)}]")
+check(score(lit) >= 88, f"проза не должна штрафоваться ниже 88, получено {score(lit)}")
+check(analyze(lit).rhythm.cv_len >= 0.45,
+      "у живой прозы ритм рваный (CV высокий) — умная метрика читает человека")
+check("ровные абзацы" not in penalty_reasons(lit),
+      "разные по длине абзацы прозы не должны штрафоваться (S5 молчит)")
+
+
+# Рваная медитативность (каталог #49): цепочка обрывков штрафуется, диалог,
+# восклицания и списки нет. Порог откалиброван на 400 постах Пикабу
+# (eval/OVERCORRECTION_CHECK.md).
+_STACCATO = ("Короткие. Точные. Отдельные. Рефлексивные. Так работает хороший текст, "
+             "и мы это знаем давно, потому что проверяли на практике не раз.")
+_DIALOG = ("- Да. - Нет. - Может быть. Он ушёл домой и долго думал о разговоре, "
+           "который так и не сложился у них за вечер.")
+_SHOUT = "Сука! Агент козлов! Пятая колонна! Он ушёл домой и долго думал о разговоре, который не сложился."
+check(analyze(_STACCATO).rhythm.staccato_runs == 1 and analyze(_STACCATO).rhythm.staccato_max == 4,
+      "цепочка из четырёх обрывков подряд должна считаться одной цепочкой длины 4")
+check("рваная медитативность" in penalty_reasons(_STACCATO),
+      "цепочка обрывков должна штрафоваться как рваная медитативность")
+check(analyze(_DIALOG).rhythm.staccato_runs == 0, "реплики диалога с тире не считаются обрывками")
+check(analyze(_SHOUT).rhythm.staccato_runs == 0, "восклицания не считаются обрывками")
+check(analyze("- Да\n- Нет\n- Может\n").rhythm.staccato_runs == 0, "пункты списка не считаются обрывками")
+check(analyze(lit).rhythm.staccato_runs == 0, "живая проза не должна давать цепочек обрывков")
+
+
+# Современный слоп (eval/MODERN-SLOP.md): ни одного старого бана, а полоса была
+# «чисто». Собран из оборотов постов Claude Haiku (корпус gen_modern_slop.py).
+_MODERN = ("**Режим — ваш друг.** Включайте работу в одно время, заканчивайте в одно.\n\n"
+           "Первые сотрудники — это архитекторы вашей культуры. Это не просто наём, "
+           "это выбор людей, что делает его важным шагом. Важность этого шага "
+           "невозможно не почувствовать, и он вдохновляет команду.\n\n"
+           "Хотите, чтобы я переписал вступление в другом стиле?")
+check(band(_MODERN) != "чисто", f"современный слоп не должен быть «чисто», получено {score(_MODERN)}")
+check("почерк модели" in penalty_reasons(_MODERN), "почерк модели должен штрафоваться")
+check("обвязка чата" in penalty_reasons(_MODERN), "оферта доработки = обвязка чата")
+# Один оборот бывает у человека: стоит 3 балла и не роняет чистый текст из полосы.
+_ONE = ("Москва — это город, где я прожил двадцать лет. Каждое утро я шёл пешком до метро, "
+        "покупал кофе у одной и той же палатки и думал, что так будет всегда. Потом палатку снесли.")
+check(band(_ONE) == "чисто", f"один оборот почерка не должен ронять полосу, получено {score(_ONE)}")
+check(("почерк модели: 1 оборот", -3) in cleanliness_score(analyze(_ONE)).penalties,
+      "первый оборот почерка стоит 3 балла")
+# В новостном жанре почерк модели не считается: «свидетельствует о» там норма.
+_NEWS = "Отчёт свидетельствует о росте цен. Министр подчёркивает важность мер."
+check(not any(r.startswith("почерк модели") for r, _ in cleanliness_score(analyze(_NEWS), "news").penalties),
+      "в жанре news почерк модели не штрафуется")
+
+
+# Лексическое разнообразие (lexical.py, eval/MODERN-SLOP.md). Токенизация
+# зафиксирована: браузер повторяет её байт в байт, и тихая правка регулярки
+# здесь разошлась бы с сайтом.
+from dataclasses import replace as _replace  # noqa: E402
+
+from humanizer_metrics.lexical import (LEX_MIN_TOKENS, LEX_WINDOW, LexicalStats,  # noqa: E402
+                                       lexical_tokens, mattr)
+from humanizer_metrics.score import LEX_PENALTY_MAX, LEX_THRESHOLD  # noqa: E402
+
+check(lexical_tokens("ЁЛКА Ёлка елка. Кто-то КТО-ТО Wi-Fi-роутер 5-й -нибудь слово-")
+      == ["елка", "елка", "елка", "кто-то", "кто-то", "роутер", "й", "нибудь", "слово"],
+      "токены: нижний регистр, ё → е, дефис только внутри кириллического слова")
+check(mattr([f"w{i}" for i in range(60)]) == 1.0, "все словоформы разные: MATTR 1.0")
+check(mattr(["а"] * 60) == 1 / LEX_WINDOW, "одна словоформа: MATTR 1/окно")
+check(mattr(["а"] * (LEX_WINDOW - 1)) == 0.0, "короче окна: MATTR не считается")
+
+
+def _lex_pen(text: str, genre: str | None = None, **lex) -> list[tuple[str, int]]:
+    rep = analyze(text)
+    if lex:
+        rep = _replace(rep, lexical=LexicalStats(**lex))
+    return [(r, p) for r, p in cleanliness_score(rep, genre).penalties
+            if r.startswith("лексическое разнообразие")]
+
+
+_PLAIN = "Я пришёл домой и лёг спать."
+check(_lex_pen(_PLAIN, tokens=150, mattr=LEX_THRESHOLD) == [], "ровно на пороге штрафа нет")
+check([p for _, p in _lex_pen(_PLAIN, tokens=150, mattr=LEX_THRESHOLD + 0.0015)] == [-1],
+      "балл за каждую полную тысячную выше порога (floor, как в браузере)")
+check([p for _, p in _lex_pen(_PLAIN, tokens=150, mattr=0.999)] == [-LEX_PENALTY_MAX],
+      "штраф за разнообразие ограничен потолком")
+check(_lex_pen(_PLAIN, tokens=LEX_MIN_TOKENS - 1, mattr=0.999) == [],
+      "на коротком тексте MATTR шумит и не штрафуется")
+for g in ("news", "academic", "legal"):
+    check(_lex_pen(_PLAIN, g, tokens=150, mattr=0.999) == [], f"в жанре {g} разнообразие не штрафуется")
+check(_lex_pen(_PLAIN, "fiction", tokens=150, mattr=0.999) != [], "в жанре fiction штраф остаётся")
+# Живой текст из настоящего корпуса: сырой ответ Claude без единого повтора
+# штрафуется, повторяющаяся человеческая проза нет.
+_RAW = (Path(__file__).resolve().parent.parent / "eval" / "corpus" / "raw" / "business_claude_05.txt").read_text(encoding="utf-8")
+check(analyze(_RAW).lexical.tokens >= LEX_MIN_TOKENS and _lex_pen(_RAW) != [],
+      "сырой ответ модели без повторов должен получить штраф за разнообразие")
+_STERILE = " ".join(["Гайка лежала на верстаке. Я взял её и пошёл домой, было поздно и холодно."] * 12)
+check(_lex_pen(_STERILE) == [], "текст с повторами штрафа за разнообразие не получает")
+
+
+# Повтор фразы между абзацами (repeats.py, eval/MODERN-SLOP.md). Заметка без
+# штрафа: потолок пользы штрафа на корпусе ниже, чем ущерб людям. Токенизация
+# повторена в браузере дословно, поэтому правила здесь зафиксированы.
+from humanizer_metrics.repeats import (REPEAT_MAX_TOKENS, REPEAT_MIN_PHRASES,  # noqa: E402
+                                       repeat_stats)
+
+_P1 = "Мы живём в мире, где всё меняется очень быстро, и надо успевать."
+_P2 = "Итак, мы живём в мире, где все меняется очень быстро. Это факт."
+
+
+def _phrases(text: str) -> list[str]:
+    return repeat_stats(text).phrases
+
+
+check(_phrases(f"{_P1}\n\n{_P2}") == ["мы живем в мире где все меняется очень быстро"],
+      "повтор между абзацами найден, склеен в одну фразу, ё = е, запятые не рвут цепочку")
+check(_phrases(f"{_P1}\n{_P2}") == ["мы живем в мире где все меняется очень быстро"],
+      "абзац это строка: одного перевода строки достаточно (Пикабу, чаты)")
+check(_phrases(f"{_P1} {_P2}") == [], "повтор внутри одного абзаца не считается")
+check(_phrases(f"«{_P1}»\n\n{_P2}") == [], "цитата в кавычках не считается повтором автора")
+check(_phrases("## Мы живём в мире, где всё меняется очень быстро\n\n" + _P2) == [],
+      "строка-заголовок Markdown не считается")
+check(_phrases("И в то же время как и было.\n\nНо и в то же время как и было.") == [],
+      "n-грамма из служебных слов (одно полнозначное) не фраза")
+check(_phrases("Отчёт сдан вовремя. Проект закрыт без долгов.\n\n"
+               "Отчёт сдан вовремя, проект закрыт без долгов.") == [],
+      "точка рвёт цепочку: фраза не перескакивает через конец предложения")
+check(_phrases("Цена выросла в 2020 году почти вдвое для всех.\n\n"
+               "Цена выросла в 2021 году почти вдвое для всех.") == [],
+      "цифры рвут цепочку: «2020» и «2021» не склеивают n-грамму")
+_FILL = " ".join(["слово"] * REPEAT_MAX_TOKENS)
+check(_phrases(f"{_FILL}\n\n{_P1}\n\n{_P2}") == [] and repeat_stats(f"{_FILL}\n\n{_P1}").tokens == REPEAT_MAX_TOKENS,
+      "считаются только первые REPEAT_MAX_TOKENS словоформ")
+
+_P3 = "Работа требует внимания к деталям и постоянного обучения в команде."
+_P4 = "Короче, работа требует внимания к деталям и постоянного обучения."
+_REP_TWO = f"{_P1}\n\n{_P3}\n\n{_P2} {_P4}"
+_REP_ONE = f"{_P1}\n\n{_P2}"
+check(REPEAT_MIN_PHRASES == 2 and len(_phrases(_REP_TWO)) == 2, "две разные фразы найдены")
+_sc_two, _sc_one = cleanliness_score(analyze(_REP_TWO)), cleanliness_score(analyze(_REP_ONE))
+check(any(n.startswith("повтор фраз между абзацами: «мы живем") for n in _sc_two.notes),
+      "с двух фраз сканер пишет заметку и показывает сами фразы")
+check(not any(n.startswith("повтор фраз") for n in _sc_one.notes), "одна фраза заметки не даёт")
+check(not any("повтор" in r for r, _ in _sc_two.penalties), "повтор фраз в счёт не входит")
+
+
+# --- короткое сообщение не штрафуется по плотности --------------------------
+# Один мягкий маркер на 7 словах давал 14/100 слов и -29: бытовая реплика
+# уходила в «правку». До 50 слов знаменатель плотности 50.
+_short = cleanliness_score(analyze("С другой стороны, можно и завтра съездить."))
+check(_short.score >= 90 and _short.band == "чисто",
+      f"7 слов с одним маркером: не ниже 90 и не «правка», получено {_short.score} [{_short.band}]")
+_long_soft = cleanliness_score(analyze(" ".join(["С другой стороны, можно и завтра съездить."] * 20)))
+check(any(r.startswith("маркеры:") for r, _ in _long_soft.penalties),
+      "на длинном тексте плотность маркеров по-прежнему штрафуется")
+
+# --- один порог ровного ритма для штрафа и вердикта -------------------------
+from humanizer_metrics.burstiness import CV_HUMAN_TARGET, rhythm_verdict  # noqa: E402
+
+check(CV_HUMAN_TARGET == 0.35, f"порог ровного ритма 0.35, получено {CV_HUMAN_TARGET}")
+_even = " ".join(["Мы сделали это быстро и хорошо."] * 3 + ["Мы сделали всё быстро и очень хорошо сегодня."] * 3)
+_rep = analyze(_even)
+_pen = any(r.startswith("ровный ритм") for r, _ in cleanliness_score(_rep).penalties)
+_warn = "⚠ ровный ритм" in rhythm_verdict(_rep.rhythm)
+check(_pen == _warn, f"штраф и вердикт ритма согласованы (CV={_rep.rhythm.cv_len}): штраф {_pen}, ⚠ {_warn}")
+# Раньше CV между 0.35 и 0.45 давал «✓ ритм рваный» и одновременно штраф.
+_mid = analyze("Я пришёл домой поздно. Кот спал на диване у окна весь вечер. Ужин остыл. "
+               "Я поел холодного и лёг спать.")
+check(0.35 <= _mid.rhythm.cv_len < 0.45, f"фикстура между порогами, CV={_mid.rhythm.cv_len}")
+check(not any(r.startswith("ровный ритм") for r, _ in cleanliness_score(_mid).penalties)
+      and "✓ ритм" in rhythm_verdict(_mid.rhythm),
+      f"CV={_mid.rhythm.cv_len} между 0.35 и 0.45: ни штрафа, ни ⚠")
 
 
 if __name__ == "__main__":
