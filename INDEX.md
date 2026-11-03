@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-11-01
+last_updated: 2026-11-03
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (130 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (131 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -35,6 +35,7 @@ last_updated: 2026-11-01
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **bama** | **Bama**.<br>Build Any Mac App (BAMA) | `'bama', 'build mac app', 'mac app', 'swiftui mac', 'создай приложение для mac', 'macOS app', 'native mac'` | Bash / CLI | [SKILL.md](skills/dev/bama/SKILL.md) |
 | **reverse-engineer-anything** | **Reverse-engineer-anything**.<br>Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA | `reverse-engineer-anything` | Prompt | [SKILL.md](skills/dev/reverse-engineer-anything/SKILL.md) |
 | **technical-writer** | **Technical-writer**.<br>Комплексный инженерный комплекс технического писательства (Technical Writing Suite by riekelt) | `'technical-writer', 'technical writing', 'rfc', 'design doc', 'adr', 'architecture decision', 'runbook', 'postmortem', 'api docs', 'документация архитектуры', 'напиши adr', 'составь rfc'` | Prompt | [SKILL.md](skills/dev/technical-writer/SKILL.md) |
 | **tdd** | **Tdd**.<br>Разработка через тестирование (Test-Driven Development) по циклу Red-Green-Refactor | `'tdd', 'red-green-refactor', 'напиши тесты сначала', 'test-first', 'тест-драйвен'` | Prompt | [SKILL.md](skills/dev/tdd/SKILL.md) |

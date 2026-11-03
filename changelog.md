@@ -1,10 +1,19 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-11-01
+last_updated: 2026-11-03
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-11-03] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`dev/bama`** ([`skills/dev/bama/SKILL.md`](skills/dev/bama/SKILL.md)):
+  - Build Any Mac App (BAMA).
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+
+---
 
 ## [2026-11-01] — Синхронизация навыков из PersonalOS (public)
 

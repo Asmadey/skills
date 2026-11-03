@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **130 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **131 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -64,6 +64,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`bama`**](skills/dev/bama/SKILL.md) | **Bama**. Build Any Mac App (BAMA). | Bash / CLI |
 | [**`reverse-engineer-anything`**](skills/dev/reverse-engineer-anything/SKILL.md) | **Reverse-engineer-anything**. Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA. | Prompt |
 | [**`technical-writer`**](skills/dev/technical-writer/SKILL.md) | **Technical-writer**. Комплексный инженерный комплекс технического писательства (Technical Writing Suite by riekelt). | Prompt |
 | [**`tdd`**](skills/dev/tdd/SKILL.md) | **Tdd**. Разработка через тестирование (Test-Driven Development) по циклу Red-Green-Refactor. | Prompt |
