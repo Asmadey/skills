@@ -99,6 +99,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`agent-desktop`**](skills/automation/agent-desktop/SKILL.md) | **Agent-desktop**. Operate desktop applications on macOS, Windows and Linux through native accessibility trees,. | Prompt |
 | [**`b24phpsdk-maintainer`**](skills/automation/b24phpsdk-maintainer/SKILL.md) | **B24phpsdk-maintainer**. Maintainer tools and workflows for bitrix24/b24phpsdk (OpenAPI schema refresh, code generators, issue lifecycle, TDD implementa.... | Prompt |
 | [**`meeting-transcriber`**](skills/automation/meeting-transcriber/SKILL.md) | **Meeting-transcriber**. Transcribe meeting audio recordings using Groq Whisper API (whisper-large-v3 with automatic fallback to whisper-large-v3-turbo .... | Python / CLI |
 | [**`Browser-automation`**](skills/automation/Browser-automation/SKILL.md) | **Headless Browser CDP Engine**. Высокоскоростное управление браузером (скриншоты, клики, навигация, парсинг данных). | Node/CLI |

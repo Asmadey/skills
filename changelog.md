@@ -9,6 +9,12 @@ last_updated: 2026-11-04
 ## [2026-11-04] — Синхронизация навыков из PersonalOS (public)
 
 ### 📦 Добавленные навыки
+## [2026-11-04] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`automation/agent-desktop`** ([`skills/automation/agent-desktop/SKILL.md`](skills/automation/agent-desktop/SKILL.md)):
+  - Operate desktop applications on macOS, Windows and Linux through native accessibility trees.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
 - **`design/kie-image-generation`** ([`skills/design/kie-image-generation/SKILL.md`](skills/design/kie-image-generation/SKILL.md)):
   - Асинхронный конвейер генерации картинок через kie.ai API (nano banana, Flux-2, GPT Image 2.5, Seedream): `createTask` → `recordInfo` → `download-url`.
   - `scripts/kie_image.py` — создание задачи, ожидание, скачивание, cover-кроп в webp под размеры сайта (`--background transparent`, `--resolution 1K|2K|4K`).

@@ -67,6 +67,7 @@ last_updated: 2026-11-04
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **agent-desktop** | **Agent-desktop**.<br>Operate desktop applications on macOS, Windows and Linux through native accessibility trees, | `agent-desktop` | Prompt | [SKILL.md](skills/automation/agent-desktop/SKILL.md) |
 | **b24phpsdk-maintainer** | **B24phpsdk-maintainer**.<br>Maintainer tools and workflows for bitrix24/b24phpsdk (OpenAPI schema refresh, code generators, issue lifecycle, TDD ... | `b24phpsdk-maintainer` | Prompt | [SKILL.md](skills/automation/b24phpsdk-maintainer/SKILL.md) |
 | **meeting-transcriber** | **Meeting-transcriber**.<br>Transcribe meeting audio recordings using Groq Whisper API (whisper-large-v3 with automatic fallback to whisper-large... | `meeting-transcriber` | Python / CLI | [SKILL.md](skills/automation/meeting-transcriber/SKILL.md) |
 | **Browser-automation** | **Headless Browser CLI & Proxy**.<br>Высокоскоростное управление браузером по CDP (скриншоты, клики, доступность, парсинг) | `автоматизация браузера, тестирование, скрейпинг страниц` | Node/CLI | [SKILL.md](skills/automation/Browser-automation/SKILL.md) |
