@@ -1,10 +1,20 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-11-03
+last_updated: 2026-11-04
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-11-04] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`design/kie-image-generation`** ([`skills/design/kie-image-generation/SKILL.md`](skills/design/kie-image-generation/SKILL.md)):
+  - Асинхронный конвейер генерации картинок через kie.ai API (nano banana, Flux-2, GPT Image 2.5, Seedream): `createTask` → `recordInfo` → `download-url`.
+  - `scripts/kie_image.py` — создание задачи, ожидание, скачивание, cover-кроп в webp под размеры сайта (`--background transparent`, `--resolution 1K|2K|4K`).
+  - `scripts/check_image.py` — приёмка: размер, альфа/отклонение фона по рамке, контактный лист.
+
+---
 
 ## [2026-11-03] — Синхронизация навыков из PersonalOS (public)
 

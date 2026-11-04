@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-11-03
+last_updated: 2026-11-04
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (131 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (132 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -137,6 +137,7 @@ last_updated: 2026-11-03
 | **garden-skills** | **Garden Skills Suite**.<br>Кураторский пакет визуального инжиниринга от ConardLi: верстка веб-интерфейсов (`web-design-engineer`), интерактивные 16:9 клик-презентации (`web-video-presentation`), автономные статьи reacticle (`beautiful-article`), GPT Image 2 и KB-поиск | `создание веб-презентации 16:9, красивая веб-статья, прототипирование UI, garden-skills` | Python / Node/CLI | [SKILL.md](skills/design/garden-skills/SKILL.md) |
 | **landing-page-design** | **High-Converting Landing Page System**.<br>Система проектирования конверсионных лендингов от elayadesign: опросник intake, структура страницы, офферы, копирайтинг и строгая визуальная система (шрифты, отступы, радиусы, цвета) | `создать лендинг, посадочная страница, landing page, конверсионный дизайн` | Prompt | [SKILL.md](skills/design/landing-page-design/SKILL.md) |
 | **nano-banana** | **Visual Asset Generator**.<br>Генерация изображений и промо-графики через модели генерации | `генерация иллюстраций, промо-графика, вижуалы` | Python / Node/CLI | [SKILL.md](skills/design/nano-banana/SKILL.md) |
+| **kie-image-generation** | **Kie.ai Image Pipeline**.<br>Асинхронная генерация картинок через kie.ai API (nano banana, Flux-2, GPT Image 2.5, Seedream): createTask → recordInfo → download-url, кроп в webp под размеры сайта, приёмка по альфе и фону | `картинки через kie.ai, генерация иллюстраций по API, nano banana api, gpt image 2.5, пакет иллюстраций для сайта` | Python / CLI | [SKILL.md](skills/design/kie-image-generation/SKILL.md) |
 | **scroll-craft** | **Scroll-Driven Website Engine**.<br>Специализированный движок создания кинематографичных сайтов с плавной прокруткой от nateherkai: многослойные 3D-сцены, глубина Hero, физика скролла, адаптация под мобильные устройства | `скролл-анимации, scroll-driven сайт, интерактивный скролл, кинематографичный лендинг` | Node/CLI | [SKILL.md](skills/design/scroll-craft/SKILL.md) |
 | **static-banner** | **Static Banner Designer**.<br>Создание статических рекламных и контентных баннеров по строгой сетке | `создание баннеров, промо-креативы, постеры` | Prompt | [SKILL.md](skills/design/static-banner/SKILL.md) |
 | **tastemaker** | **Anti-AI Design & Taste Engine**.<br>Движок авторского вкуса от Rohith: устранение шаблонного AI-дизайна, генерация гармоничных палитр под проект, локальные CLI-скрипты проверки контраста WCAG (`check_contrast.py`), стиль-локи `.tastemaker/style-lock.md` | `красивый UI без AI-шаблонов, подбор цветов, расчет контраста, дизайн со вкусом` | Python / CLI | [SKILL.md](skills/design/tastemaker/SKILL.md) |
