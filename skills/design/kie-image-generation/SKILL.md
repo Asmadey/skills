@@ -77,6 +77,12 @@ metadata:
 `scripts/kie_image.py` рядом со скиллом (и рабочая копия в `~/.hermes/profiles/coder/scripts/`).
 Создаёт, ждёт, скачивает; умеет проверять баланс и статус.
 
+Опубликованная копия скилла — репозиторий `Asmadey/skills`, путь
+`skills/design/kie-image-generation/` (профильная папка `media/` — только локальная
+раскладка; в библиотеке всё, что рисует картинки, лежит в `design/`). Правишь скрипт
+здесь — перекопируй и запушь туда же в том же ходе: две копии расходятся молча, и
+читатель получает уже починенные баги.
+
 ```bash
 python3 ~/.hermes/profiles/coder/scripts/kie_image.py --credits
 python3 ~/.hermes/profiles/coder/scripts/kie_image.py -p "<промпт>" -a 3:2 \
