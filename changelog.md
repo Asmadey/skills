@@ -1,10 +1,19 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-11-04
+last_updated: 2026-11-11
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-11-11] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`design/stageshow`** ([`skills/design/stageshow/SKILL.md`](skills/design/stageshow/SKILL.md)):
+  - Build faux product UI that looks like a real product, as a still illustration or an animated demo with a cursor.
+  - Прошел аудит безопасности NVIDIA SkillSpector (APPROVE).
+
+---
 
 ## [2026-11-04] — Синхронизация навыков из PersonalOS (public)
 

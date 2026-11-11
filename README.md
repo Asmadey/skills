@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **132 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **135 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -145,6 +145,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`stageshow`**](skills/design/stageshow/SKILL.md) | **Stageshow**. Build faux product UI that looks like a real product, as a still illustration or an animated demo with a cursor. | Node/CLI |
 | [**`ux-designer`**](skills/design/ux-designer/SKILL.md) | **Ux-designer**. UX principles for planning or auditing an interface: accessibility (WCAG, EAA), information architecture, microcopy, i18n/RTL, .... | Prompt |
 | [**`design-to-motion`**](skills/design/design-to-motion/SKILL.md) | **Design-to-motion**. Turns a static design (a Figma frame, dashboard, card set, app screen, or a UI on a photo background) into a pixel exact HTML r.... | Prompt |
 | [**`dembrandt`**](skills/UX/dembrandt/SKILL.md) | **Dembrandt**. Комплексный инженерный комплекс UX-аудита, реверс-инжиниринга дизайн-систем и экстракции токенов (Dembrandt Suite by VictorGjn). | Prompt |

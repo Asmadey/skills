@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-11-04
+last_updated: 2026-11-11
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (132 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (135 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -121,6 +121,7 @@ last_updated: 2026-11-04
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **stageshow** | **Stageshow**.<br>Build faux product UI that looks like a real product, as a still illustration or an animated demo with a cursor | `'stageshow', 'faux UI', 'mocked UI', 'product demo animation', 'animated cursor', 'bento product shot', 'hero illustration'` | Node/CLI | [SKILL.md](skills/design/stageshow/SKILL.md) |
 | **ux-designer** | **Ux-designer**.<br>UX principles for planning or auditing an interface: accessibility (WCAG, EAA), information architecture, microcopy, ... | `ux-designer` | Prompt | [SKILL.md](skills/design/ux-designer/SKILL.md) |
 | **design-to-motion** | **Design-to-motion**.<br>Turns a static design (a Figma frame, dashboard, card set, app screen, or a UI on a photo background) into a pixel ex... | `design-to-motion` | Prompt | [SKILL.md](skills/design/design-to-motion/SKILL.md) |
 | **sketch-design** | **Sketch-design**.<br>Создание рисованных интерактивных презентаций и архитектурных схем в духе доски Excalidraw (черный контур от руки, па... | `sketch-design` | Python / CLI | [SKILL.md](skills/design/sketch-design/SKILL.md) |
