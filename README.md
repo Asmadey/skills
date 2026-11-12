@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **135 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **136 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -87,6 +87,7 @@ flowchart TD
 | [**`sgr-core`**](skills/dev/sgr-core/SKILL.md) | **SGR Agent Core**. Архитектура построения сложных многоагентных и reasoning-систем. | Prompt |
 | [**`shadcn`**](skills/dev/shadcn/SKILL.md) | **shadcn/ui Manager**. Интеграция, генерация компонентов и управление дизайн-токенами Tailwind CSS. | Node/CLI |
 | [**`magicui`**](skills/dev/magicui/SKILL.md) | **Interactive UI Library**. Эффектные React/Next.js компоненты: частицы, глобусы, marquee и micro-interactions. | Node/CLI |
+| [**`prefab-ui`**](skills/dev/prefab-ui/SKILL.md) | **Prefab UI**. Интерфейсы для Python-проектов на Python (prefab-ui от Prefect): дашборды, таблицы, формы, графики, MCP-приложения и FastAPI, без JavaScript. | Python |
 | [**`react-native-skills`**](skills/dev/react-native-skills/SKILL.md) | **React Native & Expo Standards**. Оптимизация 60fps производительности мобильных приложений. | Node/CLI |
 | [**`mobile`**](skills/dev/mobile/SKILL.md) | **Mobile Design Master Hub**. UX-шаблоны лучших приложений (Airbnb, Revolut) + Material Design 3. | Node/CLI |
 | [**`open-graph`**](skills/dev/open-graph/SKILL.md) | **OG & Social Meta Generator**. Генерация динамических превью и метаданных для поисковых систем. | Prompt |

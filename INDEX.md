@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-11-11
+last_updated: 2026-11-12
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (135 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (136 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -51,6 +51,7 @@ last_updated: 2026-11-11
 | **git-worktree** | **Git Worktree Manager**.<br>Управление изолированными параллельными рабочими ветками без переключения git stash | `параллельная разработка нескольких фич, работа в worktree` | Prompt | [SKILL.md](skills/dev/git-worktree/SKILL.md) |
 | **gnhf** | **Autonomous Agent Orchestrator**.<br>Оркестратор длительных ночных прогонов агентов до естественного stop condition (Hands-Off и Companion режимы) | `«gnhf», «я спать / ушел, доделай ветку», супервизия автономного прогона` | Node/CLI | [SKILL.md](skills/dev/gnhf/SKILL.md) |
 | **magicui** | **Animated UI Library**.<br>Коллекция интерактивных компонентов и эффектов на React/Next.js (marquee, globe, particles) | `анимированные лендинги, интерактивные React-компоненты` | Node/CLI | [SKILL.md](skills/dev/magicui/SKILL.md) |
+| **prefab-ui** | **Prefab UI**.<br>Интерфейсы для Python-проектов целиком на Python (prefab-ui от Prefect): дашборды, таблицы, формы, графики, MCP-приложения, FastAPI | `prefab, prefab-ui, интерфейс на Python, UI для MCP сервера, MCP app, дашборд на Python, prefab serve` | Python | [SKILL.md](skills/dev/prefab-ui/SKILL.md) |
 | **mobile** | **Mobile Design Master Hub**.<br>Хаб проектирования мобильных приложений: UX-потоки Airbnb/Revolut + Google Material 3 | `мобильный UI/UX, iOS/Android экраны, Material You` | Node/CLI | [SKILL.md](skills/dev/mobile/SKILL.md) |
 | **no-mistakes** | **Pre-Commit Gate & Code Quality**.<br>Локальный гейт-прокси, линтинг, статический анализ и валидация кода без ошибок перед сдачей | `проверка кода перед коммитом, валидация правок, no-mistakes` | Prompt | [SKILL.md](skills/dev/no-mistakes/SKILL.md) |
 | **open-graph** | **Technical SEO & OG Meta**.<br>Генерация динамических Open Graph тегов, изображений и метаданных для поисковиков | `настройка соцсетей, превью ссылок, Open Graph, meta-теги` | Prompt | [SKILL.md](skills/dev/open-graph/SKILL.md) |

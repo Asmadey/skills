@@ -1,10 +1,19 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-11-11
+last_updated: 2026-11-12
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-11-12] — Новый навык dev/prefab-ui
+
+### 📦 Добавленные навыки
+- **`dev/prefab-ui`** ([`skills/dev/prefab-ui/SKILL.md`](skills/dev/prefab-ui/SKILL.md)):
+  - Создание интерфейса для Python-проектов на Prefab (prefab-ui от Prefect): локальное превью, статический HTML, FastAPI + Fetch, MCP-приложения FastMCP, generative UI.
+  - Справочники по компонентам, действиям, выражениям, стилям и темам собраны из документации prefab.prefect.io; шаблоны (standalone, FastAPI, MCP) проверены запуском на prefab-ui 0.21.1.
+
+---
 
 ## [2026-11-11] — Синхронизация навыков из PersonalOS (public)
 
