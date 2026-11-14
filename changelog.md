@@ -1,9 +1,22 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-11-04
+last_updated: 2026-11-14
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
+
+## [2026-11-14] — Добавлен AEO/GEO claim pipeline
+
+### 📦 Добавленные навыки
+- **`marketing/aeo-geo-claim-pipeline`** ([`skills/marketing/aeo-geo-claim-pipeline/SKILL.md`](skills/marketing/aeo-geo-claim-pipeline/SKILL.md)):
+  - Конвейер «статья → атом-claim → вердикт против доктрины → гейт → патч скилла». Оформлен по образцу `claude-seo` (Primary Source, When to Use, таблицы вердиктов и гейтов, Error Handling, Security, references/).
+  - `scripts/aeo_claims_blocks.py` — парсинг доктрины в блоки с тирами и источниками (158 блоков, у 75 источника нет).
+  - `scripts/aeo_claims_extract.py` — атомы из корпуса без LLM: topic scope, гигиена предложений, двуязычные числовые сигнатуры (`200 символов` ≡ `200 characters`).
+  - `scripts/aeo_claims_adjudicate.py` — LLM-адjudication (Ollama Cloud, batch 6) с шортлистом блоков-кандидатов.
+  - `scripts/aeo_numbers.py` — нормализация «число + единица» для сравнения русской доктрины с англоязычными статьями.
+  - Замер 2026-11-14: 291 атом → REFINES 110 / NEW 123 / DUPLICATE 54 / CONTRADICTS 4; 0 кредитов Firecrawl.
+
+---
 
 
 ## [2026-11-04] — Синхронизация навыков из PersonalOS (public)

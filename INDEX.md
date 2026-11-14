@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-11-04
+last_updated: 2026-11-14
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (132 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (134 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -177,6 +177,7 @@ last_updated: 2026-11-04
 | **reverse-engineer-marketing** | **Reverse-engineer-marketing**.<br>When the user wants to reverse engineer how another company grew and copy what worked | `reverse-engineer-marketing` | Prompt | [SKILL.md](skills/marketing/reverse-engineer-marketing/SKILL.md) |
 | **clone-website** | **Clone-website**.<br>Реконструкция существующих веб-страниц в рабочий локальный код с реальным контентом, ассетами, адаптивной версткой и ... | `'склонируй сайт', 'повтори сайт', 'clone website', 'website cloning', 'скопируй лендинг', 'воспроизведи страницу', включая Framer-сайты и анимированные страницы` | Prompt | [SKILL.md](skills/marketing/clone-website/SKILL.md) |
 | **claude-seo** | **Claude-seo**.<br>Комплексный инженерный комплекс SEO-навыков, технического аудита и GEO/AEO-оптимизации (Claude SEO Suite by AgriciDan... | `'claude-seo', 'seo audit', 'technical seo', 'core web vitals', 'schema markup', 'eeat', 'geo', 'ai search optimization', 'sitemap audit', 'hreflang', 'keyword cluster', 'backlink analysis'` | Python / CLI | [SKILL.md](skills/marketing/claude-seo/SKILL.md) |
+| **aeo-geo-claim-pipeline** | **AEO/GEO Claim Pipeline**.<br>Аудит и обновление AEO/GEO-доктрины из статей: атом-claim с цитатой и источником → детерминированные вердикты по числовым сигнатурам → LLM-адjudication → гейт → патч скилла | `'обнови AEO', 'GEO доктрина', 'что нового в AI-поиске', 'claims pipeline', 'аудит провенанса', 'противоречия в доктрине'` | Python / CLI | [SKILL.md](skills/marketing/aeo-geo-claim-pipeline/SKILL.md) |
 | **app-store-screenshots** | **App-store-screenshots**.<br>Use when building App Store or Google Play screenshot pages, generating exportable marketing screenshots for iOS, mac... | `app-store-screenshots` | Bash / CLI | [SKILL.md](skills/marketing/app-store-screenshots/SKILL.md) |
 | **video** | **Video**.<br>Пайплайн создания и генерации видеоконтента с помощью AI-моделей (Sora, Kling, Runway, Veo, Hailuo, Pika) и кодовых ф... | `'video', 'видео генерация', 'создай видео', 'AI video', 'Remotion', 'HeyGen', 'демо продукта'` | Prompt | [SKILL.md](skills/marketing/video/SKILL.md) |
 | **ppt-master** | **Ppt-master**.<br>AI-driven presentation workflow for generating editable PPTX decks and slides, | `ppt-master` | Python / CLI | [SKILL.md](skills/marketing/ppt-master/SKILL.md) |
