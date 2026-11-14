@@ -37,6 +37,9 @@ QUESTION_START = re.compile(
 BOILERPLATE_START = re.compile(
     r"^\s*(опубликовано|обновлено|дата|время чтения|оглавление|содержание|навигация|"
     r"published|updated|table of contents|breadcrumb|читать \d|min read)", re.I)
+TRACKER_HOSTS = ("mc.yandex.ru", "google-analytics.com", "googletagmanager.com",
+                 "top-fwz1.mail.ru", "vk.com/rtrg")
+
 SEVERITY_WEIGHT = {"critical": 10, "high": 5, "medium": 2, "low": 1}
 
 ACTIONS = {
@@ -117,7 +120,9 @@ class PageParser(HTMLParser):
         elif tag == "a" and a.get("href"):
             self.links.append(a["href"])
         elif tag == "img":
-            self.images.append((a.get("src", ""), a.get("alt", ""), "alt" in a))
+            width = a.get("width") or ""
+            self.images.append((a.get("src", ""), a.get("alt", ""), "alt" in a, str(width),
+                                a.get("class") or ""))
         elif tag == "table":
             self.tables += 1
         elif tag in ("h1", "h2", "h3"):
@@ -262,9 +267,27 @@ def audit_page(url: str) -> dict:
                 internal.append(href)
         elif href.startswith("/"):
             internal.append(href)
+    def decorative(img: tuple) -> bool:
+        """alt="" у иконки или превью-карточки рядом с подписью это норма."""
+        if img[1].strip() or not img[2]:
+            return False
+        cls = img[4].lower()
+        if "ico" in cls or "card-img" in cls or "icon" in cls:
+            return True
+        try:
+            return 0 < int(float(img[3])) <= 80
+        except (TypeError, ValueError):
+            return False
+
+    def tracker(img: tuple) -> bool:
+        """Пиксели аналитики не контент: формат и alt у них не проверяются."""
+        return any(d in img[0] for d in TRACKER_HOSTS)
+
     alt_ok = [i for i in p.images if i[1].strip()]
     alt_attr = [i for i in p.images if i[2]]
-    modern = [i for i in p.images if re.search(r"\.(webp|avif|svg)(\?|$)", i[0], re.I)]
+    decorative_n = len([i for i in p.images if decorative(i)])
+    tracker_n = len([i for i in p.images if tracker(i)])
+    modern = [i for i in p.images if not tracker(i) and re.search(r"\.(webp|avif|svg)(\?|$)", i[0], re.I)]
     h2q = [h for h in p.h2 if h.strip().endswith("?") or QUESTION_START.match(h.strip())]
     text = p.text
     return {
@@ -286,6 +309,8 @@ def audit_page(url: str) -> dict:
         "images": len(p.images),
         "images_alt": len(alt_ok),
         "images_alt_attr": len(alt_attr),
+        "images_decorative": decorative_n,
+        "images_tracker": tracker_n,
         "images_modern": len(modern),
         "tables": p.tables,
         "schema": sorted(set(schema_types(p.jsonld))),
@@ -326,14 +351,16 @@ def checks(page: dict, host: str, all_urls: list[str], site: str) -> list[dict]:
         add("internal_links", "high", f"внутренних ссылок в HTML: {page['internal_links']}", "1.2/2.7")
     if page["h2_count"] >= 4 and not page["h2_questions"]:
         add("question_h2", "medium", "ни один h2 не сформулирован вопросом", "2.1/2.10")
-    if page["images"] and page["images_alt_attr"] < page["images"]:
-        add("img_alt", "medium",
-            f"без атрибута alt {page['images'] - page['images_alt_attr']} из {page['images']}", "14.2")
-    elif page["images"] and page["images_alt"] / page["images"] < 0.5:
-        add("img_alt_empty", "low", f"alt пустой у {page['images'] - page['images_alt']} из "
-                                    f"{page['images']}: для AI картинка немая", "14.2")
-    if page["images"] and page["images_modern"] / page["images"] < 0.8:
-        add("img_format", "low", f"webp/avif у {page['images_modern']} из {page['images']}", "1.9")
+    meaningful = page["images"] - page["images_decorative"] - page["images_tracker"]
+    if meaningful > 0 and page["images_alt_attr"] < page["images"]:
+        missing = page["images"] - page["images_alt_attr"]
+        add("img_alt", "medium", f"без атрибута alt {missing} из {page['images']}", "14.2")
+    elif meaningful > 0 and page["images_alt"] / meaningful < 0.5:
+        add("img_alt_empty", "low",
+            f"alt пустой у {meaningful - page['images_alt']} смысловых картинок из {meaningful}", "14.2")
+    content_imgs = page["images"] - page["images_tracker"]
+    if content_imgs > 0 and page["images_modern"] / content_imgs < 0.8:
+        add("img_format", "low", f"webp/avif у {page['images_modern']} из {content_imgs}", "1.9")
     if re.search(r"лучше|сравн|\bvs\b|против", page["title"].lower()) and page["tables"] == 0:
         add("table", "medium", "сравнительная страница без HTML-таблицы", "2.6")
     if page["robots_meta"] and "noindex" in page["robots_meta"].lower():

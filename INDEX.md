@@ -6,7 +6,7 @@ last_updated: 2026-11-14
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (134 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (137 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -51,6 +51,7 @@ last_updated: 2026-11-14
 | **git-worktree** | **Git Worktree Manager**.<br>Управление изолированными параллельными рабочими ветками без переключения git stash | `параллельная разработка нескольких фич, работа в worktree` | Prompt | [SKILL.md](skills/dev/git-worktree/SKILL.md) |
 | **gnhf** | **Autonomous Agent Orchestrator**.<br>Оркестратор длительных ночных прогонов агентов до естественного stop condition (Hands-Off и Companion режимы) | `«gnhf», «я спать / ушел, доделай ветку», супервизия автономного прогона` | Node/CLI | [SKILL.md](skills/dev/gnhf/SKILL.md) |
 | **magicui** | **Animated UI Library**.<br>Коллекция интерактивных компонентов и эффектов на React/Next.js (marquee, globe, particles) | `анимированные лендинги, интерактивные React-компоненты` | Node/CLI | [SKILL.md](skills/dev/magicui/SKILL.md) |
+| **prefab-ui** | **Prefab UI**.<br>Интерфейсы для Python-проектов целиком на Python (prefab-ui от Prefect): дашборды, таблицы, формы, графики, MCP-приложения, FastAPI | `prefab, prefab-ui, интерфейс на Python, UI для MCP сервера, MCP app, дашборд на Python, prefab serve` | Python | [SKILL.md](skills/dev/prefab-ui/SKILL.md) |
 | **mobile** | **Mobile Design Master Hub**.<br>Хаб проектирования мобильных приложений: UX-потоки Airbnb/Revolut + Google Material 3 | `мобильный UI/UX, iOS/Android экраны, Material You` | Node/CLI | [SKILL.md](skills/dev/mobile/SKILL.md) |
 | **no-mistakes** | **Pre-Commit Gate & Code Quality**.<br>Локальный гейт-прокси, линтинг, статический анализ и валидация кода без ошибок перед сдачей | `проверка кода перед коммитом, валидация правок, no-mistakes` | Prompt | [SKILL.md](skills/dev/no-mistakes/SKILL.md) |
 | **open-graph** | **Technical SEO & OG Meta**.<br>Генерация динамических Open Graph тегов, изображений и метаданных для поисковиков | `настройка соцсетей, превью ссылок, Open Graph, meta-теги` | Prompt | [SKILL.md](skills/dev/open-graph/SKILL.md) |
@@ -67,6 +68,7 @@ last_updated: 2026-11-14
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **agent-desktop** | **Agent-desktop**.<br>Operate desktop applications on macOS, Windows and Linux through native accessibility trees, | `agent-desktop` | Prompt | [SKILL.md](skills/automation/agent-desktop/SKILL.md) |
 | **b24phpsdk-maintainer** | **B24phpsdk-maintainer**.<br>Maintainer tools and workflows for bitrix24/b24phpsdk (OpenAPI schema refresh, code generators, issue lifecycle, TDD ... | `b24phpsdk-maintainer` | Prompt | [SKILL.md](skills/automation/b24phpsdk-maintainer/SKILL.md) |
 | **meeting-transcriber** | **Meeting-transcriber**.<br>Transcribe meeting audio recordings using Groq Whisper API (whisper-large-v3 with automatic fallback to whisper-large... | `meeting-transcriber` | Python / CLI | [SKILL.md](skills/automation/meeting-transcriber/SKILL.md) |
 | **Browser-automation** | **Headless Browser CLI & Proxy**.<br>Высокоскоростное управление браузером по CDP (скриншоты, клики, доступность, парсинг) | `автоматизация браузера, тестирование, скрейпинг страниц` | Node/CLI | [SKILL.md](skills/automation/Browser-automation/SKILL.md) |
@@ -120,6 +122,7 @@ last_updated: 2026-11-14
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **stageshow** | **Stageshow**.<br>Build faux product UI that looks like a real product, as a still illustration or an animated demo with a cursor | `'stageshow', 'faux UI', 'mocked UI', 'product demo animation', 'animated cursor', 'bento product shot', 'hero illustration'` | Node/CLI | [SKILL.md](skills/design/stageshow/SKILL.md) |
 | **ux-designer** | **Ux-designer**.<br>UX principles for planning or auditing an interface: accessibility (WCAG, EAA), information architecture, microcopy, ... | `ux-designer` | Prompt | [SKILL.md](skills/design/ux-designer/SKILL.md) |
 | **design-to-motion** | **Design-to-motion**.<br>Turns a static design (a Figma frame, dashboard, card set, app screen, or a UI on a photo background) into a pixel ex... | `design-to-motion` | Prompt | [SKILL.md](skills/design/design-to-motion/SKILL.md) |
 | **sketch-design** | **Sketch-design**.<br>Создание рисованных интерактивных презентаций и архитектурных схем в духе доски Excalidraw (черный контур от руки, па... | `sketch-design` | Python / CLI | [SKILL.md](skills/design/sketch-design/SKILL.md) |

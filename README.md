@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **132 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **136 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -87,6 +87,7 @@ flowchart TD
 | [**`sgr-core`**](skills/dev/sgr-core/SKILL.md) | **SGR Agent Core**. Архитектура построения сложных многоагентных и reasoning-систем. | Prompt |
 | [**`shadcn`**](skills/dev/shadcn/SKILL.md) | **shadcn/ui Manager**. Интеграция, генерация компонентов и управление дизайн-токенами Tailwind CSS. | Node/CLI |
 | [**`magicui`**](skills/dev/magicui/SKILL.md) | **Interactive UI Library**. Эффектные React/Next.js компоненты: частицы, глобусы, marquee и micro-interactions. | Node/CLI |
+| [**`prefab-ui`**](skills/dev/prefab-ui/SKILL.md) | **Prefab UI**. Интерфейсы для Python-проектов на Python (prefab-ui от Prefect): дашборды, таблицы, формы, графики, MCP-приложения и FastAPI, без JavaScript. | Python |
 | [**`react-native-skills`**](skills/dev/react-native-skills/SKILL.md) | **React Native & Expo Standards**. Оптимизация 60fps производительности мобильных приложений. | Node/CLI |
 | [**`mobile`**](skills/dev/mobile/SKILL.md) | **Mobile Design Master Hub**. UX-шаблоны лучших приложений (Airbnb, Revolut) + Material Design 3. | Node/CLI |
 | [**`open-graph`**](skills/dev/open-graph/SKILL.md) | **OG & Social Meta Generator**. Генерация динамических превью и метаданных для поисковых систем. | Prompt |
@@ -99,6 +100,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`agent-desktop`**](skills/automation/agent-desktop/SKILL.md) | **Agent-desktop**. Operate desktop applications on macOS, Windows and Linux through native accessibility trees,. | Prompt |
 | [**`b24phpsdk-maintainer`**](skills/automation/b24phpsdk-maintainer/SKILL.md) | **B24phpsdk-maintainer**. Maintainer tools and workflows for bitrix24/b24phpsdk (OpenAPI schema refresh, code generators, issue lifecycle, TDD implementa.... | Prompt |
 | [**`meeting-transcriber`**](skills/automation/meeting-transcriber/SKILL.md) | **Meeting-transcriber**. Transcribe meeting audio recordings using Groq Whisper API (whisper-large-v3 with automatic fallback to whisper-large-v3-turbo .... | Python / CLI |
 | [**`Browser-automation`**](skills/automation/Browser-automation/SKILL.md) | **Headless Browser CDP Engine**. Высокоскоростное управление браузером (скриншоты, клики, навигация, парсинг данных). | Node/CLI |
@@ -144,6 +146,7 @@ flowchart TD
 
 | Навык | Назначение и возможности | Стек / Формат |
 | :--- | :--- | :--- |
+| [**`stageshow`**](skills/design/stageshow/SKILL.md) | **Stageshow**. Build faux product UI that looks like a real product, as a still illustration or an animated demo with a cursor. | Node/CLI |
 | [**`ux-designer`**](skills/design/ux-designer/SKILL.md) | **Ux-designer**. UX principles for planning or auditing an interface: accessibility (WCAG, EAA), information architecture, microcopy, i18n/RTL, .... | Prompt |
 | [**`design-to-motion`**](skills/design/design-to-motion/SKILL.md) | **Design-to-motion**. Turns a static design (a Figma frame, dashboard, card set, app screen, or a UI on a photo background) into a pixel exact HTML r.... | Prompt |
 | [**`dembrandt`**](skills/UX/dembrandt/SKILL.md) | **Dembrandt**. Комплексный инженерный комплекс UX-аудита, реверс-инжиниринга дизайн-систем и экстракции токенов (Dembrandt Suite by VictorGjn). | Prompt |
