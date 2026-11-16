@@ -1,10 +1,21 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-11-14
+last_updated: 2026-11-16
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-11-16] — Новый набор marketing/aeo-skill
+
+### 📦 Добавленные навыки
+- **`marketing/aeo-skill`** ([`skills/marketing/aeo-skill/SKILL.md`](skills/marketing/aeo-skill/SKILL.md)):
+  - Набор SEO / AEO / GEO по образцу `claude-seo`: оркестратор `/aeo`, 11 под-навыков (audit, technical, content, entity, offpage, visibility, measure, local, ecommerce, refresh, plan), 4 агента для параллельного аудита.
+  - Скрипты на стандартной библиотеке Python: доступ AI-ботов (robots.txt и ответы сервера), разбор сырого HTML и пассажей, AI-боты в логах, журнал замеров видимости.
+  - База — 920 материалов Search Engine Land за май–ноябрь 2026; в реестре 119 статей с ключами источников, тексты статей не включены.
+  - Расхождения с `aeo-geo-skill-ru` (llms.txt, schema, срок кеша ChatGPT, Atlas) описаны в README набора.
+
+---
 
 ## [2026-11-12] — Новый навык dev/prefab-ui
 
