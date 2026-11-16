@@ -23,7 +23,7 @@
 ## 📌 О проекте
 
 **The Agentic OS** — это комплексная операционная среда для автономных кодинг-агентов. Репозиторий превращает разрозненные LLM-сессии в предсказуемый инженерный конвейер благодаря:
-1. **136 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
+1. **137 специализированным исполняемым навыкам (`skills/`)**, структурированным по 13 функциональным доменам.
 2. **Системным мета-фреймворкам (`frameworks/`)**, обеспечивающим Spec-Driven Development (SDD), Test-Driven Development (TDD) и изоляцию контекста (до 200k токенов на микрозадачу без деградации).
 3. **Строгому шлюзу безопасности** на базе статического YARA/AST и семантического анализатора **NVIDIA SkillSpector**.
 4. **Протоколу Low-Token**, сокращающему паразитный оверхед промптов и контекста более чем на 35%.
@@ -233,6 +233,7 @@ flowchart TD
 | [**`ad-creative`**](skills/marketing/ad-creative/SKILL.md) | **Ad-creative**. Генерация, масштабирование и A/B тестирование рекламных креативов и текстов для платного трафика (Meta, Google RSA, TikTok, Lin.... | Prompt |
 | [**`google-maps-scraper`**](skills/marketing/google-maps-scraper-kit/SKILL.md) | **Google-maps-scraper**. Scrape Google Maps business listings (name, address, phone, website, rating, reviews, lat/lng, emails) via local REST API. | Python / CLI |
 | [**`aeo-geo-skill-ru`**](skills/marketing/aeo-geo-skill-ru/SKILL.md) | **Answer & Generative Engine Optimization (AEO/GEO)**. Полный плейбук AEO/GEO на русском: 4 канала выдачи, 289-значные H1 под labrador, обход кэша OpenAI, 117-словные пассажи, защита от Ghost Citations, Python stdlib CLI. | Python / CLI |
+| [**`aeo-skill`**](skills/marketing/aeo-skill/SKILL.md) | **AEO Skill (SEO / AEO / GEO)**. Набор SEO/AEO/GEO по образцу claude-seo: оркестратор /aeo, 11 под-навыков, 4 агента и скрипты проверки сырого HTML, доступа AI-ботов, логов и замеров видимости. База — 920 материалов Search Engine Land за май–ноябрь 2026. | Python / CLI |
 | [**`agent-reach`**](skills/marketing/agent-reach/SKILL.md) | **Multi-Platform Intelligence & Retrieval Router**. Маршрутизатор сбора контента по 15 платформам (Twitter/X, Reddit, LinkedIn, Xiaohongshu, Bilibili, YouTube, RSS) с авто-роутингом бэкендов. | Python / CLI |
 | [**`seo-audit`**](skills/marketing/seo-audit/SKILL.md) | **Technical SEO Audit**. Комплексный аудит индексации, структуры заголовков, Core Web Vitals, robots.txt и sitemap. | Node/CLI |
 | [**`geo-aeo-audit`**](skills/marketing/geo-aeo-audit/SKILL.md) | **GEO/AEO Site Audit**. Детерминированный аудит сайта под AI-поиск: доступ AI-ботов, контент в raw HTML без JS, JSON-LD, alt, перелинковка, глубина кликов. 26 проверок, оценка 0-100, снимки для отслеживания дельт. | Python |

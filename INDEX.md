@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-11-14
+last_updated: 2026-11-16
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (136 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (137 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -188,6 +188,7 @@ last_updated: 2026-11-14
 | **ad-creative** | **Ad-creative**.<br>Генерация, масштабирование и A/B тестирование рекламных креативов и текстов для платного трафика (Meta, Google RSA, T... | `'ad-creative', 'рекламные креативы', 'тексты объявлений', 'RSA заголовки', 'Meta ads креативы', 'хуки для рекламы'` | Prompt | [SKILL.md](skills/marketing/ad-creative/SKILL.md) |
 | **google-maps-scraper** | **Google-maps-scraper**.<br>Scrape Google Maps business listings (name, address, phone, website, rating, reviews, lat/lng, emails) via local REST... | `google-maps-scraper` | Python / CLI | [SKILL.md](skills/marketing/google-maps-scraper-kit/SKILL.md) |
 | **aeo-geo-skill-ru** | **Answer & Generative Engine Optimization (AEO/GEO)**.<br>Полный плейбук AEO/GEO на русском: 4 канала выдачи, 289-значные H1 под labrador, обход кэша OpenAI, 117-словные пассажи, защита от Ghost Citations, Python stdlib CLI | `AEO, GEO, оптимизация под нейросети, ChatGPT labrador, Perplexity, цитируемость, llms.txt, Ghost Citations` | Python / CLI | [SKILL.md](skills/marketing/aeo-geo-skill-ru/SKILL.md) |
+| **aeo-skill** | **AEO Skill (SEO / AEO / GEO)**.<br>Набор SEO/AEO/GEO по образцу claude-seo: оркестратор /aeo, 11 под-навыков, 4 агента и скрипты проверки сырого HTML, доступа AI-ботов, логов и замеров видимости. База — 920 материалов Search Engine Land за май–ноябрь 2026 | `/aeo, аудит SEO/AEO/GEO, AI-видимость, «нас нет в ChatGPT», AI Overviews, цитирование в LLM, GPTBot, prompt tracking` | Python / CLI | [SKILL.md](skills/marketing/aeo-skill/SKILL.md) |
 | **agent-reach** | **Multi-Platform Intelligence & Retrieval Router**.<br>Маршрутизатор сбора контента по 15 платформам (Twitter/X, Reddit, LinkedIn, Xiaohongshu, Bilibili, YouTube, RSS, Facebook, Instagram) с авто-роутингом бэкендов | `сбор постов, анализ трендов соцсетей, поиск в Twitter/Reddit/XHS, agent-reach` | Python / CLI | [SKILL.md](skills/marketing/agent-reach/SKILL.md) |
 | **seo-audit** | **Comprehensive SEO Audit**.<br>Технический и контентный аудит веб-сайтов, анализ индексации, Core Web Vitals | `SEO аудит, проверка ошибок индексации, аудит сайта` | Node/CLI | [SKILL.md](skills/marketing/seo-audit/SKILL.md) |
 | **geo-aeo-audit** | **GEO/AEO Site Audit**.<br>Детерминированный аудит сайта под AI-поиск: доступ AI-ботов, контент в raw HTML без JS, JSON-LD, alt, перелинковка, глубина кликов. 26 машинно-проверяемых пунктов, оценка 0-100, дельта между снимками | `'GEO аудит', 'AEO аудит', 'проверь сайт под AI-поиск', 'почему страница не цитируется', 'AI visibility audit'` | Python / CLI | [SKILL.md](skills/marketing/geo-aeo-audit/SKILL.md) |
