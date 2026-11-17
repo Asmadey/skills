@@ -1,7 +1,7 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-11-16
+last_updated: 2026-11-17
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
@@ -92,6 +92,7 @@ last_updated: 2026-11-16
 | **pm-skills** | **Pm-skills**.<br>Комплексная библиотека из 68 модульных навыков продуктового менеджмента (Product on Purpose) по фазам Triple Diamond,... | `\"pm skills\", \"deliver-prd\", \"define-jtbd-canvas\", \"opportunity-tree\", \"design-sprint\", \"lean-canvas\", \"foundation-sprint\", \"продуктовые навыки\"` | Node/CLI | [SKILL.md](skills/product/pm-skills/SKILL.md) |
 | **pm-claude-code-setup** | **Pm-claude-code-setup**.<br>Система гибкого продуктового менеджмента (Lean PM System) по методологии Аакаша Гупты (Aakash Gupta) | `'pm setup', 'aakash pm', 'напиши prd', 'lean prd', 'prd-writer', 'анализ конкурентов', 'launch checklist', 'user-research'` | Prompt | [SKILL.md](skills/product/pm-claude-code-setup/SKILL.md) |
 | **next-move-theory** | **Next-move-theory**.<br>Канон и навыки методологии Next Move Theory и Advanced JTBD (Иван Замесин) | `\"nmt\", \"/nmt-chat\", \"zamesin\", \"next move theory\", \"ajtbd\", \"граф работ\", \"кастдев\", \"анализ интервью\", \"nmt-diagnose\"` | Prompt | [SKILL.md](skills/product/next-move-theory/SKILL.md) |
+| **custdev-research** | **CustDev Research**.<br>Разбор записей кастдев-интервью и UX-тестирования: семантическая диаризация спикеров (1-на-1 и групповые сессии), профили респондентов, продуктовые боли с привязкой к говорящему, фоллоуап, DOCX и реестр исследований; кэш и ротация ключей Groq | `разбери кастдев, карточка респондента, стенограмма и фоллоуап, диаризация интервью, инсайты с интервью, UX-тест записи, custdev, research card` | Python / CLI | [SKILL.md](skills/product/custdev-research/SKILL.md) |
 | **AJTBD** | **Applied JTBD Framework**.<br>Глубокий анализ задач пользователей по методологии Jobs-To-Be-Done, микро-шаги и барьеры | `исследование JTBD, формулировка job stories, анализ барьеров` | Prompt | [SKILL.md](skills/product/AJTBD/SKILL.md) |
 | **advise-project-approach** | **Tech Strategy & Stack Advisor**.<br>Анализ аналогов (comparables), выбор оптимального стека, архитектуры и оценка операционных затрат | `выбор стека, архитектурный подход, similar projects, stack selection, advise-project-approach` | Python | [SKILL.md](skills/product/advise-project-approach/SKILL.md) |
 | **prd-taskmaster** | **Atlas Goal-to-Tasks Engine (v5.3.0)**.<br>Генерация полного валидированного PRD, декомпозиция в граф задач и оркестрация выполнения | `«PRD», «product requirements», «хочу создать проект», /atlas` | Python / Node/CLI | [SKILL.md](skills/product/prd-taskmaster/SKILL.md) |

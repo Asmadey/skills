@@ -138,6 +138,7 @@ flowchart TD
 | [**`next-move-theory`**](skills/product/next-move-theory/SKILL.md) | **Next-move-theory**. Канон и навыки методологии Next Move Theory и Advanced JTBD (Иван Замесин). | Prompt |
 | [**`prd-taskmaster`**](skills/product/prd-taskmaster/SKILL.md) | **Atlas Engine v5.3.0**. Комплексная декомпозиция PRD: 33 модуля Python, фазы Discover → Generate → Handoff, CLI `taskmaster`. | Python / CLI |
 | [**`advise-project-approach`**](skills/product/advise-project-approach/SKILL.md) | **Tech Stack & Architecture Advisor**. Выбор оптимального стека и архитектуры на основе анализа аналогов (comparables). | Python |
+| [**`custdev-research`**](skills/product/custdev-research/SKILL.md) | **CustDev Research**. Записи кастдев-интервью и UX-тестирования → карточка исследования: диаризация спикеров по смыслу, профиль каждого респондента, продуктовые боли с привязкой к говорящему, единый фоллоуап, брендированный DOCX, строка в реестре. Групповые сессии, несколько частей одной встречи, готовые транскрипты на входе; окна по токен-бюджету (−50…−60% токенов), кольцо ключей Groq с учётом бюджета, кэш повторных прогонов. | Python / CLI |
 | [**`AJTBD`**](skills/product/AJTBD/SKILL.md) | **Applied JTBD Framework**. Детальный анализ Jobs-To-Be-Done: микро-шаги, барьеры, job stories и эмоциональные триггеры. | Prompt |
 
 ---
