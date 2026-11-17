@@ -92,6 +92,7 @@ flowchart TD
 | [**`mobile`**](skills/dev/mobile/SKILL.md) | **Mobile Design Master Hub**. UX-шаблоны лучших приложений (Airbnb, Revolut) + Material Design 3. | Node/CLI |
 | [**`open-graph`**](skills/dev/open-graph/SKILL.md) | **OG & Social Meta Generator**. Генерация динамических превью и метаданных для поисковых систем. | Prompt |
 | [**`vercel-automation`**](skills/dev/vercel-automation/SKILL.md) | **Vercel Automation MCP**. Управление проектами, доменами, переменными окружения и деплоями. | Prompt |
+| [**`easement`**](skills/dev/easement/SKILL.md) | **Architecture Quality Gate**. Проверка зависимостей между объявленными компонентами (`easement.yml`): handler не лезет в базу напрямую, фича не импортирует внутренности другой, циклы не появляются. Полиглотно через SCIP. | Rust / CLI |
 
 ---
 
@@ -182,6 +183,7 @@ flowchart TD
 | [**`humanizer-en`**](skills/writing/humanizer-en/SKILL.md) | **English Text Humanizer**. Устранение маркеров ИИ («delve», «tapestry», «testament») в англоязычных текстах. | Prompt |
 | [**`simple-english`**](skills/writing/simple-english/SKILL.md) | **Simplified Technical English (ASD-STE100)**. Лаконичная техническая документация без двусмысленности для международных команд. | Python / Node/CLI |
 | [**`slop-monster`**](skills/writing/slop-monster/SKILL.md) | **Ultimate AI Slop Remover**. Бескомпромиссное устранение клише, пустых преамбул и канцелярского тона нейросетей. | Python / Prompt |
+| [**`show-me`**](skills/writing/show-me/SKILL.md) | **Show Me**. Визуальное объяснение текущей темы минимально достаточной формой: псевдокод, дерево вызовов, дерево компонентов, Mermaid, `diff`, или один самодостаточный HTML-артефакт. Только по явному вызову. | Prompt / HTML |
 
 ---
 

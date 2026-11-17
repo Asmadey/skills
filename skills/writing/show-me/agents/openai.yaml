@@ -1,0 +1,5 @@
+interface:
+  display_name: "Show Me"
+  short_description: "Explain the topic visually: diagrams, code shapes, HTML"
+policy:
+  allow_implicit_invocation: false

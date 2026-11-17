@@ -1,0 +1,3 @@
+interface:
+  display_name: "Easement"
+  short_description: "Architecture quality gate: keep code inside easement.yml"

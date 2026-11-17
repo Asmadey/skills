@@ -6,7 +6,7 @@ last_updated: 2026-11-16
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (137 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (139 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -61,6 +61,7 @@ last_updated: 2026-11-16
 | **unlazy** | **Completion Discipline & Acceptance Gates**.<br>Устранение недоделок и лени ИИ: построение дерева задач Depth Tree, генерация acceptance gates (GATES.md) до исполнения, изоляция файлов и строгая повторная верификация доказательств | `/unlazy, $unlazy, «не останавливайся пока не готово», «tree N», «gates», защита от лени ИИ` | Node/CLI | [SKILL.md](skills/dev/unlazy/SKILL.md) |
 | **supabase** | **Supabase & Postgres Suite**.<br>Официальный пакет навыков Supabase: база данных, Auth, RLS-политики, Edge Functions, Storage, лучшие практики PostgreSQL | `Supabase, настройка RLS, оптимизация PostgreSQL, миграции, Auth` | Node/CLI | [SKILL.md](skills/dev/supabase/SKILL.md) |
 | **vercel-automation** | **Vercel Automation MCP**.<br>Управление деплоями, доменами, проектами и окружениями на Vercel через MCP | `деплой на Vercel, управление проектами, DNS-записи` | Prompt | [SKILL.md](skills/dev/vercel-automation/SKILL.md) |
+| **easement** | **Architecture Quality Gate**.<br>Гейт архитектуры по `easement.yml`: разрешённые зависимости между компонентами, запрет обхода слоёв, изоляция фич, контроль циклов; полиглотно через SCIP | `'easement', 'easement.yml', 'easement check', 'architecture gate', 'проверь архитектуру', 'архитектурный гейт'` | Rust / CLI | [SKILL.md](skills/dev/easement/SKILL.md) |
 
 ---
 
@@ -105,6 +106,7 @@ last_updated: 2026-11-16
 | **humanizer-ru** | **Russian Humanizer**.<br>Очеловечивание русскоязычных текстов, удаление канцелярита, штампов и водянистости ИИ | `«очеловечь текст», «убери следы нейросети», живой русский язык` | Python / Node/CLI | [SKILL.md](skills/writing/humanizer-ru/SKILL.md) |
 | **simple-english** | **Simplified Technical English**.<br>Стандарт ASD-STE100: ясный, лаконичный английский без двусмысленности для документации | `написание README, API docs, документация для не-носителей языка` | Python / Node/CLI | [SKILL.md](skills/writing/simple-english/SKILL.md) |
 | **slop-monster** | **De-Slop Multi-Pass Engine**.<br>4-шаговый пайплайн очистки от ИИ-клише: Lint (deslop.py) → Rewrite → Cleanse → Re-Lint | `/slopmonster, «де-слоп», чистка маркетинговых черновиков` | Python | [SKILL.md](skills/writing/slop-monster/SKILL.md) |
+| **show-me** | **Visual Explainer**.<br>Показывает тему минимально достаточным визуалом: псевдокод, call tree, дерево компонентов, Mermaid, `diff`, либо один HTML-артефакт. Только явный вызов, моделью не подхватывается | `'/show-me', 'show me', 'покажи визуально', 'объясни схемой'` | Prompt / HTML | [SKILL.md](skills/writing/show-me/SKILL.md) |
 
 ---
 

@@ -1,10 +1,23 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-11-16
+last_updated: 2026-11-17
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-11-17] — Навыки dev/easement и writing/show-me
+
+### 📦 Добавленные навыки
+- **`dev/easement`** ([`skills/dev/easement/SKILL.md`](skills/dev/easement/SKILL.md)):
+  - Архитектурный гейт (Rust CLI, `brew install mokevnin/tap/easement`): зависимости между объявленными в `easement.yml` компонентами проверяются через SCIP-индексеры, а не по эвристике импортов.
+  - Навык задаёт рабочий цикл вокруг CLI: `explain` перед добавлением файла, `propose` перед импортом, `check` после правок, `--diff` для PR, разбор `because` при падении; запрет править конфиг или baseline ради зелёного статуса.
+  - Поддержка языков: Go, TypeScript/JavaScript, Python, Rust (полный анализ), Java/C#/PHP/Ruby (частично), Kotlin/Swift (только импорты).
+- **`writing/show-me`** ([`skills/writing/show-me/SKILL.md`](skills/writing/show-me/SKILL.md)):
+  - Визуальное объяснение текущей темы минимально достаточной формой: псевдокод для алгоритма, call tree для control flow, дерево компонентов для UI, Mermaid для потоков, `diff` для «что меняется», один самодостаточный HTML-артефакт для макетов.
+  - Навык user-invoked: `disable-model-invocation: true`, `policy.allow_implicit_invocation: false` — активируется только явным `/show-me` и не подхватывается моделью по описанию.
+
+---
 
 ## [2026-11-16] — Новый набор marketing/aeo-skill
 
