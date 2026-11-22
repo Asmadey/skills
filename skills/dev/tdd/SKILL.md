@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: "Разработка через тестирование (Test-Driven Development) по циклу Red-Green-Refactor. Тестирование поведения на публичных границах (seams), вертикальные срезы (vertical slicing), правила изоляции и предотвращения хрупких тестов. Триггеры: 'tdd', 'red-green-refactor', 'напиши тесты сначала', 'test-first', 'тест-драйвен'."
+description: "Разработка через тестирование (Test-Driven Development) по циклу Red-Green-Refactor. Тестирование поведения на публичных границах (seams), вертикальные срезы (vertical slicing), правила изоляции и предотвращения хрупких тестов. Использовать, когда реализуется или меняется поведение кода, а также на 'tdd', 'red-green-refactor', 'напиши тесты сначала', 'test-first', 'тест-драйвен'."
 category: dev
 version: 1.0.0
 source: https://github.com/mattpocock/skills
