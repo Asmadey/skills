@@ -1,10 +1,19 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-11-17
+last_updated: 2026-11-22
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
+
+## [2026-11-22] — Синхронизация навыков из PersonalOS (public)
+
+### 📦 Добавленные навыки
+- **`dev/before-and-after`** ([`skills/dev/before-and-after/SKILL.md`](skills/dev/before-and-after/SKILL.md)):
+  - Attach existing screenshots or screen recordings to a GitHub pull request as a before/after or preview block.
+  - Аудит безопасности NVIDIA SkillSpector: **CAUTION** (отчёт в PersonalOS, `skills/public/skill-ops/skillspector`).
+
+---
 ## [2026-11-17] — Навык product/custdev-research
 
 ### 📦 Добавленные навыки

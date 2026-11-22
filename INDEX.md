@@ -1,12 +1,12 @@
 ---
 description: Официальный реестр навыков библиотеки PersonalOS (skills). Каталог сгруппирован по 13 категориям.
 created: 2026-08-30
-last_updated: 2026-11-17
+last_updated: 2026-11-22
 ---
 
 # 🧠 Каталог навыков PersonalOS (skills)
 
-Центральный реестр всех активных навыков (139 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
+Центральный реестр всех активных навыков (141 навыков) проекта PersonalOS. Библиотека организована по трехуровневой архитектуре L1-L3 и разделена на 13 категорий.
 
 > 💡 Полная хронология добавлений, удалений и обновлений версий задокументирована в [changelog.md](changelog.md).
 
@@ -35,6 +35,7 @@ last_updated: 2026-11-17
 
 | Навык | Назначение | Триггеры вызова | Стек | Документация |
 | :--- | :--- | :--- | :--- | :--- |
+| **before-and-after** | **Before-and-after**.<br>Attach existing screenshots or screen recordings to a GitHub pull request as a before/after or preview block | `'before/after', 'скриншоты в PR', 'видео в PR', 'visual diff', 'preview block', 'attach screenshots to PR'` | Node/CLI | [SKILL.md](skills/dev/before-and-after/SKILL.md) |
 | **bama** | **Bama**.<br>Build Any Mac App (BAMA) | `'bama', 'build mac app', 'mac app', 'swiftui mac', 'создай приложение для mac', 'macOS app', 'native mac'` | Bash / CLI | [SKILL.md](skills/dev/bama/SKILL.md) |
 | **reverse-engineer-anything** | **Reverse-engineer-anything**.<br>Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA | `reverse-engineer-anything` | Prompt | [SKILL.md](skills/dev/reverse-engineer-anything/SKILL.md) |
 | **technical-writer** | **Technical-writer**.<br>Комплексный инженерный комплекс технического писательства (Technical Writing Suite by riekelt) | `'technical-writer', 'technical writing', 'rfc', 'design doc', 'adr', 'architecture decision', 'runbook', 'postmortem', 'api docs', 'документация архитектуры', 'напиши adr', 'составь rfc'` | Prompt | [SKILL.md](skills/dev/technical-writer/SKILL.md) |
