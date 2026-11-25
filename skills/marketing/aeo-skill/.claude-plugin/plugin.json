@@ -1,6 +1,0 @@
-{
-  "name": "aeo-skill",
-  "version": "1.0.0",
-  "description": "SEO / AEO / GEO: аудит и вывод сайтов в топ поиска и в ответы LLM. Оркестратор /aeo, 11 под-навыков, 4 агента, скрипты проверки. База — 920 материалов Search Engine Land за май–ноябрь 2026.",
-  "keywords": ["seo", "aeo", "geo", "ai-search", "llm-visibility"]
-}

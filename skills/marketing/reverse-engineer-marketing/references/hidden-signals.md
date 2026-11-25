@@ -19,7 +19,7 @@ Stage 5 in full: evidence most teardowns never look at. Infrastructure, archives
 | **Certificate logs** | `teardown.mjs subdomains <domain>` | Every subdomain with the date its first certificate was issued, usually days before launch: free tools, showcases, creator programs, campaigns, enterprise pages, new products |
 | **Page scripts** | `teardown.mjs stack <domain>` | Ad pixels, analytics, A/B testing, affiliate and lifecycle tools, dated from archived homepages |
 | **UTM parameters** | Links in their posts, ads, emails, and partner pages | How they name campaigns (`utm_source=newsletter_sponsor`, `utm_campaign=q3_creator`), which shows how they organize channels and which partners they track |
-| **robots.txt and llms.txt** | `target.com/robots.txt`, `/llms.txt` | Which AI crawlers they allow, and whether they publish an AI-readable summary or agent files (see **ai-seo**) |
+| **robots.txt and llms.txt** | `target.com/robots.txt`, `/llms.txt` | Which AI crawlers they allow, and whether they publish an AI-readable summary or agent files (see **seo-aeo-geo**) |
 
 Each new subdomain, verification, and mail tool is a candidate move. Date it, label it Inferred, and confirm it with a second source where you can: a new `creators.` subdomain plus a creator program page is Observed.
 

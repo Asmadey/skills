@@ -16,7 +16,7 @@ Every play in a teardown names the skill that runs it and, for repeat work, the 
 | A page family carrying non-brand traffic (templates, integrations, use cases, locations) | **programmatic-seo** | The programmatic-SEO quality loop |
 | Comparison or alternative pages ranking | **competitors** | The keyword-gap loop |
 | Glossary, guides, or a blog driving traffic | **content-strategy**, then **copywriting** | The content-calendar refill loop |
-| Named and cited first in AI answers | **ai-seo** | The AI-answer check loop |
+| Named and cited first in AI answers | **seo-aeo-geo** | The AI-answer check loop |
 | Links from many domains to one asset | **link-building** | The backlink-prospecting loop |
 | A free tool or calculator earning traffic | **free-tools** | (none; one-off build) |
 | Long-running ads on a network | **ads** for structure, **ad-creative** for creative | The daily-creative-drop loop, the ad-fatigue loop |

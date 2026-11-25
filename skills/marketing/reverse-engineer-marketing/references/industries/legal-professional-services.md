@@ -73,7 +73,7 @@ Load this pack when the target sells expertise by the hour, case, or engagement:
 | Thought leadership program: alerts, webinars, speaking | **content-strategy**, **events**, **public-relations** |
 | Referral partner program with other professionals | **co-marketing**, **referrals** |
 | Call tracking and case-value attribution | **conversion-tracking**, **attribution** |
-| FAQ and AI-answer coverage for common legal questions | **ai-seo** |
+| FAQ and AI-answer coverage for common legal questions | **seo-aeo-geo** |
 
 ## Metrics to Ask About
 

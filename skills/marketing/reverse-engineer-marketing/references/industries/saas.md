@@ -77,7 +77,7 @@ With approval, under the user's real identity:
 | Faster first result and invite prompts | **onboarding**, **signup** |
 | Integration listings and co-marketing | **co-marketing**, **directory-submissions** |
 | Trial and lifecycle email sequence | **emails** |
-| Showing up in AI answers and coding assistants | **ai-seo** |
+| Showing up in AI answers and coding assistants | **seo-aeo-geo** |
 | Affiliate and agency partner program | **referrals** |
 
 ## Metrics to Ask About
