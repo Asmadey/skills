@@ -1,11 +1,22 @@
 ---
 description: Хронологический журнал изменений библиотеки навыков PersonalOS (skills). Фиксирует добавления, обновления, удаления и реструктуризацию навыков.
 created: 2026-08-30
-last_updated: 2026-11-22
+last_updated: 2026-11-25
 ---
 # 📜 Журнал изменений (Changelog) — Библиотека навыков PersonalOS
 
 
+## [2026-11-25] — SEO / AEO / GEO: четыре навыка заменены набором seo-aeo-geo
+
+### 🔄 Реструктуризация
+- **`marketing/seo-aeo-geo`** ([`skills/marketing/seo-aeo-geo/README.md`](skills/marketing/seo-aeo-geo/README.md)) — ссылка на отдельный репозиторий [Asmadey/aeo-geo-skill](https://github.com/Asmadey/aeo-geo-skill) с двумя навыками: `seo-aeo-geo` (аудит, техника, контент, сущность, внешний след, замер AI-видимости, local, ecommerce, рефреш, план) и `seo-article-writer` (написание статей).
+  - Собран по итогам Bain-аудита четырёх навыков и турнира Arena (16 участников, 4 раунда; победитель против исходного `aeo-skill` — 79,5 : 40).
+
+### 🗑️ Удалённые навыки
+- `marketing/ai-seo`, `marketing/aeo-skill`, `marketing/aeo-geo-skill-ru`, `marketing/geo-aeo-audit` — содержимое перенесено в `seo-aeo-geo`; последние версии в истории репозитория (коммит `eb4a465`).
+- Ссылки на них в `seo-audit` и `reverse-engineer-marketing` переведены на `seo-aeo-geo`.
+
+---
 ## [2026-11-22] — Синхронизация навыков из PersonalOS (public)
 
 ### 📦 Добавленные навыки

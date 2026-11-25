@@ -127,7 +127,7 @@ Walk the target's funnel one stage at a time. Each finding goes in the write-up,
 | Channel | What to collect |
 |---|---|
 | **Search** | Ranked keywords by URL, from the user's SEO tool (DataForSEO, Semrush, Ahrefs, or Similarweb; without one, only page families from `site` are available). Map them to the page families from `site`. Report brand vs non-brand share and which families carry non-brand traffic. Check which families existed before the inflection (Wayback) and which came after. |
-| **AI answers** | The same prompt set for the target and the user in a connected prompt tracker (share of voice and citations over time), or by hand in ChatGPT, Perplexity, Gemini, and Google AI Overviews: the order brands are named and which pages are cited. Options in [references/data-sources.md](references/data-sources.md); method in **ai-seo**. |
+| **AI answers** | The same prompt set for the target and the user in a connected prompt tracker (share of voice and citations over time), or by hand in ChatGPT, Perplexity, Gemini, and Google AI Overviews: the order brands are named and which pages are cited. Options in [references/data-sources.md](references/data-sources.md); method in **seo-aeo-geo**. |
 | **Paid** | Per network, from `sc-ads` (ScrapeCreators) or the ad library links: active ads, the longest-running ad (45+ days suggests it's worth testing, though performance is unknown), the hook, the offer, and the landing page. No ads found → Observed "no ads found in [library, filter, date]", which is not proof they don't advertise. Read creative in depth with **ad-creative**. |
 | **Social and creators** | The founders' and brand's best posts, the most-viewed creator videos and threads about the company, and every contest, giveaway, launch-week, or invite drop. Label each item team, creator (paid if disclosed), user, or press. |
 | **PR and launches** | Funding announcements, launch days, press waves, and podcast runs, with dates. Founder-stated revenue is labeled "reported". |
@@ -299,7 +299,7 @@ In `teardowns/<target>/`:
 - **marketing-loops**: the growth-move watch loop and the loops behind each play
 - **social**: why one post went viral, and writing the posts the plays call for
 - **ad-creative**: reading and producing ad creative
-- **ai-seo**: running and tracking the AI answer checks
+- **seo-aeo-geo**: running and tracking the AI answer checks
 - **onboarding**, **emails**, **churn-prevention**, **sales-enablement**: benchmarks for what stage 3 finds inside the product
 - **programmatic-seo**: building the page families a teardown surfaces
 - **referrals**: affiliate and referral programs
