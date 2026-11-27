@@ -209,3 +209,26 @@ class SplitBySizeTest(unittest.TestCase):
         fit, big = mine.split_by_size([{"id": 1, "text": "a" * 32_000}, {"id": 2, "text": "a" * 32_001}], mine.MAX_BYTES_DEFAULT)
         self.assertEqual([r["id"] for r in fit], [1])
         self.assertEqual([r["id"] for r in big], [2])
+
+
+class CheckKeyTest(unittest.TestCase):
+    def test_check_key_reports_by_name_and_never_prints_the_value(self):
+        old_env, old_files = os.environ.pop(mine.KEY_ENV, None), mine.ENV_FILES
+        mine.ENV_FILES = []
+        try:
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out), self.assertRaises(SystemExit):
+                mine.main(["check-key"])
+            self.assertIn("KEY_MISSING", out.getvalue())
+            self.assertIn("Automic Vault", out.getvalue())
+            os.environ[mine.KEY_ENV] = "sk-test-not-real-123"
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                mine.main(["check-key"])
+            self.assertEqual(out.getvalue().strip(), "KEY_OK")
+            self.assertNotIn("sk-test", out.getvalue())
+        finally:
+            mine.ENV_FILES = old_files
+            os.environ.pop(mine.KEY_ENV, None)
+            if old_env is not None:
+                os.environ[mine.KEY_ENV] = old_env

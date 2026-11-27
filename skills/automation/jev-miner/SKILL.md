@@ -23,8 +23,9 @@ Script: `scripts/mine.py` (stdlib only, Python 3.9+). Helper: `scripts/anonymize
 
 1. **External sends need approval in chat, every run.** `classify --send` sends message text to OpenRouter. Run `classify` without `--send` first (dry run), show the user the request count, the sample request and the cost estimate, and wait for a clear yes. Approval for one run does not carry over to the next.
 2. **Privacy.** Message text is anonymized before sending: links, `@`-handles, emails and phone numbers are masked. Names written in plain text are not masked. Say so to the user and offer to strip known participant names if they ask. Never send the `from` field or user IDs.
-3. **Never print the key.** The script takes `OPENROUTER_API_KEY` from the environment, or from the skill's own `.env` (git-ignored, mode 600) when the variable is unset. It never prints the value. Check presence by name only.
-   Do not copy the skill folder into a repository or share it: the `.env` inside holds a live key.
+3. **The key comes separately; check it before anything else.** The skill ships without a key. Before the first `classify --send`, check by name, without printing the value: `python3 scripts/mine.py check-key` (`KEY_OK` / `KEY_MISSING`).
+   - `KEY_MISSING`: stop and tell the user that this skill needs an OpenRouter key (`OPENROUTER_API_KEY`) and why (Jev classification on openrouter.ai). Ask them to add it to Automic Vault, then run the script through it: `bb vault run --key OPENROUTER_API_KEY -- python3 scripts/mine.py classify ... --send`. Without Vault they can export it in their own shell. Never ask to paste the key into chat: a pasted key counts as leaked.
+   - The script reads the key from the environment, or from a local `.env` / `.env.local` next to the skill when the variable is unset (a private copy may keep one; it is git-ignored). It never prints the value. Never put a `.env` into a repository or share a skill folder that has one.
 
 4. **Work directory lives outside git repositories.** It holds raw message text. Default suggestion: `~/jev-miner-runs/<run-name>/`.
 5. **Report cost.** After a run, show the `usage` totals (calls, input and output tokens, USD). Tell the user to cross-check with the OpenRouter activity page, because the per-response `usage.cost` is the number the script can see.
@@ -146,6 +147,6 @@ Writes `report.md` with the sections below. Post links are built from the export
 
 ## Troubleshooting
 
-- `OPENROUTER_API_KEY is not set`: export it in the shell that runs the script. Never paste it into chat.
+- `KEY_MISSING` / `OPENROUTER_API_KEY is not set`: the key comes separately (rule 3): ask the user to add it to Automic Vault and rerun through `bb vault run --key OPENROUTER_API_KEY -- ...`, or to export it in their shell. Never paste it into chat.
 - Many `error` lines in `jev_out.jsonl`: check the error type name, fix the cause, re-run `classify --send`. Only errors are retried.
 - Changing the questions changes the spec hash, so every message is re-asked and billed again. Changing only the threshold does not.
