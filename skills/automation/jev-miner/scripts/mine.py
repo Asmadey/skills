@@ -222,7 +222,8 @@ def cmd_classify(args) -> None:
 
     load_key_from_env_file()
     if not os.environ.get(KEY_ENV):
-        raise SystemExit(f"{KEY_ENV} is not set: export it or put it in the skill's .env")
+        raise SystemExit(f"KEY_MISSING: {KEY_ENV} is not set. This skill needs an OpenRouter key: add it to Automic Vault "
+                         f"and run through `bb vault run --key {KEY_ENV} -- python3 scripts/mine.py ...`, or export it in your shell.")
 
     def job(row):
         return row["id"], send_to_jev(build_request(row["text"], spec["questions"]))
@@ -421,6 +422,17 @@ def cmd_report(args) -> None:
     print(f"written: {out}")
 
 
+def cmd_check_key(args) -> None:
+    """KEY_OK or KEY_MISSING (exit 1), by name only: the value is never printed."""
+    load_key_from_env_file()
+    if os.environ.get(KEY_ENV):
+        print("KEY_OK")
+        return
+    print(f"KEY_MISSING: {KEY_ENV} is not set. This skill needs an OpenRouter key: add it to Automic Vault and run "
+          f"through `bb vault run --key {KEY_ENV} -- python3 scripts/mine.py ...`, or export it in your shell.")
+    raise SystemExit(1)
+
+
 def main(argv=None) -> None:
     p = argparse.ArgumentParser(prog="mine.py", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -456,6 +468,9 @@ def main(argv=None) -> None:
     s.add_argument("--spec", required=True)
     s.add_argument("--labels", default="labels.jsonl")
     s.set_defaults(fn=cmd_eval)
+
+    s = sub.add_parser("check-key", help="is OPENROUTER_API_KEY set (by name; the value is never printed)")
+    s.set_defaults(fn=cmd_check_key)
 
     s = sub.add_parser("usage")
     s.add_argument("--work", required=True)
